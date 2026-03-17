@@ -5,7 +5,7 @@ import Image from "next/image";
 import profile from "@/data/profile.json";
 
 const titles = [
-  "AI Engineer & Systems Thinker",
+  "Aspiring AI Engineer & Systems Thinker",
   "ML · DL · DevOps",
   "BSAI @ COMSATS Islamabad",
 ];
