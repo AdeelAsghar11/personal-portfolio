@@ -1,0 +1,98 @@
+[
+  {
+    "title": "BSL Hand Gesture Recognition",
+    "description": "Deep learning system classifying 34 British Sign Language gestures with 95.74% accuracy and 95.78% F1-score. Uses MobileNetV2 transfer learning with CLAHE normalisation and MediaPipe hand landmark preprocessing. Trained on 34,000 balanced images and deployed as a live Streamlit web app.",
+    "tags": ["Python", "TensorFlow", "MobileNetV2", "Transfer Learning", "MediaPipe", "Streamlit", "Computer Vision"],
+    "github": "https://github.com/AdeelAsghar11/BSL-Hand_Gesture_Recognition",
+    "demo": "https://bsl-handgesturerecognition.streamlit.app",
+    "featured": true,
+    "insight": "CLAHE normalisation on the LAB L-channel alone outperformed standard RGB preprocessing — preprocessing quality mattered more than model complexity at this scale.",
+    "category": "AI/ML"
+  },
+  {
+    "title": "Smart Recycle System",
+    "description": "Industrial waste classifier using MobileNetV2 transfer learning achieving 86%+ accuracy across 12 material categories — outperforming a custom CNN baseline by 25%. Features real-time hazardous waste flagging with an efficient inference pipeline for industrial constraints.",
+    "tags": ["Python", "TensorFlow", "MobileNetV2", "Transfer Learning", "Streamlit", "Computer Vision"],
+    "github": "https://github.com/AdeelAsghar11/smart-recycle-system-cnn",
+    "demo": null,
+    "featured": true,
+    "insight": "MobileNetV2 with fine-tuning outperformed a custom CNN baseline by 25% on the same dataset — transfer learning wins when data is limited and classes are visually similar.",
+    "category": "AI/ML"
+  },
+  {
+    "title": "Retail Sales Analytics Dashboard",
+    "description": "End-to-end ETL pipeline processing 500,000+ transaction records for a UK-based online retailer. Identified seasonal revenue spikes, top-performing product categories, and high-value customer segments through in-depth EDA. Visualised with interactive Tableau dashboards for business intelligence decisions.",
+    "tags": ["Python", "Pandas", "EDA", "ETL", "Tableau", "Data Science"],
+    "github": null,
+    "demo": null,
+    "featured": true,
+    "insight": "500K+ transaction records revealed that 80% of revenue came from just 3 product categories — classic Pareto, but only visible after cleaning 40% missing/duplicate records in the ETL stage.",
+    "category": "Data Science"
+  },
+  {
+    "title": "AutoRedBlue (FYP)",
+    "description": "Final Year Project (In Progress) — an autonomous LLM-powered red/blue teaming platform for cybersecurity. Simulates attacker and defender agents to autonomously identify vulnerabilities and generate patches in real time. Currently in early development.",
+    "tags": ["Python", "LLMs", "Cybersecurity", "AI Agents", "Red Teaming"],
+    "github": null,
+    "demo": null,
+    "featured": true,
+    "status": "in-progress",
+    "insight": "Most red-team tools are manual and reactive. The core hypothesis: LLM agents can simulate both attacker and defender roles simultaneously, closing the feedback loop autonomously.",
+    "category": "Security"
+  },
+  {
+    "title": "AI/ML Model Advisor",
+    "description": "Rule-based expert system with custom forward and backward chaining inference engines that recommends optimal ML algorithms based on dataset characteristics. Includes explainability support and a lightweight Flask web interface for interactive user queries.",
+    "tags": ["Python", "Flask", "SymPy", "Expert Systems", "AI", "Knowledge Representation"],
+    "github": null,
+    "demo": null,
+    "featured": false,
+    "category": "AI/ML"
+  },
+  {
+    "title": "Indian Air Pollution Analysis",
+    "description": "Analyzed historical air quality data (2015–2020) across 26 major Indian cities. Built an automated data pipeline with robust preprocessing, compared 4 regression models with hyperparameter tuning to forecast PM2.5 levels, and deployed an interactive Streamlit prediction dashboard.",
+    "tags": ["Python", "Scikit-learn", "Pandas", "Random Forest", "Streamlit", "EDA"],
+    "github": "https://github.com/AdeelAsghar11/indian-air-pollution",
+    "demo": null,
+    "featured": false,
+    "category": "Data Science"
+  },
+  {
+    "title": "Encrypted Monitoring App",
+    "description": "Python application that periodically captures desktop screenshots, encrypts them using AES or DES, generates SHA-256 integrity hashes, and securely logs all data. Supports full decryption and hash verification.",
+    "tags": ["Python", "AES", "DES", "SHA-256", "Cryptography", "Security"],
+    "github": "https://github.com/AdeelAsghar11/encrypted-monitoringapp-python",
+    "demo": null,
+    "featured": false,
+    "category": "Security"
+  },
+  {
+    "title": "Smart Farm Security System",
+    "description": "Custom CNN built from scratch to classify 10 farm animal species and flag potential intruder threats from live image analysis. Trained on 28,000 images from the Animals-10 dataset and deployed via Streamlit for real-time inference.",
+    "tags": ["Python", "TensorFlow", "Keras", "CNN", "Streamlit", "Computer Vision"],
+    "github": "https://github.com/AdeelAsghar11/smart-farm-cnn",
+    "demo": null,
+    "featured": false,
+    "category": "AI/ML"
+  },
+  {
+    "title": "CIFAR-10 Classical ML Classifier",
+    "description": "CPU-efficient classical ML approach to CIFAR-10 using Histogram of Oriented Gradients (HOG) for feature extraction and SVMs for classification. Lightweight, interpretable, and runs without GPU.",
+    "tags": ["Python", "Scikit-learn", "SVM", "HOG", "Machine Learning"],
+    "github": "https://github.com/AdeelAsghar11/Cifar-10-Classification-using-ML",
+    "demo": null,
+    "featured": false,
+    "category": "AI/ML"
+  },
+  {
+    "title": "Bring It Buddy",
+    "description": "Prototype — a Laravel-based peer-to-peer delivery web app connecting senders with travellers going the same route for cost-effective package delivery.",
+    "tags": ["PHP", "Laravel", "MySQL", "Web Development"],
+    "github": "https://github.com/AdeelAsghar11/bring-it-buddy-laravel-project",
+    "demo": null,
+    "featured": false,
+    "status": "prototype",
+    "category": "Web"
+  }
+]

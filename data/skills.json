@@ -1,0 +1,91 @@
+[
+  {
+    "category": "Languages",
+    "icon": "💻",
+    "skills": [
+      { "name": "Python", "level": 5 },
+      { "name": "C++", "level": 3 },
+      { "name": "Java", "level": 3 },
+      { "name": "SQL", "level": 4 },
+      { "name": "PHP", "level": 3 }
+    ]
+  },
+  {
+    "category": "AI / Machine Learning",
+    "icon": "🤖",
+    "skills": [
+      { "name": "Supervised Learning", "level": 5 },
+      { "name": "Unsupervised Learning", "level": 4 },
+      { "name": "Transfer Learning", "level": 5 },
+      { "name": "Fine-tuning", "level": 4 },
+      { "name": "Feature Engineering", "level": 4 },
+      { "name": "Model Evaluation", "level": 5 },
+      { "name": "Scikit-learn", "level": 5 }
+    ]
+  },
+  {
+    "category": "Deep Learning",
+    "icon": "🧠",
+    "skills": [
+      { "name": "TensorFlow", "level": 5 },
+      { "name": "Keras", "level": 5 },
+      { "name": "CNN", "level": 5 },
+      { "name": "MobileNetV2", "level": 4 },
+      { "name": "Neural Networks", "level": 4 },
+      { "name": "MediaPipe", "level": 3 }
+    ]
+  },
+  {
+    "category": "Data Science",
+    "icon": "📊",
+    "skills": [
+      { "name": "Pandas", "level": 5 },
+      { "name": "NumPy", "level": 5 },
+      { "name": "Matplotlib", "level": 4 },
+      { "name": "EDA", "level": 5 },
+      { "name": "ETL Pipelines", "level": 4 },
+      { "name": "Tableau", "level": 4 },
+      { "name": "Power BI", "level": 3 },
+      { "name": "SPSS", "level": 3 }
+    ]
+  },
+  {
+    "category": "Web & Databases",
+    "icon": "🌐",
+    "skills": [
+      { "name": "HTML", "level": 4 },
+      { "name": "CSS", "level": 4 },
+      { "name": "JavaScript", "level": 3 },
+      { "name": "PHP", "level": 3 },
+      { "name": "Laravel", "level": 4 },
+      { "name": "Bootstrap", "level": 4 },
+      { "name": "SQL", "level": 4 },
+      { "name": "Database Design", "level": 4 },
+      { "name": "Oracle DB", "level": 5 },
+      { "name": "Oracle APEX", "level": 5 }
+    ]
+  },
+  {
+    "category": "MLOps / DevOps",
+    "icon": "⚙️",
+    "skills": [
+      { "name": "Git", "level": 5 },
+      { "name": "GitHub", "level": 5 },
+      { "name": "Jenkins", "level": 3 },
+      { "name": "Docker", "level": 3 },
+      { "name": "Docker Swarm", "level": 3 },
+      { "name": "CI/CD Pipelines", "level": 3 },
+      { "name": "Bitbucket", "level": 3 }
+    ]
+  },
+  {
+    "category": "Deployment & Tools",
+    "icon": "🚀",
+    "skills": [
+      { "name": "Streamlit", "level": 5 },
+      { "name": "Flask", "level": 4 },
+      { "name": "Jupyter Notebook", "level": 5 },
+      { "name": "VS Code", "level": 5 }
+    ]
+  }
+]

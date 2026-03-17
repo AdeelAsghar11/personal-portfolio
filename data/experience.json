@@ -1,0 +1,27 @@
+[
+  {
+    "role": "Tech Lead & Founding Member",
+    "company": "GDG On Campus — COMSATS Wah",
+    "type": "Community Leadership",
+    "period": "Oct 2024 – Present",
+    "current": true,
+    "bullets": [
+      "Co-founded the Google Developer Groups chapter at COMSATS University Wah Campus — one of the first student-led tech communities at the university",
+      "Leads AI/Data Science initiatives and coordinates student project teams across multiple domains",
+      "Organizes technical workshops, seminars, and hands-on sessions for 100+ students",
+      "Mentors junior members in AI/ML fundamentals and drives cross-team collaboration"
+    ]
+  },
+  {
+    "role": "DevOps & AI Intern",
+    "company": "SPS — Software Productivity Strategists",
+    "type": "Internship",
+    "period": "Jul 2025 – Sep 2025",
+    "current": false,
+    "bullets": [
+      "Built and deployed CI/CD pipelines using Jenkins covering build triggers, notifications, and automated testing",
+      "Worked with Docker and Docker Swarm for containerization and service orchestration",
+      "Used Git, Bitbucket, and branching strategies for version control and team collaboration"
+    ]
+  }
+]

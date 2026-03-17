@@ -1,0 +1,44 @@
+[
+  {
+    "title": "Machine Learning Specialization",
+    "issuer": "DeepLearning.AI (Andrew Ng)",
+    "date": "Sep 2025",
+    "credentialId": "5TSYTOKNM8WK"
+  },
+  {
+    "title": "Advanced Learning Algorithms",
+    "issuer": "DeepLearning.AI",
+    "date": "Aug 2025",
+    "credentialId": "CC6G4J9FCJ9Q"
+  },
+  {
+    "title": "Supervised ML: Regression and Classification",
+    "issuer": "DeepLearning.AI",
+    "date": "Jul 2025",
+    "credentialId": "6IBGFBNW631T"
+  },
+  {
+    "title": "Data Analysis with Python",
+    "issuer": "IBM",
+    "date": "Sep 2025",
+    "credentialId": null
+  },
+  {
+    "title": "Python for Data Analysis: Pandas & NumPy",
+    "issuer": "Coursera",
+    "date": "Jul 2025",
+    "credentialId": "OQ72QO3FEQBX"
+  },
+  {
+    "title": "Git with GitLab & Bitbucket",
+    "issuer": "LearnKartS",
+    "date": "Jul 2025",
+    "credentialId": "EG8AW0B5MDYC"
+  },
+  {
+    "title": "Introduction to Programming with Python (CS50P)",
+    "issuer": "Harvard University",
+    "date": "Aug 2024",
+    "credentialId": "c5546069-3e7c-480e-9d0c-e70b549fe065"
+  }
+]
