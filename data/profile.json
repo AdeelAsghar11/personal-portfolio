@@ -12,7 +12,7 @@
   "expectedGrad": "Sep 2027",
   "cgpa": "3.83 / 4.00",
   "role": "Tech Lead & Founding Member, GDG On Campus",
-  "bio": "I'm an AI engineer who turns messy, real-world data into systems that actually work — from raw datasets to deployed, production-ready applications. I think in pipelines: what's the problem, what does the data look like, what's the right model, how does it ship. Currently in my 3rd year at COMSATS University Islamabad (CGPA 3.83/4.00), I've built across computer vision, data science, and cybersecurity — not as coursework, but as real problems worth solving. Certified by DeepLearning.AI, Harvard, and IBM. Interested in research opportunities and applied AI/ML roles — if you're working on a hard problem, I'd like to hear about it.",
+  "bio": "I'm an aspiring AI engineer who turns messy, real-world data into systems that actually work — from raw datasets to deployed, production-ready applications. I think in pipelines: what's the problem, what does the data look like, what's the right model, how does it ship. Currently in my 3rd year at COMSATS University Islamabad (CGPA 3.83/4.00), I've built across computer vision, data science, and cybersecurity — not as coursework, but as real problems worth solving. Certified by DeepLearning.AI, Harvard, and IBM. Interested in research opportunities and applied AI/ML roles — if you're working on a hard problem, I'd like to hear about it.",
   "researchInterests": [
     "Efficient deep learning for resource-constrained environments",
     "AI security — adversarial robustness and autonomous red-teaming",
