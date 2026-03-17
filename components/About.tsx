@@ -5,128 +5,164 @@ import achievements from "@/data/achievements.json";
 
 export default function About() {
   return (
-    <section id="about" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        {/* Section header */}
-        <div className="mb-12">
-          <p className="font-mono text-sm text-[#00FF88] mb-2">// 01. about</p>
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">
-            About <span className="text-[#00FFFF]">Me</span>
-          </h2>
-          <div className="w-16 h-0.5 bg-[#00FFFF] mt-4" />
-        </div>
+    <section id="about">
+      <div className="w-full px-12 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
 
-        <div className="grid md:grid-cols-2 gap-12 items-start">
-          {/* Left — Bio + Education */}
+          {/* LEFT */}
           <div>
-            <p className="text-slate-400 font-mono text-sm leading-7 mb-6">
+            <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
+              // 01. about
+            </p>
+            <h2
+              className="font-mono font-bold text-3xl md:text-4xl"
+              style={{ color: "var(--text-primary)" }}
+            >
+              About <span style={{ color: "var(--accent-cyan)" }}>Me</span>
+            </h2>
+            <div
+              style={{
+                width: "64px",
+                height: "2px",
+                background: "var(--accent-cyan)",
+                marginTop: "16px",
+                marginBottom: "32px",
+              }}
+            />
+
+            <p
+              className="font-mono text-sm"
+              style={{ color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "32px" }}
+            >
               {profile.bio}
             </p>
 
             <div
-              className="rounded p-5 mb-8"
               style={{
-                border: "1px solid rgba(0,255,255,0.15)",
-                background: "rgba(0,255,255,0.03)",
+                background: "var(--bg-secondary)",
+                border: "1px solid var(--border-color)",
+                borderRadius: "8px",
+                padding: "20px",
               }}
             >
-              <p className="font-mono text-xs text-[#00FF88] mb-4">
+              <p className="font-mono text-xs" style={{ color: "var(--accent-green)", marginBottom: "16px" }}>
                 $ research --interests
               </p>
-              <div className="space-y-2">
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
                 {profile.researchInterests.map((interest) => (
-                  <div key={interest} className="flex items-start gap-2">
-                    <span className="text-[#00FFFF] text-xs mt-0.5 flex-shrink-0">→</span>
-                    <span className="text-slate-300 font-mono text-xs leading-5">{interest}</span>
-                  </div>
-                ))}
-              </div>
-            </div>
-
-            <div
-              className="rounded p-5"
-              style={{
-                border: "1px solid rgba(0,255,255,0.2)",
-                background: "rgba(0,255,255,0.04)",
-              }}
-            >
-              <p className="font-mono text-xs text-[#00FF88] mb-4">
-                $ education --details
-              </p>
-              <div className="space-y-3">
-                {[
-                  { label: "Degree", value: profile.degree },
-                  { label: "University", value: profile.university },
-                  { label: "Semester", value: profile.semester },
-                ].map(({ label, value }) => (
-                  <div key={label} className="flex flex-col sm:flex-row sm:gap-2">
-                    <span className="text-[#00FFFF] font-mono text-xs w-24 flex-shrink-0">
-                      {label}:
+                  <div key={interest} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                    <span className="font-mono text-sm" style={{ color: "var(--accent-cyan)", flexShrink: 0, marginTop: "1px" }}>→</span>
+                    <span className="font-mono text-sm" style={{ color: "var(--text-primary)", lineHeight: 1.6 }}>
+                      {interest}
                     </span>
-                    <span className="text-slate-300 font-mono text-xs">{value}</span>
                   </div>
                 ))}
-                <div className="flex flex-col sm:flex-row sm:gap-2">
-                  <span className="text-[#00FFFF] font-mono text-xs w-24 flex-shrink-0">
-                    CGPA:
-                  </span>
-                  <span className="text-[#00FF88] font-mono text-xs font-bold">
-                    {profile.cgpa}
-                  </span>
-                </div>
               </div>
             </div>
           </div>
 
-          {/* Right — Achievements + GDG */}
-          <div className="space-y-8">
-            <div>
-              <p className="font-mono text-xs text-[#00FF88] mb-4">
+          {/* RIGHT */}
+          <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+            {/* Education */}
+            <div
+              style={{
+                background: "var(--bg-secondary)",
+                border: "1px solid var(--border-color)",
+                borderRadius: "8px",
+                padding: "20px",
+              }}
+            >
+              <p className="font-mono text-xs" style={{ color: "var(--accent-green)", marginBottom: "16px" }}>
+                $ education --details
+              </p>
+              {[
+                { label: "Degree", value: profile.degree },
+                { label: "University", value: profile.university },
+                { label: "Semester", value: profile.semester },
+                { label: "CGPA", value: profile.cgpa },
+              ].map(({ label, value }) => (
+                <div
+                  key={label}
+                  className="font-mono text-sm"
+                  style={{ display: "flex", gap: "8px", padding: "4px 0", alignItems: "flex-start" }}
+                >
+                  <span
+                    style={{
+                      color: "var(--accent-cyan)",
+                      width: "84px",
+                      flexShrink: 0,
+                    }}
+                  >
+                    {label}:
+                  </span>
+                  <span
+                    style={{
+                      color: label === "CGPA" ? "var(--accent-green)" : "var(--text-primary)",
+                      fontWeight: label === "CGPA" ? "bold" : "normal",
+                    }}
+                  >
+                    {value}
+                  </span>
+                </div>
+              ))}
+            </div>
+
+            {/* Achievements */}
+            <div
+              style={{
+                background: "var(--bg-secondary)",
+                border: "1px solid var(--border-color)",
+                borderRadius: "8px",
+                padding: "20px",
+              }}
+            >
+              <p className="font-mono text-xs" style={{ color: "var(--accent-green)", marginBottom: "16px" }}>
                 $ achievements --list
               </p>
-              <div className="space-y-3">
+              <div style={{ display: "flex", flexDirection: "column", gap: "12px" }}>
                 {achievements.map((a) => (
-                  <div key={a.title} className="flex items-start gap-3">
-                    <span className="text-base flex-shrink-0 leading-5" role="img" aria-label="trophy">🏆</span>
+                  <div key={a.title} style={{ display: "flex", gap: "10px", alignItems: "flex-start" }}>
+                    <span className="font-mono text-sm" style={{ color: "var(--accent-green)", flexShrink: 0 }}>▶</span>
                     <div>
-                      <p className="text-slate-200 font-mono text-xs leading-5">{a.title}</p>
-                      <p className="text-slate-500 font-mono text-[11px]">{a.org}</p>
+                      <p className="font-mono text-sm" style={{ color: "var(--text-primary)", lineHeight: 1.4 }}>
+                        {a.title}
+                      </p>
+                      <p className="font-mono text-xs" style={{ color: "var(--text-secondary)", marginTop: "2px" }}>
+                        {a.org}
+                      </p>
                     </div>
                   </div>
                 ))}
               </div>
             </div>
 
+            {/* GDG */}
             <div
-              className="rounded p-5"
               style={{
-                border: "1px solid rgba(0,255,136,0.2)",
-                background: "rgba(0,255,136,0.04)",
+                background: "var(--bg-secondary)",
+                border: "1px solid var(--border-color)",
+                borderRadius: "8px",
+                padding: "20px",
               }}
             >
-              <p className="font-mono text-xs text-[#00FF88] mb-4">$ gdg --role</p>
-              <div className="flex items-start gap-4">
-                <div
-                  className="w-10 h-10 rounded flex items-center justify-center flex-shrink-0 text-[10px] font-mono font-bold text-[#00FF88]"
-                  style={{ border: "1px solid rgba(0,255,136,0.4)" }}
-                >
-                  GDG
-                </div>
-                <div>
-                  <p className="text-white font-mono text-sm font-bold">
-                    Tech Lead &amp; Founding Member
-                  </p>
-                  <p className="text-slate-400 font-mono text-xs mt-1">
-                    GDG On Campus — COMSATS Wah
-                  </p>
-                  <p className="text-slate-500 font-mono text-xs mt-2 leading-5">
-                    Organizing AI/ML and Data Science workshops, fostering a
-                    community of tech enthusiasts on campus.
-                  </p>
-                </div>
-              </div>
+              <p className="font-mono text-xs" style={{ color: "var(--accent-green)", marginBottom: "16px" }}>
+                $ gdg --role
+              </p>
+              <p className="font-mono text-sm font-bold" style={{ color: "var(--text-primary)" }}>
+                Tech Lead &amp; Founding Member
+              </p>
+              <p className="font-mono text-xs" style={{ color: "var(--text-secondary)", marginTop: "4px" }}>
+                GDG On Campus — COMSATS Wah
+              </p>
+              <p
+                className="font-mono text-xs"
+                style={{ color: "var(--text-secondary)", marginTop: "10px", lineHeight: 1.7 }}
+              >
+                Organizing AI/ML and Data Science workshops, fostering a community of tech enthusiasts on campus.
+              </p>
             </div>
           </div>
+
         </div>
       </div>
     </section>

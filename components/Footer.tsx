@@ -1,18 +1,23 @@
+"use client";
+
 export default function Footer() {
   return (
-    <footer
-      className="py-8 px-6"
-      style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
-    >
-      <div className="max-w-6xl mx-auto flex flex-col sm:flex-row items-center justify-between gap-3">
-        <p className="font-mono text-xs text-slate-600">
-          <span className="text-[#00FFFF]">&gt;</span> Built by{" "}
-          <span className="text-[#00FF88]">Adeel Asghar</span> — Next.js +
-          Tailwind CSS
-        </p>
-        <p className="font-mono text-xs text-slate-700">
-          © {new Date().getFullYear()} All rights reserved
-        </p>
+    <footer style={{ borderTop: "1px solid var(--border-color)" }}>
+      <div
+        className="w-full px-12 font-mono text-xs"
+        style={{
+          paddingTop: "24px",
+          paddingBottom: "24px",
+          display: "flex",
+          justifyContent: "space-between",
+          alignItems: "center",
+          flexWrap: "wrap",
+          gap: "8px",
+          color: "var(--text-secondary)",
+        }}
+      >
+        <span>Adeel Asghar © {new Date().getFullYear()}</span>
+        <span>Built with Next.js &amp; Claude Code</span>
       </div>
     </footer>
   );

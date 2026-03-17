@@ -14,11 +14,17 @@ export default function Home() {
       <Navbar />
       <main>
         <Hero />
+        <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
         <About />
+        <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
         <Skills />
+        <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
         <Projects />
+        <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
         <Experience />
+        <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
         <Certifications />
+        <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
         <Contact />
       </main>
       <Footer />

@@ -1,137 +1,283 @@
 "use client";
 
-import projects from "@/data/projects.json";
+import projectsData from "@/data/projects.json";
 
-export default function Projects() {
+interface Project {
+  title: string;
+  description: string;
+  tags: string[];
+  github: string | null;
+  demo: string | null;
+  featured: boolean;
+  insight?: string;
+  status?: string;
+  category: string;
+}
+
+const projects = projectsData as Project[];
+
+function StatusBadge({ status }: { status?: string }) {
+  if (status === "in-progress") {
+    return (
+      <span
+        className="font-mono text-xs"
+        style={{
+          padding: "3px 10px",
+          borderRadius: "4px",
+          border: "1px solid #F59E0B",
+          color: "#F59E0B",
+          background: "rgba(245,158,11,0.08)",
+        }}
+      >
+        🚧 In Progress
+      </span>
+    );
+  }
+  if (status === "prototype") {
+    return (
+      <span
+        className="font-mono text-xs"
+        style={{
+          padding: "3px 10px",
+          borderRadius: "4px",
+          border: "1px solid #A855F7",
+          color: "#A855F7",
+          background: "rgba(168,85,247,0.08)",
+        }}
+      >
+        🧪 Prototype
+      </span>
+    );
+  }
+  return null;
+}
+
+function ProjectLinks({ github, demo }: { github: string | null; demo: string | null }) {
   return (
-    <section id="projects" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <p className="font-mono text-sm text-[#00FF88] mb-2">// 03. projects</p>
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">
-            Featured <span className="text-[#00FFFF]">Projects</span>
-          </h2>
-          <div className="w-16 h-0.5 bg-[#00FFFF] mt-4" />
-        </div>
+    <div style={{ display: "flex", flexDirection: "column", gap: "8px" }}>
+      {github && (
+        <a
+          href={github}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-sm"
+          style={{ color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent-cyan)")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--text-secondary)")}
+        >
+          ⌥ GitHub →
+        </a>
+      )}
+      {demo && (
+        <a
+          href={demo}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="font-mono text-sm"
+          style={{ color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}
+          onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent-green)")}
+          onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--text-secondary)")}
+        >
+          ↗ Live Demo →
+        </a>
+      )}
+    </div>
+  );
+}
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
-          {projects.map((project) => (
+function TagList({ tags, small }: { tags: string[]; small?: boolean }) {
+  return (
+    <div style={{ display: "flex", flexWrap: "wrap", gap: "6px" }}>
+      {tags.map((tag) => (
+        <span
+          key={tag}
+          className="font-mono"
+          style={{
+            fontSize: small ? "10px" : "12px",
+            padding: small ? "2px 8px" : "3px 10px",
+            borderRadius: "4px",
+            border: "1px solid var(--border-color)",
+            color: "var(--accent-green)",
+            background: "rgba(0,255,136,0.05)",
+          }}
+        >
+          {tag}
+        </span>
+      ))}
+    </div>
+  );
+}
+
+function FeaturedCard({ project }: { project: Project }) {
+  return (
+    <div
+      style={{
+        background: "var(--bg-secondary)",
+        border: "1px solid var(--border-color)",
+        borderRadius: "8px",
+        padding: "28px",
+      }}
+    >
+      <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-8">
+        {/* Left */}
+        <div>
+          <div
+            style={{
+              display: "flex",
+              alignItems: "center",
+              gap: "8px",
+              flexWrap: "wrap",
+              marginBottom: "12px",
+            }}
+          >
+            <span className="font-mono text-xs" style={{ color: "var(--accent-green)" }}>$ ./</span>
+            <h3 className="font-mono font-bold" style={{ color: "var(--text-primary)", fontSize: "16px" }}>
+              {project.title}
+            </h3>
+            <StatusBadge status={project.status} />
+          </div>
+
+          <p
+            className="font-mono text-sm"
+            style={{ color: "var(--text-secondary)", lineHeight: 1.7, marginBottom: "16px" }}
+          >
+            {project.description}
+          </p>
+
+          {project.insight && (
             <div
-              key={project.title}
-              className="relative rounded p-6 flex flex-col transition-all duration-200 group"
               style={{
-                border: project.featured
-                  ? "1px solid rgba(0,255,255,0.25)"
-                  : "1px solid rgba(255,255,255,0.06)",
-                background: "rgba(255,255,255,0.02)",
-              }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.background =
-                  "rgba(255,255,255,0.04)";
-                (e.currentTarget as HTMLElement).style.borderColor = project.featured
-                  ? "rgba(0,255,255,0.5)"
-                  : "rgba(255,255,255,0.12)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.background =
-                  "rgba(255,255,255,0.02)";
-                (e.currentTarget as HTMLElement).style.borderColor = project.featured
-                  ? "rgba(0,255,255,0.25)"
-                  : "rgba(255,255,255,0.06)";
+                borderTop: "1px solid var(--border-color)",
+                paddingTop: "12px",
+                marginTop: "12px",
               }}
             >
-              {"status" in project && project.status === "in-progress" && (
-                <span
-                  className="absolute top-4 right-4 text-[10px] font-mono px-2 py-0.5 rounded"
-                  style={{
-                    color: "#F59E0B",
-                    background: "rgba(245,158,11,0.1)",
-                    border: "1px solid rgba(245,158,11,0.35)",
-                  }}
-                >
-                  🚧 In Progress
-                </span>
-              )}
-              {"status" in project && project.status === "prototype" && (
-                <span
-                  className="absolute top-4 right-4 text-[10px] font-mono px-2 py-0.5 rounded"
-                  style={{
-                    color: "#A855F7",
-                    background: "rgba(168,85,247,0.1)",
-                    border: "1px solid rgba(168,85,247,0.35)",
-                  }}
-                >
-                  🧪 Prototype
-                </span>
-              )}
-
-              <div className="mb-3">
-                <span className="text-[#00FF88] font-mono text-xs">$ ./</span>
-                <h3 className="text-white font-mono font-bold mt-1 text-sm group-hover:text-[#00FFFF] transition-colors">
-                  {project.title}
-                </h3>
-              </div>
-
-              <p className="text-slate-400 font-mono text-xs leading-5 mb-4">
-                {project.description}
+              <p className="font-mono text-xs" style={{ color: "var(--accent-cyan)", marginBottom: "6px" }}>
+                💡 Key Insight
               </p>
-
-              {"insight" in project && project.insight && (
-                <div
-                  className="mb-4 pt-3 flex-1"
-                  style={{ borderTop: "1px solid rgba(255,255,255,0.06)" }}
-                >
-                  <p className="font-mono text-[10px] text-[#00FFFF] mb-1.5">
-                    💡 Key Insight
-                  </p>
-                  <p className="font-mono text-[11px] text-slate-500 leading-5 italic">
-                    {project.insight}
-                  </p>
-                </div>
-              )}
-
-              <div className="flex flex-wrap gap-1.5 mb-4">
-                {project.tags.map((t) => (
-                  <span
-                    key={t}
-                    className="text-[10px] font-mono px-2 py-0.5 rounded"
-                    style={{
-                      color: "rgba(0,255,136,0.8)",
-                      border: "1px solid rgba(0,255,136,0.2)",
-                      background: "rgba(0,255,136,0.05)",
-                    }}
-                  >
-                    {t}
-                  </span>
-                ))}
-              </div>
-
-              <div className="flex items-center gap-4 mt-auto">
-                {project.github && (
-                  <a
-                    href={project.github}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 hover:text-[#00FFFF] transition-colors"
-                  >
-                    <span>⌥ GitHub</span>
-                    <span>→</span>
-                  </a>
-                )}
-                {project.demo && (
-                  <a
-                    href={project.demo}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                    className="inline-flex items-center gap-1.5 text-xs font-mono text-slate-500 hover:text-[#00FF88] transition-colors"
-                  >
-                    <span>↗ Live Demo</span>
-                  </a>
-                )}
-              </div>
+              <p
+                className="font-mono text-xs"
+                style={{ color: "var(--text-secondary)", lineHeight: 1.7, fontStyle: "italic" }}
+              >
+                {project.insight}
+              </p>
             </div>
+          )}
+        </div>
+
+        {/* Right */}
+        <div style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
+          <TagList tags={project.tags} />
+          <ProjectLinks github={project.github} demo={project.demo} />
+        </div>
+      </div>
+    </div>
+  );
+}
+
+function SmallCard({ project }: { project: Project }) {
+  return (
+    <div
+      style={{
+        background: "var(--bg-secondary)",
+        border: "1px solid var(--border-color)",
+        borderRadius: "8px",
+        padding: "20px",
+        display: "flex",
+        flexDirection: "column",
+        gap: "12px",
+      }}
+    >
+      <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
+        <span className="font-mono text-xs" style={{ color: "var(--accent-green)" }}>$ ./</span>
+        <h3 className="font-mono font-bold text-sm" style={{ color: "var(--text-primary)" }}>
+          {project.title}
+        </h3>
+        <StatusBadge status={project.status} />
+      </div>
+
+      <p className="font-mono text-xs" style={{ color: "var(--text-secondary)", lineHeight: 1.7 }}>
+        {project.description}
+      </p>
+
+      <TagList tags={project.tags} small />
+
+      <div style={{ display: "flex", gap: "16px", marginTop: "auto" }}>
+        {project.github && (
+          <a
+            href={project.github}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs"
+            style={{ color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent-cyan)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--text-secondary)")}
+          >
+            ⌥ GitHub →
+          </a>
+        )}
+        {project.demo && (
+          <a
+            href={project.demo}
+            target="_blank"
+            rel="noopener noreferrer"
+            className="font-mono text-xs"
+            style={{ color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}
+            onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent-green)")}
+            onMouseLeave={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--text-secondary)")}
+          >
+            ↗ Live Demo
+          </a>
+        )}
+      </div>
+    </div>
+  );
+}
+
+export default function Projects() {
+  const featured = projects.filter((p) => p.featured);
+  const other = projects.filter((p) => !p.featured);
+
+  return (
+    <section id="projects">
+      <div className="w-full px-12 py-20">
+        <div style={{ marginBottom: "48px" }}>
+          <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
+            // 03. projects
+          </p>
+          <h2
+            className="font-mono font-bold text-3xl md:text-4xl"
+            style={{ color: "var(--text-primary)" }}
+          >
+            Featured <span style={{ color: "var(--accent-cyan)" }}>Projects</span>
+          </h2>
+          <div style={{ width: "64px", height: "2px", background: "var(--accent-cyan)", marginTop: "16px" }} />
+        </div>
+
+        <div style={{ display: "flex", flexDirection: "column", gap: "20px", marginBottom: "48px" }}>
+          {featured.map((project) => (
+            <FeaturedCard key={project.title} project={project} />
           ))}
         </div>
+
+        {other.length > 0 && (
+          <>
+            <p className="font-mono text-xs" style={{ color: "var(--text-secondary)", marginBottom: "20px" }}>
+              // other projects
+            </p>
+            <div
+              style={{
+                display: "grid",
+                gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+                gap: "20px",
+              }}
+            >
+              {other.map((project) => (
+                <SmallCard key={project.title} project={project} />
+              ))}
+            </div>
+          </>
+        )}
       </div>
     </section>
   );

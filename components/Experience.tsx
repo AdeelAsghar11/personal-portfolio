@@ -2,99 +2,171 @@
 
 import experience from "@/data/experience.json";
 
+const stats = [
+  { value: "100+", label: "Students Mentored" },
+  { value: "2+", label: "Years Building" },
+];
+
 export default function Experience() {
   return (
-    <section id="experience" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <p className="font-mono text-sm text-[#00FF88] mb-2">// 04. experience</p>
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">
-            Work <span className="text-[#00FFFF]">Experience</span>
-          </h2>
-          <div className="w-16 h-0.5 bg-[#00FFFF] mt-4" />
-        </div>
+    <section id="experience">
+      <div className="w-full px-12 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
 
-        <div className="relative">
-          {/* Timeline line */}
-          <div
-            className="absolute left-4 top-2 bottom-0 w-px"
-            style={{
-              background:
-                "linear-gradient(to bottom, #00FFFF, #00FF88, transparent)",
-            }}
-          />
+          {/* LEFT */}
+          <div>
+            <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
+              // 04. experience
+            </p>
+            <h2
+              className="font-mono font-bold text-3xl md:text-4xl"
+              style={{ color: "var(--text-primary)" }}
+            >
+              Work <span style={{ color: "var(--accent-cyan)" }}>Experience</span>
+            </h2>
+            <div
+              style={{
+                width: "64px",
+                height: "2px",
+                background: "var(--accent-cyan)",
+                marginTop: "16px",
+                marginBottom: "32px",
+              }}
+            />
 
-          <div className="space-y-10 pl-14">
-            {experience.map((item, idx) => (
-              <div key={idx} className="relative">
-                {/* Dot */}
-                <div
-                  className="absolute -left-10 top-2 w-3 h-3 rounded-full"
-                  style={{
-                    background: item.current ? "#00FFFF" : "#00FF88",
-                    border: "2px solid #0a0a0a",
-                    boxShadow: item.current
-                      ? "0 0 8px rgba(0,255,255,0.6)"
-                      : "0 0 8px rgba(0,255,136,0.4)",
-                  }}
-                />
+            <p
+              className="font-mono text-sm"
+              style={{ color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "40px" }}
+            >
+              My professional journey building AI systems and leading technical communities.
+            </p>
 
-                {/* Card */}
-                <div
-                  className="rounded p-6 transition-colors"
-                  style={{
-                    border: item.current
-                      ? "1px solid rgba(0,255,255,0.2)"
-                      : "1px solid rgba(255,255,255,0.07)",
-                    background: item.current
-                      ? "rgba(0,255,255,0.03)"
-                      : "rgba(255,255,255,0.02)",
-                  }}
-                >
-                  <div className="flex flex-col sm:flex-row sm:items-center gap-1 sm:gap-3 mb-1">
-                    <h3 className="text-white font-mono font-bold text-sm">
-                      {item.role}
-                    </h3>
-                    <span className="hidden sm:block text-slate-600 font-mono text-xs">
-                      @
-                    </span>
-                    <span className="text-[#00FF88] font-mono text-sm">
-                      {item.company}
-                    </span>
-                    {item.current && (
-                      <span
-                        className="text-[10px] font-mono px-2 py-0.5 rounded self-start sm:self-auto"
-                        style={{
-                          background: "rgba(0,255,255,0.08)",
-                          border: "1px solid rgba(0,255,255,0.3)",
-                          color: "#00FFFF",
-                        }}
-                      >
-                        CURRENT
-                      </span>
-                    )}
-                  </div>
-
-                  <p className="text-slate-500 font-mono text-xs mb-4">
-                    {item.period} &middot; {item.type}
+            <div style={{ display: "flex", gap: "40px" }}>
+              {stats.map(({ value, label }) => (
+                <div key={label}>
+                  <p
+                    className="font-mono font-bold"
+                    style={{ fontSize: "36px", color: "var(--accent-cyan)", lineHeight: 1 }}
+                  >
+                    {value}
                   </p>
-
-                  <ul className="space-y-2">
-                    {item.bullets.map((b, i) => (
-                      <li key={i} className="flex items-start gap-2">
-                        <span className="text-[#00FF88] text-xs mt-0.5 flex-shrink-0">
-                          →
-                        </span>
-                        <span className="text-slate-400 font-mono text-xs leading-5">
-                          {b}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
+                  <p
+                    className="font-mono text-sm"
+                    style={{ color: "var(--text-secondary)", marginTop: "6px" }}
+                  >
+                    {label}
+                  </p>
                 </div>
-              </div>
-            ))}
+              ))}
+            </div>
           </div>
+
+          {/* RIGHT — Timeline */}
+          <div style={{ position: "relative" }}>
+            {/* Vertical line */}
+            <div
+              style={{
+                position: "absolute",
+                left: "16px",
+                top: "8px",
+                bottom: "0",
+                width: "2px",
+                background: "var(--border-color)",
+              }}
+            />
+
+            <div style={{ display: "flex", flexDirection: "column", gap: "28px", paddingLeft: "52px" }}>
+              {experience.map((item, idx) => (
+                <div key={idx} style={{ position: "relative" }}>
+                  {/* Dot */}
+                  <div
+                    style={{
+                      position: "absolute",
+                      left: "-41px",
+                      top: "10px",
+                      width: "10px",
+                      height: "10px",
+                      borderRadius: "50%",
+                      background: item.current ? "transparent" : "var(--accent-cyan)",
+                      border: `2px solid ${item.current ? "var(--accent-cyan)" : "var(--bg)"}`,
+                    }}
+                  />
+
+                  {/* Card */}
+                  <div
+                    style={{
+                      background: "var(--bg-secondary)",
+                      border: "1px solid var(--border-color)",
+                      borderRadius: "8px",
+                      padding: "20px",
+                    }}
+                  >
+                    <div
+                      style={{
+                        display: "flex",
+                        alignItems: "center",
+                        gap: "8px",
+                        flexWrap: "wrap",
+                        marginBottom: "4px",
+                      }}
+                    >
+                      <h3
+                        className="font-mono font-bold text-sm"
+                        style={{ color: "var(--text-primary)" }}
+                      >
+                        {item.role}
+                      </h3>
+                      {item.current && (
+                        <span
+                          className="font-mono text-xs"
+                          style={{
+                            padding: "2px 8px",
+                            borderRadius: "4px",
+                            background: "rgba(0,255,255,0.08)",
+                            border: "1px solid rgba(0,255,255,0.3)",
+                            color: "var(--accent-cyan)",
+                          }}
+                        >
+                          CURRENT
+                        </span>
+                      )}
+                    </div>
+
+                    <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "4px" }}>
+                      {item.company}
+                    </p>
+
+                    <p
+                      className="font-mono text-xs uppercase"
+                      style={{ color: "var(--text-secondary)", marginBottom: "14px", letterSpacing: "0.5px" }}
+                    >
+                      {item.period} &middot; {item.type}
+                    </p>
+
+                    <ul style={{ display: "flex", flexDirection: "column", gap: "6px" }}>
+                      {item.bullets.map((b, i) => (
+                        <li key={i} style={{ display: "flex", gap: "8px", alignItems: "flex-start" }}>
+                          <span
+                            className="font-mono text-xs"
+                            style={{ color: "var(--accent-green)", flexShrink: 0, marginTop: "1px" }}
+                          >
+                            ▸
+                          </span>
+                          <span
+                            className="font-mono text-xs"
+                            style={{ color: "var(--text-secondary)", lineHeight: 1.6 }}
+                          >
+                            {b}
+                          </span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+
         </div>
       </div>
     </section>

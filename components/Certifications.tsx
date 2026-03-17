@@ -2,67 +2,141 @@
 
 import certifications from "@/data/certifications.json";
 
-export default function Certifications() {
-  return (
-    <section id="certifications" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <p className="font-mono text-sm text-[#00FF88] mb-2">// 05. certifications</p>
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">
-            Certifi<span className="text-[#00FFFF]">cations</span>
-          </h2>
-          <div className="w-16 h-0.5 bg-[#00FFFF] mt-4" />
-        </div>
+function getIssuerGroups() {
+  const groups: Record<string, number> = {};
+  for (const cert of certifications) {
+    const issuer = cert.issuer.replace(" (Andrew Ng)", "");
+    groups[issuer] = (groups[issuer] ?? 0) + 1;
+  }
+  return Object.entries(groups);
+}
 
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-4">
-          {certifications.map((cert, idx) => (
+export default function Certifications() {
+  const issuerGroups = getIssuerGroups();
+
+  return (
+    <section id="certifications">
+      <div className="w-full px-12 py-20">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+
+          {/* LEFT */}
+          <div>
+            <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
+              // 05. certifications
+            </p>
+            <h2
+              className="font-mono font-bold text-3xl md:text-4xl"
+              style={{ color: "var(--text-primary)" }}
+            >
+              Certifi<span style={{ color: "var(--accent-cyan)" }}>cations</span>
+            </h2>
             <div
-              key={idx}
-              className="rounded p-5 flex flex-col gap-3 transition-colors"
               style={{
-                border: "1px solid rgba(255,255,255,0.06)",
-                background: "rgba(255,255,255,0.02)",
+                width: "64px",
+                height: "2px",
+                background: "var(--accent-cyan)",
+                marginTop: "16px",
+                marginBottom: "32px",
               }}
-              onMouseEnter={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor =
-                  "rgba(0,255,255,0.25)";
-                (e.currentTarget as HTMLElement).style.background =
-                  "rgba(0,255,255,0.03)";
-              }}
-              onMouseLeave={(e) => {
-                (e.currentTarget as HTMLElement).style.borderColor =
-                  "rgba(255,255,255,0.06)";
-                (e.currentTarget as HTMLElement).style.background =
-                  "rgba(255,255,255,0.02)";
+            />
+
+            <p
+              className="font-mono text-sm"
+              style={{ color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "32px" }}
+            >
+              Verified credentials from world-class institutions.
+            </p>
+
+            <div
+              style={{
+                background: "var(--bg-secondary)",
+                border: "1px solid var(--border-color)",
+                borderRadius: "8px",
+                padding: "20px",
               }}
             >
-              {/* Icon + issuer */}
-              <div className="flex items-center gap-2">
-                <span className="text-[#00FFFF] text-xs font-mono">✦</span>
-                <span className="text-[#00FF88] font-mono text-xs">{cert.issuer}</span>
-              </div>
-
-              {/* Title */}
-              <p className="text-white font-mono text-sm font-bold leading-5">
-                {cert.title}
+              <p className="font-mono text-xs" style={{ color: "var(--accent-green)", marginBottom: "16px" }}>
+                $ issuers --summary
               </p>
-
-              {/* Footer row */}
-              <div className="flex items-center justify-between mt-auto pt-2"
-                style={{ borderTop: "1px solid rgba(255,255,255,0.05)" }}
-              >
-                <span className="text-slate-500 font-mono text-xs">{cert.date}</span>
-                {cert.credentialId && (
-                  <span
-                    className="font-mono text-[10px] text-slate-600 truncate max-w-[120px]"
-                    title={cert.credentialId}
+              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+                {issuerGroups.map(([issuer, count]) => (
+                  <div
+                    key={issuer}
+                    style={{
+                      display: "flex",
+                      justifyContent: "space-between",
+                      alignItems: "center",
+                      gap: "8px",
+                    }}
                   >
-                    ID: {cert.credentialId}
-                  </span>
-                )}
+                    <span className="font-mono text-sm" style={{ color: "var(--text-secondary)" }}>
+                      {issuer}
+                    </span>
+                    <span
+                      className="font-mono text-sm font-bold"
+                      style={{ color: "var(--accent-green)", flexShrink: 0 }}
+                    >
+                      {count} {count === 1 ? "certificate" : "certificates"}
+                    </span>
+                  </div>
+                ))}
               </div>
             </div>
-          ))}
+          </div>
+
+          {/* RIGHT — cert cards grid */}
+          <div
+            style={{
+              display: "grid",
+              gridTemplateColumns: "1fr 1fr",
+              gap: "12px",
+            }}
+          >
+            {certifications.map((cert, idx) => (
+              <div
+                key={idx}
+                style={{
+                  background: "var(--bg-secondary)",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "8px",
+                  padding: "16px",
+                  display: "flex",
+                  flexDirection: "column",
+                  gap: "6px",
+                }}
+              >
+                <p className="font-mono text-xs" style={{ color: "var(--accent-cyan)" }}>
+                  {cert.issuer.replace(" (Andrew Ng)", "")}
+                </p>
+                <p
+                  className="font-mono text-sm font-bold"
+                  style={{ color: "var(--text-primary)", lineHeight: 1.4 }}
+                >
+                  {cert.title}
+                </p>
+                <p
+                  className="font-mono text-xs uppercase"
+                  style={{ color: "var(--text-secondary)", marginTop: "auto", paddingTop: "6px", letterSpacing: "0.5px" }}
+                >
+                  {cert.date}
+                </p>
+                {cert.credentialId && (
+                  <p
+                    className="font-mono text-xs"
+                    style={{
+                      color: "var(--text-secondary)",
+                      overflow: "hidden",
+                      textOverflow: "ellipsis",
+                      whiteSpace: "nowrap",
+                    }}
+                  >
+                    ID: {cert.credentialId}
+                  </p>
+                )}
+              </div>
+            ))}
+          </div>
+
         </div>
       </div>
     </section>

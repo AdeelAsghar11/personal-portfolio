@@ -1,10 +1,12 @@
 "use client";
 
 import { useState, useEffect } from "react";
+import Image from "next/image";
+import profile from "@/data/profile.json";
 
 const titles = [
   "AI Engineer & Systems Thinker",
-  "ML, DL, DevOps",
+  "ML · DL · DevOps",
   "BSAI @ COMSATS Islamabad",
 ];
 
@@ -16,7 +18,6 @@ export default function Hero() {
   useEffect(() => {
     const current = titles[titleIndex];
     const len = displayed.length;
-
     if (typing) {
       if (len < current.length) {
         const t = setTimeout(() => setDisplayed(current.slice(0, len + 1)), 60);
@@ -39,80 +40,130 @@ export default function Hero() {
   return (
     <section
       id="hero"
-      className="min-h-screen flex items-center justify-center relative overflow-hidden px-6"
+      className="relative overflow-hidden"
+      style={{ minHeight: "100vh" }}
     >
       {/* Background grid */}
       <div
-        className="absolute inset-0 opacity-30"
+        className="absolute inset-0"
         style={{
           backgroundImage:
-            "linear-gradient(rgba(0,255,255,0.05) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,0.05) 1px, transparent 1px)",
+            "linear-gradient(rgba(0,255,255,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,255,255,0.03) 1px, transparent 1px)",
           backgroundSize: "50px 50px",
         }}
       />
-
       {/* Ambient glow */}
       <div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full pointer-events-none"
+        className="absolute pointer-events-none"
         style={{
-          background:
-            "radial-gradient(circle, rgba(0,255,255,0.06) 0%, transparent 70%)",
+          top: "50%",
+          left: "35%",
+          transform: "translate(-50%, -50%)",
+          width: "700px",
+          height: "700px",
+          borderRadius: "50%",
+          background: "radial-gradient(circle, rgba(0,255,255,0.06) 0%, transparent 70%)",
         }}
       />
 
-      <div className="relative z-10 text-center max-w-4xl mx-auto">
-        {/* Terminal prompt */}
-        <div className="font-mono text-sm text-slate-500 mb-8 flex items-center justify-center gap-2">
-          <span className="text-[#00FF88]">~/portfolio</span>
-          <span className="text-slate-600">$</span>
-          <span className="text-slate-400">whoami</span>
-        </div>
+      <div
+        className="relative z-10 w-full px-12 flex items-center"
+        style={{ paddingTop: "120px", paddingBottom: "80px", minHeight: "100vh" }}
+      >
+        <div className="w-full grid grid-cols-1 md:grid-cols-[1fr_420px] gap-12 md:gap-20 items-center">
 
-        {/* Name */}
-        <h1 className="text-5xl md:text-7xl font-bold font-mono mb-4 tracking-tight">
-          <span className="text-white">Adeel </span>
-          <span className="text-[#00FFFF]">Asghar</span>
-        </h1>
+          {/* LEFT COLUMN */}
+          <div>
+            <div className="font-mono text-sm flex items-center gap-2" style={{ marginBottom: "24px" }}>
+              <span style={{ color: "var(--accent-green)" }}>~/portfolio</span>
+              <span style={{ color: "var(--border-color)" }}>$</span>
+              <span style={{ color: "var(--text-secondary)" }}>whoami</span>
+            </div>
 
-        {/* Animated title */}
-        <div className="h-10 flex items-center justify-center mb-8">
-          <span className="text-xl md:text-2xl font-mono text-[#00FF88]">
-            {displayed}
-            <span className="animate-pulse ml-0.5">|</span>
-          </span>
-        </div>
+            <h1
+              className="font-mono font-bold"
+              style={{
+                fontSize: "clamp(48px, 7vw, 72px)",
+                letterSpacing: "-2px",
+                lineHeight: 1,
+                marginBottom: "24px",
+              }}
+            >
+              <span style={{ color: "var(--text-primary)" }}>Adeel </span>
+              <span style={{ color: "var(--accent-cyan)" }}>Asghar</span>
+            </h1>
 
-        {/* Tagline */}
-        <p className="text-slate-400 font-mono text-sm md:text-base max-w-2xl mx-auto mb-10 leading-relaxed">
-          <span className="text-[#00FFFF]">// </span>
-          Building AI Solutions with Code, Curiosity, and Data.
-        </p>
+            <div style={{ height: "40px", display: "flex", alignItems: "center", marginBottom: "24px" }}>
+              <span
+                className="font-mono"
+                style={{ fontSize: "clamp(16px, 2.5vw, 22px)", color: "var(--accent-green)" }}
+              >
+                {displayed}
+                <span className="animate-pulse" style={{ marginLeft: "2px" }}>|</span>
+              </span>
+            </div>
 
-        {/* CTAs */}
-        <div className="flex flex-col sm:flex-row gap-4 justify-center">
-          <a
-            href="/resume.pdf"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 border border-[#00FFFF] text-[#00FFFF] font-mono text-sm rounded hover:bg-[#00FFFF] hover:text-[#0a0a0a] transition-all duration-200 font-bold"
-          >
-            <span>↓</span>
-            <span>Download Resume</span>
-          </a>
-          <a
-            href="https://github.com/AdeelAsghar11"
-            target="_blank"
-            rel="noopener noreferrer"
-            className="inline-flex items-center justify-center gap-2 px-7 py-3 border border-[#00FF88] text-[#00FF88] font-mono text-sm rounded hover:bg-[#00FF88] hover:text-[#0a0a0a] transition-all duration-200 font-bold"
-          >
-            <span>⌥</span>
-            <span>GitHub</span>
-          </a>
-        </div>
+            <p
+              className="font-mono text-sm"
+              style={{ color: "var(--text-secondary)", margin: "24px 0", maxWidth: "480px", lineHeight: 1.8 }}
+            >
+              <span style={{ color: "var(--accent-cyan)" }}>// </span>
+              {profile.tagline}
+            </p>
 
-        {/* Scroll hint */}
-        <div className="mt-20 animate-bounce">
-          <span className="text-slate-700 font-mono text-xs">scroll ↓</span>
+            <div style={{ display: "flex", gap: "12px", flexWrap: "wrap" }}>
+              {[
+                { label: "↓ Download Resume", href: profile.resume, color: "var(--accent-cyan)" },
+                { label: "GitHub →", href: profile.github, color: "var(--accent-green)" },
+                { label: "LinkedIn →", href: profile.linkedin, color: "var(--accent-green)" },
+              ].map(({ label, href, color }) => (
+                <a
+                  key={label}
+                  href={href}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="font-mono"
+                  style={{
+                    padding: "10px 24px",
+                    border: `1px solid ${color}`,
+                    color,
+                    borderRadius: "4px",
+                    textDecoration: "none",
+                    fontSize: "14px",
+                    transition: "background 0.2s, color 0.2s",
+                  }}
+                  onMouseEnter={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = color;
+                    (e.currentTarget as HTMLElement).style.color = "var(--bg)";
+                  }}
+                  onMouseLeave={(e) => {
+                    (e.currentTarget as HTMLElement).style.background = "transparent";
+                    (e.currentTarget as HTMLElement).style.color = color;
+                  }}
+                >
+                  {label}
+                </a>
+              ))}
+            </div>
+          </div>
+
+          {/* RIGHT COLUMN */}
+          <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
+            <Image
+              src="/images/profile.jpg"
+              alt="Adeel Asghar"
+              width={320}
+              height={320}
+              style={{
+                borderRadius: "50%",
+                objectFit: "cover",
+                objectPosition: "top center",
+                border: "2px solid var(--accent-cyan)",
+                boxShadow: "0 0 40px rgba(0,255,255,0.15)",
+              }}
+            />
+          </div>
+
         </div>
       </div>
     </section>

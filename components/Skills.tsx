@@ -3,9 +3,9 @@
 import skills from "@/data/skills.json";
 
 const categoryColors: Record<string, string> = {
-  Languages: "#00FF88",
-  "AI / Machine Learning": "#00FFFF",
-  "Deep Learning": "#00FFFF",
+  Languages: "var(--accent-green)",
+  "AI / Machine Learning": "var(--accent-cyan)",
+  "Deep Learning": "var(--accent-cyan)",
   "Data Science": "#FFD700",
   "Web & Databases": "#C084FC",
   "MLOps / DevOps": "#FF6B6B",
@@ -14,12 +14,12 @@ const categoryColors: Record<string, string> = {
 
 function DotRating({ level }: { level: number }) {
   return (
-    <span className="flex gap-0.5 items-center ml-1.5 flex-shrink-0">
+    <span style={{ display: "inline-flex", gap: "2px", alignItems: "center", marginLeft: "6px" }}>
       {Array.from({ length: 5 }, (_, i) => (
         <span
           key={i}
           style={{
-            color: i < level ? "#00FFFF" : "rgba(255,255,255,0.12)",
+            color: i < level ? "var(--accent-cyan)" : "var(--border-color)",
             fontSize: "8px",
             lineHeight: 1,
           }}
@@ -33,55 +33,63 @@ function DotRating({ level }: { level: number }) {
 
 export default function Skills() {
   return (
-    <section id="skills" className="py-24 px-6">
-      <div className="max-w-6xl mx-auto">
-        <div className="mb-12">
-          <p className="font-mono text-sm text-[#00FF88] mb-2">// 02. skills</p>
-          <h2 className="text-3xl md:text-4xl font-bold font-mono text-white">
-            Tech <span className="text-[#00FFFF]">Stack</span>
+    <section id="skills">
+      <div className="w-full px-12 py-20">
+        <div style={{ marginBottom: "48px" }}>
+          <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
+            // 02. skills
+          </p>
+          <h2
+            className="font-mono font-bold text-3xl md:text-4xl"
+            style={{ color: "var(--text-primary)" }}
+          >
+            Tech <span style={{ color: "var(--accent-cyan)" }}>Stack</span>
           </h2>
-          <div className="w-16 h-0.5 bg-[#00FFFF] mt-4" />
+          <div style={{ width: "64px", height: "2px", background: "var(--accent-cyan)", marginTop: "16px" }} />
         </div>
 
-        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-5">
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+            gap: "24px",
+          }}
+        >
           {skills.map((category) => {
-            const color = categoryColors[category.category] ?? "#00FFFF";
+            const color = categoryColors[category.category] ?? "var(--accent-cyan)";
             return (
               <div
                 key={category.category}
-                className="rounded p-5 transition-colors"
                 style={{
-                  border: "1px solid rgba(255,255,255,0.06)",
-                  background: "rgba(255,255,255,0.02)",
-                }}
-                onMouseEnter={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor = `${color}35`;
-                }}
-                onMouseLeave={(e) => {
-                  (e.currentTarget as HTMLElement).style.borderColor =
-                    "rgba(255,255,255,0.06)";
+                  background: "var(--bg-secondary)",
+                  border: "1px solid var(--border-color)",
+                  borderRadius: "8px",
+                  padding: "24px",
                 }}
               >
-                {/* Category header */}
-                <div className="flex items-center gap-2 mb-4">
-                  <span className="text-base leading-none">{category.icon}</span>
+                <div style={{ display: "flex", alignItems: "center", gap: "8px", marginBottom: "16px" }}>
+                  <span style={{ fontSize: "16px", lineHeight: 1 }}>{category.icon}</span>
                   <h3
-                    className="font-mono text-xs font-bold tracking-wide uppercase"
-                    style={{ color }}
+                    className="font-mono font-bold text-xs uppercase"
+                    style={{ color, letterSpacing: "1px" }}
                   >
                     {category.category}
                   </h3>
                 </div>
 
-                {/* Skill pills with dot rating */}
-                <div className="flex flex-wrap gap-2">
+                <div style={{ display: "flex", flexWrap: "wrap", gap: "8px" }}>
                   {category.skills.map((skill) => (
                     <span
                       key={skill.name}
-                      className="inline-flex items-center px-2.5 py-1 text-xs font-mono rounded text-slate-300 hover:text-white transition-colors cursor-default"
+                      className="font-mono text-sm"
                       style={{
-                        border: `1px solid ${color}22`,
-                        background: `${color}07`,
+                        display: "inline-flex",
+                        alignItems: "center",
+                        background: "rgba(255,255,255,0.03)",
+                        border: "1px solid var(--border-color)",
+                        borderRadius: "20px",
+                        padding: "4px 14px",
+                        color: "var(--text-secondary)",
                       }}
                     >
                       {skill.name}
