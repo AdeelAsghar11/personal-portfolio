@@ -4,7 +4,6 @@ import profile from "@/data/profile.json";
 
 const contactLinks = [
   { label: "Email", value: profile.email, href: `mailto:${profile.email}` },
-  { label: "Phone", value: "+92 322 9672161", href: "tel:+923229672161" },
   { label: "GitHub", value: "AdeelAsghar11", href: profile.github },
   { label: "LinkedIn", value: "adeelasghar11", href: profile.linkedin },
 ];
