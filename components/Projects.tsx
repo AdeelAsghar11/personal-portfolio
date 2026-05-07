@@ -49,6 +49,22 @@ function StatusBadge({ status }: { status?: string }) {
       </span>
     );
   }
+  if (status === "hackathon") {
+    return (
+      <span
+        className="font-mono text-xs"
+        style={{
+          padding: "3px 10px",
+          borderRadius: "4px",
+          border: "1px solid #F59E0B",
+          color: "#F59E0B",
+          background: "rgba(245,158,11,0.08)",
+        }}
+      >
+        🏆 Hackathon Winner
+      </span>
+    );
+  }
   return null;
 }
 

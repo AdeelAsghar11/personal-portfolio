@@ -1,5 +1,38 @@
 [
   {
+    "title": "Sortd",
+    "description": "AI-powered content capture platform that bridges the 'Capture Gap' — automatically extracts, summarizes, and categorizes content from Instagram Reels, YouTube videos, and screenshots into organized, searchable knowledge. Built for HACKDATA V1 Hackathon.",
+    "tags": ["React", "Node.js", "Supabase", "Google Gemini", "Groq Whisper", "PostgreSQL", "PWA", "Vite"],
+    "github": "https://github.com/AdeelAsghar11/sortd",
+    "demo": "https://sortd-frontend.vercel.app",
+    "featured": true,
+    "category": "AI/ML",
+    "status": "hackathon",
+    "insight": "Multimodal AI pipeline combining Gemini Vision for screenshot OCR and Groq Whisper for audio transcription — zero manual effort from capture to categorized knowledge."
+  },
+  {
+    "title": "ThreatLens",
+    "description": "Malware binary visualization and classification platform. Converts any binary file to a grayscale image using the Nataraj byte-to-image technique, then classifies it against 25 malware families using a fine-tuned ResNet50 model trained on the Malimg dataset.",
+    "tags": ["Python", "React", "Django", "Node.js", "ONNX Runtime", "ResNet50", "Computer Vision", "Cybersecurity"],
+    "github": "https://github.com/AdeelAsghar11/ThreatLens",
+    "demo": null,
+    "featured": true,
+    "category": "Security",
+    "status": null,
+    "insight": "Malware classification is fundamentally a computer vision problem — different malware families produce visually distinct byte patterns. ResNet50 achieves 76.4% val accuracy across 25 families on the Malimg dataset."
+  },
+  {
+    "title": "DermVision",
+    "description": "Full-stack AI medical application for skin lesion classification. Classifies dermoscopy images into 7 lesion categories using a fine-tuned MobileNetV2 model trained on HAM10000. Features JWT auth, drag-and-drop upload, risk assessment, and prediction history.",
+    "tags": ["Python", "React", "Django", "Node.js", "ONNX Runtime", "MobileNetV2", "Transfer Learning", "Healthcare AI"],
+    "github": "https://github.com/AdeelAsghar11/dermvision",
+    "demo": null,
+    "featured": true,
+    "category": "AI/ML",
+    "status": null,
+    "insight": "Three-service architecture: React SPA → Node.js API Gateway → Django ML Engine running ONNX inference. MobileNetV2 fine-tuned in two phases achieves 78.4% val accuracy across 7 lesion classes."
+  },
+  {
     "title": "BSL Hand Gesture Recognition",
     "description": "Deep learning system classifying 34 British Sign Language gestures with 95.74% accuracy and 95.78% F1-score. Uses MobileNetV2 transfer learning with CLAHE normalisation and MediaPipe hand landmark preprocessing. Trained on 34,000 balanced images and deployed as a live Streamlit web app.",
     "tags": [
@@ -50,23 +83,6 @@
     "featured": true,
     "insight": "500K+ transaction records revealed that 80% of revenue came from just 3 product categories — classic Pareto, but only visible after cleaning 40% missing/duplicate records in the ETL stage.",
     "category": "Data Science"
-  },
-  {
-    "title": "AutoRedBlue (FYP)",
-    "description": "Final Year Project (In Progress) — an autonomous LLM-powered red/blue teaming platform for cybersecurity. Simulates attacker and defender agents to autonomously identify vulnerabilities and generate patches in real time. Currently in early development.",
-    "tags": [
-      "Python",
-      "LLMs",
-      "Cybersecurity",
-      "AI Agents",
-      "Red Teaming"
-    ],
-    "github": null,
-    "demo": null,
-    "featured": true,
-    "status": "in-progress",
-    "insight": "Most red-team tools are manual and reactive. The core hypothesis: LLM agents can simulate both attacker and defender roles simultaneously, closing the feedback loop autonomously.",
-    "category": "Security"
   },
   {
     "title": "AI/ML Model Advisor",
