@@ -11,6 +11,28 @@
     "insight": "Multimodal AI pipeline combining Gemini Vision for screenshot OCR and Groq Whisper for audio transcription — zero manual effort from capture to categorized knowledge."
   },
   {
+    "title": "Multi-Agent Business Research Assistant",
+    "description": "Production-grade multi-agent business intelligence platform featuring four specialized agents (Clarity, Research, Validator, Synthesis) collaborating in a LangGraph workflow. Features human-in-the-loop (HITL) interrupt states, Tavily search tool execution, and multi-turn session persistence via MemorySaver.",
+    "tags": ["FastAPI", "LangGraph", "LangChain", "OpenAI GPT-4o", "Tavily Search", "HTML5", "Vanilla JS"],
+    "github": "https://github.com/AdeelAsghar11/Multi-Agent-Research-Assistant",
+    "demo": null,
+    "featured": true,
+    "category": "AI/ML",
+    "status": null,
+    "insight": "Leveraging LangGraph checkpointers and conditional routing engines made pause-and-resume workflows during multi-turn sessions seamless to manage dynamically."
+  },
+  {
+    "title": "OptiMill",
+    "description": "High-fidelity Manufacturing-as-a-Service (MaaS) Progressive Web App designed to bridge the gap between engineering designers and fabrication shops. Transforms complex 3D CAD assets (.stl, .step, .obj) into actionable manufacturing intelligence through geometric analysis and deterministic cost modeling.",
+    "tags": ["Next.js", "FastAPI", "TypeScript", "PWA", "Supabase", "Redis", "Framer Motion", "Leaflet"],
+    "github": "https://github.com/AdeelAsghar11/OptiMill",
+    "demo": null,
+    "featured": true,
+    "category": "AI/ML",
+    "status": null,
+    "insight": "By offloading geometric calculations and Haversine geospatial calculations to FastAPI and caching results in Redis, discovery latency was minimized to under 45ms."
+  },
+  {
     "title": "ThreatLens",
     "description": "Malware binary visualization and classification platform. Converts any binary file to a grayscale image using the Nataraj byte-to-image technique, then classifies it against 25 malware families using a fine-tuned ResNet50 model trained on the Malimg dataset.",
     "tags": ["Python", "React", "Django", "Node.js", "ONNX Runtime", "ResNet50", "Computer Vision", "Cybersecurity"],
