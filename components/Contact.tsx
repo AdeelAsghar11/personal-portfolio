@@ -17,7 +17,7 @@ export default function Contact() {
           {/* LEFT */}
           <div>
             <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
-              // 06. contact
+              // 08. contact
             </p>
             <h2
               className="font-mono font-bold text-3xl md:text-4xl"

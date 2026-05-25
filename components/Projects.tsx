@@ -259,7 +259,7 @@ export default function Projects() {
       <div className="w-full px-12 py-20">
         <div style={{ marginBottom: "48px" }}>
           <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
-            // 03. projects
+            // 05. projects
           </p>
           <h2
             className="font-mono font-bold text-3xl md:text-4xl"

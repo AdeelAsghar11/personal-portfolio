@@ -1,6 +1,9 @@
+import TerminalLoader from "@/components/TerminalLoader";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import About from "@/components/About";
+import Education from "@/components/Education";
+import Achievements from "@/components/Achievements";
 import Skills from "@/components/Skills";
 import Projects from "@/components/Projects";
 import Experience from "@/components/Experience";
@@ -11,11 +14,16 @@ import Footer from "@/components/Footer";
 export default function Home() {
   return (
     <>
+      <TerminalLoader />
       <Navbar />
       <main>
         <Hero />
         <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
         <About />
+        <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
+        <Education />
+        <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
+        <Achievements />
         <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />
         <Skills />
         <hr style={{ borderColor: "var(--border-color)", margin: 0, border: "none", borderTop: "1px solid var(--border-color)" }} />

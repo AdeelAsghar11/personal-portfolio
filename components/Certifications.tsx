@@ -22,7 +22,7 @@ export default function Certifications() {
           {/* LEFT */}
           <div>
             <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
-              // 05. certifications
+              // 07. certifications
             </p>
             <h2
               className="font-mono font-bold text-3xl md:text-4xl"

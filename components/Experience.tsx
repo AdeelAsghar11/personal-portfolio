@@ -16,7 +16,7 @@ export default function Experience() {
           {/* LEFT */}
           <div>
             <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
-              // 04. experience
+              // 06. experience
             </p>
             <h2
               className="font-mono font-bold text-3xl md:text-4xl"
@@ -116,20 +116,6 @@ export default function Experience() {
                       >
                         {item.role}
                       </h3>
-                      {item.current && (
-                        <span
-                          className="font-mono text-xs"
-                          style={{
-                            padding: "2px 8px",
-                            borderRadius: "4px",
-                            background: "rgba(0,255,255,0.08)",
-                            border: "1px solid rgba(0,255,255,0.3)",
-                            color: "var(--accent-cyan)",
-                          }}
-                        >
-                          CURRENT
-                        </span>
-                      )}
                     </div>
 
                     <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "4px" }}>
