@@ -90,7 +90,7 @@ export default function Education() {
                 margin: "12px 0"
               }}
             >
-              3.83
+              {profile.cgpa ? profile.cgpa.split('/')[0].trim() : "3.85"}
             </div>
             <div className="w-16 h-[1px] bg-neutral-800 my-2" />
             <span className="font-mono text-sm" style={{ color: "var(--text-primary)", fontWeight: "bold" }}>

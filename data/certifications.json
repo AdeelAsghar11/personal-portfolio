@@ -1,21 +1,15 @@
 [
   {
-    "title": "Machine Learning Specialization",
+    "title": "AI Engineer Track — Core (LLM Engineering, RAG, QLoRA, Agents), Production & Agentic (MCP)",
+    "issuer": "Ligency, Ed Donner",
+    "date": "In Progress",
+    "credentialId": null
+  },
+  {
+    "title": "Machine Learning Specialization (Supervised ML & Advanced Learning Algorithms)",
     "issuer": "DeepLearning.AI (Andrew Ng)",
     "date": "Sep 2025",
     "credentialId": "5TSYTOKNM8WK"
-  },
-  {
-    "title": "Advanced Learning Algorithms",
-    "issuer": "DeepLearning.AI",
-    "date": "Aug 2025",
-    "credentialId": "CC6G4J9FCJ9Q"
-  },
-  {
-    "title": "Supervised ML: Regression and Classification",
-    "issuer": "DeepLearning.AI",
-    "date": "Jul 2025",
-    "credentialId": "6IBGFBNW631T"
   },
   {
     "title": "Data Analysis with Python",

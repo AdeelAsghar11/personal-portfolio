@@ -5,9 +5,9 @@ import Image from "next/image";
 import profile from "@/data/profile.json";
 
 const titles = [
-  "Aspiring AI Engineer & Systems Thinker",
-  "ML · DL · DevOps",
-  "BSAI @ COMSATS Islamabad",
+  "AI Engineering Intern @ CalderR",
+  "LLMs · RAG · Computer Vision · ML",
+  "BSAI @ COMSATS Islamabad (3.85 CGPA)",
 ];
 
 export default function Hero() {

@@ -5,37 +5,27 @@
     "desc": "Led core development for the Sortd Project, engineering high-performance automated solutions to claim the top place in a competitive multi-team hackathon."
   },
   {
+    "title": "1st Place — Pitch Perfect & AI Model Training Competitions",
+    "org": "HITEC Mega Code War 2026",
+    "desc": "Won 1st Place in both Pitch Perfect and AI Model Training competitions, engineering predictive ML models under speed constraints and delivering a winning architecture pitch."
+  },
+  {
     "title": "Academic Excellence Award",
     "org": "COMSATS University Wah Campus",
-    "desc": "Recognized for outstanding academic achievement, maintaining a top-tier CGPA of 3.83/4.00 within the BS Artificial Intelligence program."
-  },
-  {
-    "title": "1st Place — ML Model Training",
-    "org": "HITEC University • 2026",
-    "desc": "Engineered and optimized high-accuracy predictive ML models under strict speed and resource constraints, securing top model accuracy."
-  },
-  {
-    "title": "2nd Place — Pitch Perfect",
-    "org": "HITEC University • 2026",
-    "desc": "Delivered a high-impact pitch for the Sortd Project, presenting product and architecture designs to a full hall and judging panel to secure 2nd place."
-  },
-  {
-    "title": "MIT Hackathon Participant",
-    "org": "Hack nation • 2025",
-    "desc": "Collaborated in a high-velocity global environment to conceptualize and deploy functional open-source AI prototypes."
+    "desc": "Recognized for outstanding academic achievement, maintaining a top-tier CGPA of 3.85/4.00 within the BS Artificial Intelligence program."
   },
   {
     "title": "1st Place — CS Quiz Competition",
-    "org": "UET Taxila • 2024",
+    "org": "UET Taxila",
     "desc": "Ranked first place in a high-intensity, multi-round technical tournament testing deep knowledge in computer science theory and algorithms."
   },
   {
     "title": "1st Place — Speed Programming Competition",
-    "org": "HITEC University • 2024",
-    "desc": "Engineered highly optimized and accurate solutions under tight time controls, beating out local university chapters."
+    "org": "HITEC University",
+    "desc": "Engineered highly optimized and accurate algorithms under tight time controls, beating out regional university chapters."
   },
   {
-    "title": "Top 4 of 80+ — Tech Quiz Competition",
+    "title": "Ranked 4th of 80+ Participants — Tech Quiz Competition",
     "org": "Tech Fest COMSATS Islamabad",
     "desc": "Secured a top 4 position among 80+ competing teams, demonstrating broad and deep technical competencies in computer science topics."
   }

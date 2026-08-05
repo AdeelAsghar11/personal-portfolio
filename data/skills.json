@@ -4,10 +4,23 @@
     "icon": "💻",
     "skills": [
       { "name": "Python", "level": 5 },
+      { "name": "SQL", "level": 4 },
       { "name": "C++", "level": 3 },
       { "name": "Java", "level": 3 },
-      { "name": "SQL", "level": 4 },
       { "name": "PHP", "level": 3 }
+    ]
+  },
+  {
+    "category": "LLM & RAG Systems",
+    "icon": "⚡",
+    "skills": [
+      { "name": "RAG Pipelines", "level": 5 },
+      { "name": "Hybrid Retrieval", "level": 5 },
+      { "name": "Cross-Encoder Reranking", "level": 5 },
+      { "name": "RAGAS Evaluation", "level": 4 },
+      { "name": "Agentic AI", "level": 5 },
+      { "name": "Vector Databases", "level": 4 },
+      { "name": "Prompt Engineering", "level": 5 }
     ]
   },
   {
@@ -16,76 +29,49 @@
     "skills": [
       { "name": "Supervised Learning", "level": 5 },
       { "name": "Unsupervised Learning", "level": 4 },
-      { "name": "Transfer Learning", "level": 5 },
-      { "name": "Fine-tuning", "level": 4 },
-      { "name": "Feature Engineering", "level": 4 },
-      { "name": "Model Evaluation", "level": 5 },
+      { "name": "Feature Engineering", "level": 5 },
+      { "name": "Model Evaluation (Precision, Recall, F1)", "level": 5 },
       { "name": "Scikit-learn", "level": 5 }
     ]
   },
   {
-    "category": "Deep Learning",
+    "category": "Deep Learning & Computer Vision",
     "icon": "🧠",
     "skills": [
+      { "name": "CNNs", "level": 5 },
+      { "name": "RNNs / LSTMs", "level": 4 },
+      { "name": "Transfer Learning", "level": 5 },
+      { "name": "MobileNetV2", "level": 5 },
+      { "name": "ResNet50", "level": 5 },
+      { "name": "PyTorch", "level": 4 },
       { "name": "TensorFlow", "level": 5 },
-      { "name": "Keras", "level": 5 },
-      { "name": "CNN", "level": 5 },
-      { "name": "MobileNetV2", "level": 4 },
-      { "name": "Neural Networks", "level": 4 },
-      { "name": "MediaPipe", "level": 3 }
+      { "name": "Keras", "level": 5 }
     ]
   },
   {
-    "category": "Data Science",
+    "category": "Data & Analytics",
     "icon": "📊",
     "skills": [
-      { "name": "Pandas", "level": 5 },
       { "name": "NumPy", "level": 5 },
-      { "name": "Matplotlib", "level": 4 },
+      { "name": "Pandas", "level": 5 },
       { "name": "EDA", "level": 5 },
-      { "name": "ETL Pipelines", "level": 4 },
+      { "name": "ETL Pipelines", "level": 5 },
+      { "name": "SQL Aggregations & Window Functions", "level": 5 },
       { "name": "Tableau", "level": 4 },
-      { "name": "Power BI", "level": 3 },
-      { "name": "SPSS", "level": 3 }
+      { "name": "KPI Dashboards", "level": 4 }
     ]
   },
   {
-    "category": "Web & Databases",
-    "icon": "🌐",
-    "skills": [
-      { "name": "HTML", "level": 4 },
-      { "name": "CSS", "level": 4 },
-      { "name": "JavaScript", "level": 3 },
-      { "name": "PHP", "level": 3 },
-      { "name": "Laravel", "level": 4 },
-      { "name": "Bootstrap", "level": 4 },
-      { "name": "SQL", "level": 4 },
-      { "name": "Database Design", "level": 4 },
-      { "name": "Oracle DB", "level": 5 },
-      { "name": "Oracle APEX", "level": 5 }
-    ]
-  },
-  {
-    "category": "MLOps / DevOps",
+    "category": "MLOps & Deployment",
     "icon": "⚙️",
     "skills": [
-      { "name": "Git", "level": 5 },
-      { "name": "GitHub", "level": 5 },
-      { "name": "Jenkins", "level": 3 },
-      { "name": "Docker", "level": 3 },
-      { "name": "Docker Swarm", "level": 3 },
-      { "name": "CI/CD Pipelines", "level": 3 },
-      { "name": "Bitbucket", "level": 3 }
-    ]
-  },
-  {
-    "category": "Deployment & Tools",
-    "icon": "🚀",
-    "skills": [
+      { "name": "Git / GitHub", "level": 5 },
+      { "name": "Docker", "level": 4 },
+      { "name": "CI/CD (Jenkins)", "level": 4 },
+      { "name": "REST APIs (Django, Flask)", "level": 5 },
       { "name": "Streamlit", "level": 5 },
-      { "name": "Flask", "level": 4 },
-      { "name": "Jupyter Notebook", "level": 5 },
-      { "name": "VS Code", "level": 5 }
+      { "name": "PostgreSQL / Supabase", "level": 5 },
+      { "name": "Vercel / Railway", "level": 4 }
     ]
   }
 ]

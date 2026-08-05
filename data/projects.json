@@ -11,6 +11,16 @@
     "insight": "Multimodal AI pipeline combining Gemini Vision for screenshot OCR and Groq Whisper for audio transcription — zero manual effort from capture to categorized knowledge."
   },
   {
+    "title": "Facial Expression Recognition Research Collaboration",
+    "description": "Deep learning research project in collaboration with the University of Macau. Validated the I-Center method across FER+ and RAF-DB benchmark datasets with exploratory testing on ExpW for facial emotion recognition.",
+    "tags": ["PyTorch", "I-Center Method", "FER+", "RAF-DB", "ExpW", "Computer Vision", "Deep Learning"],
+    "github": "https://github.com/AdeelAsghar11",
+    "demo": null,
+    "featured": true,
+    "category": "AI/ML",
+    "insight": "Achieved +3.89pp macro-F1 improvement over state-of-the-art baselines across a 10-seed test with 95% CI positive validation."
+  },
+  {
     "title": "Multi-Agent Business Research Assistant",
     "description": "Production-grade multi-agent business intelligence platform featuring four specialized agents (Clarity, Research, Validator, Synthesis) collaborating in a LangGraph workflow. Features human-in-the-loop (HITL) interrupt states, Tavily search tool execution, and multi-turn session persistence via MemorySaver.",
     "tags": ["FastAPI", "LangGraph", "LangChain", "OpenAI GPT-4o", "Tavily Search", "HTML5", "Vanilla JS"],
@@ -57,15 +67,7 @@
   {
     "title": "BSL Hand Gesture Recognition",
     "description": "Deep learning system classifying 34 British Sign Language gestures with 95.74% accuracy and 95.78% F1-score. Uses MobileNetV2 transfer learning with CLAHE normalisation and MediaPipe hand landmark preprocessing. Trained on 34,000 balanced images and deployed as a live Streamlit web app.",
-    "tags": [
-      "Python",
-      "TensorFlow",
-      "MobileNetV2",
-      "Transfer Learning",
-      "MediaPipe",
-      "Streamlit",
-      "Computer Vision"
-    ],
+    "tags": ["Python", "TensorFlow", "MobileNetV2", "Transfer Learning", "MediaPipe", "Streamlit", "Computer Vision"],
     "github": "https://github.com/AdeelAsghar11/BSL-Hand_Gesture_Recognition",
     "demo": null,
     "featured": true,
@@ -75,14 +77,7 @@
   {
     "title": "Smart Recycle System",
     "description": "Industrial waste classifier using MobileNetV2 transfer learning achieving 86%+ accuracy across 12 material categories — outperforming a custom CNN baseline by 25%. Features real-time hazardous waste flagging with an efficient inference pipeline for industrial constraints.",
-    "tags": [
-      "Python",
-      "TensorFlow",
-      "MobileNetV2",
-      "Transfer Learning",
-      "Streamlit",
-      "Computer Vision"
-    ],
+    "tags": ["Python", "TensorFlow", "MobileNetV2", "Transfer Learning", "Streamlit", "Computer Vision"],
     "github": "https://github.com/AdeelAsghar11/smart-recycle-system-cnn",
     "demo": null,
     "featured": true,
@@ -90,16 +85,9 @@
     "category": "AI/ML"
   },
   {
-    "title": "Retail Sales Analytics Dashboard",
+    "title": "Retail Sales Performance Analytics Dashboard",
     "description": "End-to-end ETL pipeline processing 500,000+ transaction records for a UK-based online retailer. Identified seasonal revenue spikes, top-performing product categories, and high-value customer segments through in-depth EDA. Visualised with interactive Tableau dashboards for business intelligence decisions.",
-    "tags": [
-      "Python",
-      "Pandas",
-      "EDA",
-      "ETL",
-      "Tableau",
-      "Data Science"
-    ],
+    "tags": ["Python", "Pandas", "EDA", "ETL", "Tableau", "Data Science"],
     "github": "https://github.com/AdeelAsghar11/Retail-Sales-Performance-Dashboard",
     "demo": null,
     "featured": true,
@@ -109,14 +97,7 @@
   {
     "title": "AI/ML Model Advisor",
     "description": "Rule-based expert system with custom forward and backward chaining inference engines that recommends optimal ML algorithms based on dataset characteristics. Includes explainability support and a lightweight Flask web interface for interactive user queries.",
-    "tags": [
-      "Python",
-      "Flask",
-      "SymPy",
-      "Expert Systems",
-      "AI",
-      "Knowledge Representation"
-    ],
+    "tags": ["Python", "Flask", "SymPy", "Expert Systems", "AI", "Knowledge Representation"],
     "github": "https://github.com/AdeelAsghar11/ai-model-advisor",
     "demo": null,
     "featured": false,
@@ -125,14 +106,7 @@
   {
     "title": "Indian Air Pollution Analysis",
     "description": "Analyzed historical air quality data (2015–2020) across 26 major Indian cities. Built an automated data pipeline with robust preprocessing, compared 4 regression models with hyperparameter tuning to forecast PM2.5 levels, and deployed an interactive Streamlit prediction dashboard.",
-    "tags": [
-      "Python",
-      "Scikit-learn",
-      "Pandas",
-      "Random Forest",
-      "Streamlit",
-      "EDA"
-    ],
+    "tags": ["Python", "Scikit-learn", "Pandas", "Random Forest", "Streamlit", "EDA"],
     "github": "https://github.com/AdeelAsghar11/indian-air-pollution",
     "demo": null,
     "featured": false,
@@ -141,14 +115,7 @@
   {
     "title": "Encrypted Monitoring App",
     "description": "Python application that periodically captures desktop screenshots, encrypts them using AES or DES, generates SHA-256 integrity hashes, and securely logs all data. Supports full decryption and hash verification.",
-    "tags": [
-      "Python",
-      "AES",
-      "DES",
-      "SHA-256",
-      "Cryptography",
-      "Security"
-    ],
+    "tags": ["Python", "AES", "DES", "SHA-256", "Cryptography", "Security"],
     "github": "https://github.com/AdeelAsghar11/encrypted-monitoringapp-python",
     "demo": null,
     "featured": false,
@@ -157,14 +124,7 @@
   {
     "title": "Smart Farm Security System",
     "description": "Custom CNN built from scratch to classify 10 farm animal species and flag potential intruder threats from live image analysis. Trained on 28,000 images from the Animals-10 dataset and deployed via Streamlit for real-time inference.",
-    "tags": [
-      "Python",
-      "TensorFlow",
-      "Keras",
-      "CNN",
-      "Streamlit",
-      "Computer Vision"
-    ],
+    "tags": ["Python", "TensorFlow", "Keras", "CNN", "Streamlit", "Computer Vision"],
     "github": "https://github.com/AdeelAsghar11/smart-farm-cnn",
     "demo": null,
     "featured": false,
@@ -173,13 +133,7 @@
   {
     "title": "CIFAR-10 Classical ML Classifier",
     "description": "CPU-efficient classical ML approach to CIFAR-10 using Histogram of Oriented Gradients (HOG) for feature extraction and SVMs for classification. Lightweight, interpretable, and runs without GPU.",
-    "tags": [
-      "Python",
-      "Scikit-learn",
-      "SVM",
-      "HOG",
-      "Machine Learning"
-    ],
+    "tags": ["Python", "Scikit-learn", "SVM", "HOG", "Machine Learning"],
     "github": "https://github.com/AdeelAsghar11/Cifar-10-Classification-using-ML",
     "demo": null,
     "featured": false,
@@ -188,12 +142,7 @@
   {
     "title": "Bring It Buddy",
     "description": "Prototype — a Laravel-based peer-to-peer delivery web app connecting senders with travellers going the same route for cost-effective package delivery.",
-    "tags": [
-      "PHP",
-      "Laravel",
-      "MySQL",
-      "Web Development"
-    ],
+    "tags": ["PHP", "Laravel", "MySQL", "Web Development"],
     "github": "https://github.com/AdeelAsghar11/bring-it-buddy-laravel-project",
     "demo": null,
     "featured": false,

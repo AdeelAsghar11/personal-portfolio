@@ -1,15 +1,37 @@
 [
   {
-    "role": "Tech Lead & Founding Member",
-    "company": "GDG On Campus — COMSATS Wah",
-    "type": "Community Leadership",
-    "period": "Oct 2024 – Present",
+    "role": "AI Engineering Intern",
+    "company": "CalderR",
+    "type": "Internship",
+    "period": "Jun 2026 – Present",
     "current": true,
     "bullets": [
-      "Co-founded the Google Developer Groups chapter at COMSATS University Wah Campus — one of the first student-led tech communities at the university",
-      "Leads AI/Data Science initiatives and coordinates student project teams across multiple domains",
-      "Organizes technical workshops, seminars, and hands-on sessions for 100+ students",
-      "Mentors junior members in AI/ML fundamentals and drives cross-team collaboration"
+      "Resolved a BM25 keyword-bias failure in a personal-document RAG assistant by implementing hybrid retrieval with cross-encoder reranking, reaching 14/15 correctly grounded Q&A responses across 444 chunks from 31 source documents",
+      "Built a real-time, multi-source research engine using a RAG pipeline with RAGAS-based relevance and faithfulness evaluation, generating automated reports beyond delivery requirements while hardening output formatting for reliability",
+      "Built four additional agentic AI tools — a CLI assistant, multi-agent research assistant, automated code-review agent, and data-analysis agent — covering LLM tool-calling and multi-step orchestration"
+    ]
+  },
+  {
+    "role": "AI Intern",
+    "company": "Pakistan Ordnance Factories (POF)",
+    "type": "Internship",
+    "period": "Jul 2026 – Present",
+    "current": true,
+    "bullets": [
+      "Joined the AI team to support applied machine learning workflows, including data preprocessing and model evaluation tasks",
+      "Ramping up on the team's production ML tooling and internal AI systems as part of an ongoing AI engineering rotation"
+    ]
+  },
+  {
+    "role": "Founding Member & Tech Lead",
+    "company": "GDG On Campus — COMSATS Wah",
+    "type": "Community Leadership",
+    "period": "Oct 2025 – Present",
+    "current": true,
+    "bullets": [
+      "Grew practical AI/ML skills for 100+ students by co-founding GDG On Campus at COMSATS Wah and organizing 5+ workshops and seminars on AI/ML, data science, and software development",
+      "Strengthened project teams' skills in Python, model training, and evaluation metrics (precision, recall, F1-score) by mentoring across supervised learning and computer vision tracks",
+      "Strengthened practical AI/ML skills for junior cohorts by delivering sessions on data preprocessing, feature engineering, and CNNs"
     ]
   },
   {
@@ -19,9 +41,8 @@
     "period": "Jul 2025 – Sep 2025",
     "current": false,
     "bullets": [
-      "Built and deployed CI/CD pipelines using Jenkins covering build triggers, notifications, and automated testing",
-      "Worked with Docker and Docker Swarm for containerization and service orchestration",
-      "Used Git, Bitbucket, and branching strategies for version control and team collaboration"
+      "Streamlined build-to-deploy workflows across development and staging environments by building CI/CD pipelines in Jenkins with automated triggers, test execution, and Slack/email notifications",
+      "Improved service scalability and uptime by containerizing services with Docker and Docker Swarm, maintaining health via container monitoring and restart policies"
     ]
   }
 ]
