@@ -150,7 +150,7 @@ export default function Hero() {
           {/* RIGHT COLUMN */}
           <div style={{ display: "flex", justifyContent: "center", alignItems: "center" }}>
             <Image
-              src="/images/profile.jpg"
+              src="/images/cover.jpeg"
               alt="Adeel Asghar"
               width={320}
               height={320}

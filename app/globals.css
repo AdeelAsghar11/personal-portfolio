@@ -69,3 +69,15 @@ body {
   color: var(--accent-cyan);
 }
 
+/* ─── Interactive Elements Hover Effects ─── */
+a, button, [role="button"] {
+  transition: transform 0.2s ease, color 0.2s ease, background-color 0.2s ease, border-color 0.2s ease;
+}
+
+@media (pointer: fine) {
+  a, button, [role="button"], input, select, textarea {
+    cursor: pointer;
+  }
+}
+
+

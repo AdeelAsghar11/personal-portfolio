@@ -1,5 +1,6 @@
 "use client";
 
+import { useState } from "react";
 import projectsData from "@/data/projects.json";
 
 interface Project {
@@ -76,6 +77,7 @@ function ProjectLinks({ github, demo }: { github: string | null; demo: string | 
           href={github}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
           className="font-mono text-sm"
           style={{ color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}
           onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent-cyan)")}
@@ -89,6 +91,7 @@ function ProjectLinks({ github, demo }: { github: string | null; demo: string | 
           href={demo}
           target="_blank"
           rel="noopener noreferrer"
+          onClick={(e) => e.stopPropagation()}
           className="font-mono text-sm"
           style={{ color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}
           onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent-green)")}
@@ -125,13 +128,29 @@ function TagList({ tags, small }: { tags: string[]; small?: boolean }) {
 }
 
 function FeaturedCard({ project }: { project: Project }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const targetUrl = project.github || project.demo;
+
+  const handleCardClick = () => {
+    if (targetUrl) {
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <div
+      onClick={handleCardClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         background: "var(--bg-secondary)",
-        border: "1px solid var(--border-color)",
+        border: `1px solid ${isHovered ? "var(--accent-cyan)" : "var(--border-color)"}`,
         borderRadius: "8px",
         padding: "28px",
+        cursor: targetUrl ? "pointer" : "default",
+        transform: isHovered ? "translateY(-4px)" : "translateY(0)",
+        boxShadow: isHovered ? "0 10px 30px -10px rgba(0, 255, 255, 0.15)" : "none",
+        transition: "transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
       }}
     >
       <div className="grid grid-cols-1 md:grid-cols-[1fr_260px] gap-8">
@@ -147,7 +166,14 @@ function FeaturedCard({ project }: { project: Project }) {
             }}
           >
             <span className="font-mono text-xs" style={{ color: "var(--accent-green)" }}>$ ./</span>
-            <h3 className="font-mono font-bold" style={{ color: "var(--text-primary)", fontSize: "16px" }}>
+            <h3
+              className="font-mono font-bold"
+              style={{
+                color: isHovered ? "var(--accent-cyan)" : "var(--text-primary)",
+                fontSize: "16px",
+                transition: "color 0.25s ease",
+              }}
+            >
               {project.title}
             </h3>
             <StatusBadge status={project.status} />
@@ -192,21 +218,43 @@ function FeaturedCard({ project }: { project: Project }) {
 }
 
 function SmallCard({ project }: { project: Project }) {
+  const [isHovered, setIsHovered] = useState(false);
+  const targetUrl = project.github || project.demo;
+
+  const handleCardClick = () => {
+    if (targetUrl) {
+      window.open(targetUrl, "_blank", "noopener,noreferrer");
+    }
+  };
+
   return (
     <div
+      onClick={handleCardClick}
+      onMouseEnter={() => setIsHovered(true)}
+      onMouseLeave={() => setIsHovered(false)}
       style={{
         background: "var(--bg-secondary)",
-        border: "1px solid var(--border-color)",
+        border: `1px solid ${isHovered ? "var(--accent-cyan)" : "var(--border-color)"}`,
         borderRadius: "8px",
         padding: "20px",
         display: "flex",
         flexDirection: "column",
         gap: "12px",
+        cursor: targetUrl ? "pointer" : "default",
+        transform: isHovered ? "translateY(-4px)" : "translateY(0)",
+        boxShadow: isHovered ? "0 10px 30px -10px rgba(0, 255, 255, 0.15)" : "none",
+        transition: "transform 0.25s ease, border-color 0.25s ease, box-shadow 0.25s ease",
       }}
     >
       <div style={{ display: "flex", alignItems: "center", gap: "8px", flexWrap: "wrap" }}>
         <span className="font-mono text-xs" style={{ color: "var(--accent-green)" }}>$ ./</span>
-        <h3 className="font-mono font-bold text-sm" style={{ color: "var(--text-primary)" }}>
+        <h3
+          className="font-mono font-bold text-sm"
+          style={{
+            color: isHovered ? "var(--accent-cyan)" : "var(--text-primary)",
+            transition: "color 0.25s ease",
+          }}
+        >
           {project.title}
         </h3>
         <StatusBadge status={project.status} />
@@ -224,6 +272,7 @@ function SmallCard({ project }: { project: Project }) {
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="font-mono text-xs"
             style={{ color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent-cyan)")}
@@ -237,6 +286,7 @@ function SmallCard({ project }: { project: Project }) {
             href={project.demo}
             target="_blank"
             rel="noopener noreferrer"
+            onClick={(e) => e.stopPropagation()}
             className="font-mono text-xs"
             style={{ color: "var(--text-secondary)", textDecoration: "none", transition: "color 0.2s" }}
             onMouseEnter={(e) => ((e.currentTarget as HTMLElement).style.color = "var(--accent-green)")}
