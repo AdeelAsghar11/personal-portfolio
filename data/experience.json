@@ -15,8 +15,8 @@
     "role": "AI Engineering Intern",
     "company": "CalderR",
     "type": "Internship",
-    "period": "Jun 2026 – Present",
-    "current": true,
+    "period": "Jun 2026 – Sep 2026",
+    "current": false,
     "bullets": [
       "Resolved a BM25 keyword-bias failure in a personal-document RAG assistant by implementing hybrid retrieval with cross-encoder reranking, reaching 14/15 correctly grounded Q&A responses across 444 chunks from 31 source documents",
       "Built a real-time, multi-source research engine using a RAG pipeline with RAGAS-based relevance and faithfulness evaluation, generating automated reports beyond delivery requirements while hardening output formatting for reliability",
@@ -27,8 +27,8 @@
     "role": "AI Intern",
     "company": "Pakistan Ordnance Factories (POF)",
     "type": "Internship",
-    "period": "Jul 2026 – Present",
-    "current": true,
+    "period": "Jul 2026 – Aug 2026",
+    "current": false,
     "bullets": [
       "Joined the AI team to support applied machine learning workflows, including data preprocessing and model evaluation tasks",
       "Ramping up on the team's production ML tooling and internal AI systems as part of an ongoing AI engineering rotation"

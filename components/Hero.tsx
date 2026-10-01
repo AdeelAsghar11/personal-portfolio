@@ -6,7 +6,7 @@ import profile from "@/data/profile.json";
 
 const titles = [
   "Co-Founder & CAIO @ Algoligence",
-  "AI Engineering Intern @ CalderR",
+  "Full Stack AI Engineer",
   "LLMs · RAG · Computer Vision · ML",
 ];
 
