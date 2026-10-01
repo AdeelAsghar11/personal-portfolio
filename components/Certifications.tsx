@@ -1,6 +1,8 @@
 "use client";
 
+import { motion, useReducedMotion } from "framer-motion";
 import certifications from "@/data/certifications.json";
+import SectionReveal from "./SectionReveal";
 
 function getIssuerGroups() {
   const groups: Record<string, number> = {};
@@ -13,70 +15,48 @@ function getIssuerGroups() {
 
 export default function Certifications() {
   const issuerGroups = getIssuerGroups();
+  const shouldReduceMotion = useReducedMotion();
 
   return (
-    <section id="certifications">
-      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-20">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
+    <section id="certifications" className="relative py-24 md:py-32">
+      <SectionReveal className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12">
+        <div className="grid grid-cols-1 lg:grid-cols-[0.85fr_1.15fr] gap-12 lg:gap-16 items-start">
 
-          {/* LEFT */}
-          <div>
-            <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
-              // 07. certifications
-            </p>
-            <h2
-              className="font-mono font-bold text-3xl md:text-4xl"
-              style={{ color: "var(--text-primary)" }}
-            >
-              Certifi<span style={{ color: "var(--accent-cyan)" }}>cations</span>
+          {/* LEFT: Section Intro & Summary Terminal */}
+          <div className="lg:sticky lg:top-28">
+            <div className="flex items-center gap-2 mb-3">
+              <span className="font-mono text-xs text-[var(--accent-green)]">// 07.</span>
+              <span className="font-mono text-xs uppercase tracking-wider text-[var(--text-muted)]">Verification</span>
+            </div>
+            <h2 className="font-display font-bold text-3xl sm:text-4xl text-[var(--text-primary)] tracking-tight">
+              Certifications &amp;{" "}
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-[var(--accent-cyan)] via-[#38bdf8] to-[var(--accent-green)]">
+                Credentials
+              </span>
             </h2>
-            <div
-              style={{
-                width: "64px",
-                height: "2px",
-                background: "var(--accent-cyan)",
-                marginTop: "16px",
-                marginBottom: "32px",
-              }}
-            />
+            <div className="w-16 h-0.5 bg-gradient-to-r from-[var(--accent-cyan)] to-[var(--accent-green)] my-6 rounded-full" />
 
-            <p
-              className="font-mono text-sm"
-              style={{ color: "var(--text-secondary)", lineHeight: 1.8, marginBottom: "32px" }}
-            >
-              Verified credentials from world-class institutions.
+            <p className="font-sans text-base text-[var(--text-secondary)] leading-relaxed mb-8 max-w-md">
+              Specialized coursework and verified certifications across machine learning, deep learning, data engineering, and agentic workflows.
             </p>
 
-            <div
-              style={{
-                background: "var(--bg-secondary)",
-                border: "1px solid var(--border-color)",
-                borderRadius: "8px",
-                padding: "20px",
-              }}
-            >
-              <p className="font-mono text-xs" style={{ color: "var(--accent-green)", marginBottom: "16px" }}>
-                $ issuers --summary
-              </p>
-              <div style={{ display: "flex", flexDirection: "column", gap: "10px" }}>
+            <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl p-6 shadow-xl">
+              <div className="flex items-center gap-2 font-mono text-xs text-[var(--accent-green)] mb-4">
+                <span>$</span>
+                <span>issuers --summary</span>
+              </div>
+
+              <div className="space-y-3">
                 {issuerGroups.map(([issuer, count]) => (
                   <div
                     key={issuer}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      gap: "8px",
-                    }}
+                    className="flex justify-between items-center py-1 text-sm border-b border-[var(--border-color)]/50 last:border-0"
                   >
-                    <span className="font-mono text-sm" style={{ color: "var(--text-secondary)" }}>
+                    <span className="font-sans text-xs sm:text-sm text-[var(--text-secondary)]">
                       {issuer}
                     </span>
-                    <span
-                      className="font-mono text-sm font-bold"
-                      style={{ color: "var(--accent-green)", flexShrink: 0 }}
-                    >
-                      {count} {count === 1 ? "certificate" : "certificates"}
+                    <span className="font-mono text-xs font-semibold px-2.5 py-0.5 rounded-full border border-[var(--accent-cyan)]/30 text-[var(--accent-cyan)] bg-[var(--accent-cyan)]/10">
+                      {count} {count === 1 ? "cert" : "certs"}
                     </span>
                   </div>
                 ))}
@@ -84,55 +64,43 @@ export default function Certifications() {
             </div>
           </div>
 
-          {/* RIGHT — cert cards grid */}
-          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
+          {/* RIGHT: Responsive Certifications Grid */}
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {certifications.map((cert, idx) => (
-              <div
+              <motion.div
                 key={idx}
-                style={{
-                  background: "var(--bg-secondary)",
-                  border: "1px solid var(--border-color)",
-                  borderRadius: "8px",
-                  padding: "16px",
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: "6px",
-                }}
+                whileHover={shouldReduceMotion ? undefined : { y: -4 }}
+                transition={{ duration: 0.2 }}
+                className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 hover:border-[var(--accent-cyan)]/40 hover:shadow-[0_8px_30px_-10px_rgba(0,240,255,0.12)] backdrop-blur-xl p-5 flex flex-col justify-between transition-all duration-300"
               >
-                <p className="font-mono text-xs" style={{ color: "var(--accent-cyan)" }}>
-                  {cert.issuer.replace(" (Andrew Ng)", "")}
-                </p>
-                <p
-                  className="font-mono text-sm font-bold"
-                  style={{ color: "var(--text-primary)", lineHeight: 1.4 }}
-                >
-                  {cert.title}
-                </p>
-                <p
-                  className="font-mono text-xs uppercase"
-                  style={{ color: "var(--text-secondary)", marginTop: "auto", paddingTop: "6px", letterSpacing: "0.5px" }}
-                >
-                  {cert.date}
-                </p>
-                {cert.credentialId && (
-                  <p
-                    className="font-mono text-xs"
-                    style={{
-                      color: "var(--text-secondary)",
-                      overflow: "hidden",
-                      textOverflow: "ellipsis",
-                      whiteSpace: "nowrap",
-                    }}
-                  >
-                    ID: {cert.credentialId}
-                  </p>
-                )}
-              </div>
+                <div>
+                  <span className="font-mono text-xs text-[var(--accent-cyan)] font-medium block mb-1.5">
+                    {cert.issuer.replace(" (Andrew Ng)", "")}
+                  </span>
+                  <h3 className="font-display font-bold text-sm sm:text-base text-[var(--text-primary)] leading-snug">
+                    {cert.title}
+                  </h3>
+                </div>
+
+                <div className="pt-4 mt-4 border-t border-[var(--border-color)]/60 flex items-center justify-between gap-2 font-mono text-[11px]">
+                  <span className="uppercase tracking-wider text-[var(--text-muted)]">
+                    {cert.date}
+                  </span>
+                  {cert.credentialId && (
+                    <span
+                      title={cert.credentialId}
+                      className="text-[var(--text-secondary)] truncate max-w-[120px]"
+                    >
+                      ID: {cert.credentialId}
+                    </span>
+                  )}
+                </div>
+              </motion.div>
             ))}
           </div>
 
         </div>
-      </div>
+      </SectionReveal>
     </section>
   );
 }

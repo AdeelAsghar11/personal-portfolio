@@ -5,9 +5,11 @@ import { useTheme } from "@/context/ThemeContext";
 
 const navLinks = [
   { label: "About", href: "#about" },
+  { label: "Education", href: "#education" },
   { label: "Skills", href: "#skills" },
   { label: "Projects", href: "#projects" },
   { label: "Experience", href: "#experience" },
+  { label: "Certifications", href: "#certifications" },
   { label: "Contact", href: "#contact" },
 ];
 
@@ -28,37 +30,31 @@ export default function Navbar() {
       style={
         scrolled
           ? {
-              background: "color-mix(in srgb, var(--bg) 90%, transparent)",
-              backdropFilter: "blur(8px)",
+              background: "rgba(6, 9, 19, 0.82)",
+              backdropFilter: "blur(16px)",
               borderBottom: "1px solid var(--border-color)",
+              boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.5)",
             }
           : { background: "transparent" }
       }
     >
       <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-4 flex items-center justify-between">
-        {/* Logo */}
-        <a href="#hero" className="font-mono text-lg font-bold">
-          <span style={{ color: "var(--accent-cyan)" }}>&gt;</span>{" "}
-          <span style={{ color: "var(--text-primary)" }}>adeelasghar</span>
-          <span style={{ color: "var(--accent-green)" }}>.dev</span>
+        {/* Brand Logo */}
+        <a href="#hero" className="font-mono text-base sm:text-lg font-bold flex items-center gap-1.5 group">
+          <span className="text-[var(--accent-cyan)] group-hover:-translate-x-0.5 transition-transform duration-200">
+            &gt;
+          </span>
+          <span className="text-[var(--text-primary)]">adeelasghar</span>
+          <span className="text-[var(--accent-green)]">.dev</span>
         </a>
 
         {/* Desktop Links + Theme toggle */}
-        <div className="hidden md:flex items-center gap-8">
+        <div className="hidden lg:flex items-center gap-7">
           {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-mono transition-colors duration-200"
-              style={{ color: "var(--text-secondary)" }}
-              onMouseEnter={(e) =>
-                ((e.currentTarget as HTMLElement).style.color =
-                  "var(--accent-cyan)")
-              }
-              onMouseLeave={(e) =>
-                ((e.currentTarget as HTMLElement).style.color =
-                  "var(--text-secondary)")
-              }
+              className="text-xs font-mono text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors duration-200 relative py-1"
             >
               {link.label}
             </a>
@@ -68,38 +64,23 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            style={{
-              background: "transparent",
-              border: "none",
-              fontSize: "18px",
-              cursor: "pointer",
-              padding: "4px 8px",
-              lineHeight: 1,
-            }}
+            className="w-9 h-9 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-sm hover:border-[var(--accent-cyan)]/40 transition-colors cursor-pointer"
           >
             {isDark ? "☀️" : "🌙"}
           </button>
         </div>
 
-        {/* Mobile: theme toggle + hamburger */}
-        <div className="flex md:hidden items-center gap-3">
+        {/* Mobile / Tablet: theme toggle + hamburger */}
+        <div className="flex lg:hidden items-center gap-3">
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            style={{
-              background: "transparent",
-              border: "none",
-              fontSize: "18px",
-              cursor: "pointer",
-              padding: "4px",
-              lineHeight: 1,
-            }}
+            className="w-9 h-9 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-sm cursor-pointer"
           >
             {isDark ? "☀️" : "🌙"}
           </button>
           <button
-            className="font-mono text-xl"
-            style={{ color: "var(--accent-cyan)", background: "transparent", border: "none", cursor: "pointer" }}
+            className="font-mono text-xl text-[var(--accent-cyan)] p-1.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] cursor-pointer"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
@@ -109,32 +90,23 @@ export default function Navbar() {
         </div>
       </div>
 
-      {/* Mobile Menu */}
+      {/* Mobile Menu Dropdown */}
       {menuOpen && (
         <div
-          className="md:hidden px-6 sm:px-8 py-4 flex flex-col gap-4"
+          className="lg:hidden px-6 sm:px-8 py-5 flex flex-col gap-3.5 border-t border-[var(--border-color)]"
           style={{
-            background: "color-mix(in srgb, var(--bg-secondary) 95%, transparent)",
-            backdropFilter: "blur(12px)",
-            borderTop: "1px solid var(--border-color)",
+            background: "rgba(6, 9, 19, 0.95)",
+            backdropFilter: "blur(20px)",
           }}
         >
-          {[
-            { label: "About", href: "#about" },
-            { label: "Education", href: "#education" },
-            { label: "Skills", href: "#skills" },
-            { label: "Projects", href: "#projects" },
-            { label: "Experience", href: "#experience" },
-            { label: "Certifications", href: "#certifications" },
-            { label: "Contact", href: "#contact" },
-          ].map((link) => (
+          {navLinks.map((link) => (
             <a
               key={link.href}
               href={link.href}
-              className="text-sm font-mono transition-colors"
-              style={{ color: "var(--text-secondary)" }}
+              className="text-sm font-mono text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] transition-colors py-1 flex items-center gap-2"
               onClick={() => setMenuOpen(false)}
             >
+              <span className="text-[var(--accent-green)] text-xs">→</span>
               {link.label}
             </a>
           ))}
