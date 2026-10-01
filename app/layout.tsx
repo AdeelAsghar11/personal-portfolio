@@ -15,7 +15,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Adeel Asghar — Aspiring AI Engineer",
+  title: "Adeel Asghar — Full Stack AI Engineer",
   description:
     "Personal portfolio of Adeel Asghar, AI Engineer and BSAI student at COMSATS University Islamabad. Building intelligent systems at the intersection of AI and Security.",
 };

@@ -1,5 +1,17 @@
 [
   {
+    "role": "Co-Founder & Chief AI Officer (CAIO)",
+    "company": "Algoligence",
+    "type": "Startup",
+    "period": "Aug 2026 – Present",
+    "current": true,
+    "bullets": [
+      "Co-founded Algoligence and spearheading technical vision and AI engineering strategy, leading the architecture and delivery of custom generative AI and agentic systems",
+      "Designing production-grade multi-agent workflows and GraphRAG retrieval pipelines for client deployments, establishing rigorous evaluation frameworks and LLM guardrails",
+      "Directing full-stack AI product development from rapid prototyping to cloud deployment, bridging machine learning models with scalable microservice infrastructure"
+    ]
+  },
+  {
     "role": "AI Engineering Intern",
     "company": "CalderR",
     "type": "Internship",
@@ -23,7 +35,7 @@
     ]
   },
   {
-    "role": "Founding Member & Tech Lead",
+    "role": "Community Manager & Founding Member",
     "company": "GDG On Campus — COMSATS Wah",
     "type": "Community Leadership",
     "period": "Oct 2025 – Present",

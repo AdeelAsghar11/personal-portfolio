@@ -1,5 +1,27 @@
 [
   {
+    "title": "Codebase Historian",
+    "description": "Multi-agent GraphRAG platform that ingests a repository's full git history, PRs, and AST structure to explain why code is the way it is, forecast blast radius before a change, and propose refactors through an adversarial Proposer/Critic debate gated by human review.",
+    "tags": ["LangGraph", "ChromaDB", "FastAPI", "React", "GraphRAG", "NetworkX"],
+    "github": "https://github.com/AdeelAsghar11/codebase-historian-capstoneCalderr",
+    "demo": null,
+    "featured": true,
+    "category": "AI/ML",
+    "status": null,
+    "insight": "Achieves 100% faithfulness and 76.6% precision / 97.8% recall on blast-radius backtesting against real commit history, exceeding its own PRD targets."
+  },
+  {
+    "title": "GeoSimAI",
+    "description": "Geospatial similarity engine built on Google Earth Engine's satellite embeddings (DeepMind AlphaEarth Foundations). Select a reference location and it ranks and visualizes environmentally similar sites across a region, no hand-engineered indices required.",
+    "tags": ["Google Earth Engine", "Python", "Flask", "Geospatial ML"],
+    "github": "https://github.com/AdeelAsghar11/GeoSimAI",
+    "demo": null,
+    "featured": true,
+    "category": "AI/ML",
+    "status": null,
+    "insight": null
+  },
+  {
     "title": "Sortd",
     "description": "AI-powered content capture platform that bridges the 'Capture Gap' — automatically extracts, summarizes, and categorizes content from Instagram Reels, YouTube videos, and screenshots into organized, searchable knowledge. Built for HACKDATA V1 Hackathon.",
     "tags": ["React", "Node.js", "Supabase", "Google Gemini", "Groq Whisper", "PostgreSQL", "PWA", "Vite"],
