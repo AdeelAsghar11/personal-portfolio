@@ -3,14 +3,14 @@
 import experience from "@/data/experience.json";
 
 const stats = [
-  { value: "100+", label: "Students Mentored" },
+  { value: "5+", label: "Workshops Hosted" },
   { value: "2+", label: "Years Building" },
 ];
 
 export default function Experience() {
   return (
     <section id="experience">
-      <div className="w-full px-12 py-20">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
 
           {/* LEFT */}

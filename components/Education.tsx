@@ -5,7 +5,7 @@ import profile from "@/data/profile.json";
 export default function Education() {
   return (
     <section id="education">
-      <div className="w-full px-12 py-20">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-20">
         <div style={{ marginBottom: "48px" }}>
           <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
             // 02. education
@@ -92,7 +92,7 @@ export default function Education() {
             >
               {profile.cgpa ? profile.cgpa.split('/')[0].trim() : "3.85"}
             </div>
-            <div className="w-16 h-[1px] bg-neutral-800 my-2" />
+            <div className="w-16 h-[1px] my-2" style={{ background: "var(--border-color)" }} />
             <span className="font-mono text-sm" style={{ color: "var(--text-primary)", fontWeight: "bold" }}>
               Scale: 4.00
             </span>

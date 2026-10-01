@@ -5,7 +5,7 @@ import profile from "@/data/profile.json";
 export default function About() {
   return (
     <section id="about">
-      <div className="w-full px-12 py-20">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-[1.2fr_0.8fr] gap-12 md:gap-20 items-start">
 
           {/* LEFT: Bio */}

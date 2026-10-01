@@ -4,7 +4,7 @@ export default function Footer() {
   return (
     <footer style={{ borderTop: "1px solid var(--border-color)" }}>
       <div
-        className="w-full px-12 font-mono text-xs"
+        className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 font-mono text-xs"
         style={{
           paddingTop: "24px",
           paddingBottom: "24px",

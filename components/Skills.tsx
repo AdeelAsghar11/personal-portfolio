@@ -4,18 +4,17 @@ import skills from "@/data/skills.json";
 
 const categoryColors: Record<string, string> = {
   Languages: "var(--accent-green)",
-  "AI / Machine Learning": "var(--accent-cyan)",
-  "Deep Learning": "var(--accent-cyan)",
-  "Data Science": "var(--accent-green)",
-  "Web & Databases": "var(--accent-cyan)",
-  "MLOps / DevOps": "var(--accent-green)",
-  "Deployment & Tools": "var(--accent-cyan)",
+  "LLM & RAG Systems": "var(--accent-cyan)",
+  "AI / Machine Learning": "var(--accent-green)",
+  "Deep Learning & Computer Vision": "var(--accent-cyan)",
+  "Data & Analytics": "var(--accent-green)",
+  "MLOps & Deployment": "var(--accent-cyan)",
 };
 
 export default function Skills() {
   return (
     <section id="skills">
-      <div className="w-full px-12 py-20">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-20">
         <div style={{ marginBottom: "48px" }}>
           <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
             // 04. skills
@@ -32,7 +31,7 @@ export default function Skills() {
         <div
           style={{
             display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
             gap: "24px",
           }}
         >

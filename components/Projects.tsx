@@ -140,6 +140,15 @@ function FeaturedCard({ project }: { project: Project }) {
   return (
     <div
       onClick={handleCardClick}
+      onKeyDown={(e) => {
+        if (targetUrl && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          handleCardClick();
+        }
+      }}
+      tabIndex={targetUrl ? 0 : undefined}
+      role={targetUrl ? "link" : undefined}
+      aria-label={targetUrl ? `View ${project.title}` : undefined}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
@@ -230,6 +239,15 @@ function SmallCard({ project }: { project: Project }) {
   return (
     <div
       onClick={handleCardClick}
+      onKeyDown={(e) => {
+        if (targetUrl && (e.key === "Enter" || e.key === " ")) {
+          e.preventDefault();
+          handleCardClick();
+        }
+      }}
+      tabIndex={targetUrl ? 0 : undefined}
+      role={targetUrl ? "link" : undefined}
+      aria-label={targetUrl ? `View ${project.title}` : undefined}
       onMouseEnter={() => setIsHovered(true)}
       onMouseLeave={() => setIsHovered(false)}
       style={{
@@ -306,7 +324,7 @@ export default function Projects() {
 
   return (
     <section id="projects">
-      <div className="w-full px-12 py-20">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-20">
         <div style={{ marginBottom: "48px" }}>
           <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
             // 05. projects
@@ -334,7 +352,7 @@ export default function Projects() {
             <div
               style={{
                 display: "grid",
-                gridTemplateColumns: "repeat(auto-fit, minmax(340px, 1fr))",
+                gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))",
                 gap: "20px",
               }}
             >

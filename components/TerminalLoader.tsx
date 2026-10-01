@@ -50,7 +50,7 @@ export default function TerminalLoader() {
 
   return (
     <div
-      className={`fixed inset-0 z-[100] flex items-center justify-center bg-[#050505] transition-all duration-600 ease-out-quint select-none ${
+      className={`fixed inset-0 z-[100] flex items-center justify-center bg-[#050505] transition-all duration-[600ms] select-none ${
         isFading ? "opacity-0 translate-y-[-100vh]" : "opacity-100 translate-y-0"
       }`}
       style={{

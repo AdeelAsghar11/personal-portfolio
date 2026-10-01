@@ -16,7 +16,7 @@ export default function Certifications() {
 
   return (
     <section id="certifications">
-      <div className="w-full px-12 py-20">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-20">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-20 items-start">
 
           {/* LEFT */}
@@ -85,13 +85,7 @@ export default function Certifications() {
           </div>
 
           {/* RIGHT — cert cards grid */}
-          <div
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr",
-              gap: "12px",
-            }}
-          >
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-3">
             {certifications.map((cert, idx) => (
               <div
                 key={idx}

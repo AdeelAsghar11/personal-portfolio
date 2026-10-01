@@ -35,7 +35,7 @@ export default function Navbar() {
           : { background: "transparent" }
       }
     >
-      <div className="w-full px-12 py-5 flex items-center justify-between">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-4 flex items-center justify-between">
         {/* Logo */}
         <a href="#hero" className="font-mono text-lg font-bold">
           <span style={{ color: "var(--accent-cyan)" }}>&gt;</span>{" "}
@@ -102,6 +102,7 @@ export default function Navbar() {
             style={{ color: "var(--accent-cyan)", background: "transparent", border: "none", cursor: "pointer" }}
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
+            aria-expanded={menuOpen}
           >
             {menuOpen ? "✕" : "☰"}
           </button>
@@ -111,13 +112,22 @@ export default function Navbar() {
       {/* Mobile Menu */}
       {menuOpen && (
         <div
-          className="md:hidden px-12 py-4 flex flex-col gap-4"
+          className="md:hidden px-6 sm:px-8 py-4 flex flex-col gap-4"
           style={{
-            background: "var(--bg-secondary)",
+            background: "color-mix(in srgb, var(--bg-secondary) 95%, transparent)",
+            backdropFilter: "blur(12px)",
             borderTop: "1px solid var(--border-color)",
           }}
         >
-          {navLinks.map((link) => (
+          {[
+            { label: "About", href: "#about" },
+            { label: "Education", href: "#education" },
+            { label: "Skills", href: "#skills" },
+            { label: "Projects", href: "#projects" },
+            { label: "Experience", href: "#experience" },
+            { label: "Certifications", href: "#certifications" },
+            { label: "Contact", href: "#contact" },
+          ].map((link) => (
             <a
               key={link.href}
               href={link.href}

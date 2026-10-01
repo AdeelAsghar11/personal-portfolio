@@ -67,7 +67,7 @@ export default function Hero() {
       />
 
       <div
-        className="relative z-10 w-full px-12 flex items-center"
+        className="relative z-10 w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 flex items-center"
         style={{ paddingTop: "120px", paddingBottom: "80px", minHeight: "100vh" }}
       >
         <div className="w-full grid grid-cols-1 md:grid-cols-[1fr_420px] gap-12 md:gap-20 items-center">
@@ -154,6 +154,8 @@ export default function Hero() {
               alt="Adeel Asghar"
               width={320}
               height={320}
+              priority
+              className="w-56 h-56 sm:w-72 sm:h-72 md:w-80 md:h-80"
               style={{
                 borderRadius: "50%",
                 objectFit: "cover",

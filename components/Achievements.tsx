@@ -5,7 +5,7 @@ import achievements from "@/data/achievements.json";
 export default function Achievements() {
   return (
     <section id="achievements">
-      <div className="w-full px-12 py-20">
+      <div className="w-full max-w-7xl mx-auto px-6 sm:px-8 md:px-12 py-20">
         <div style={{ marginBottom: "48px" }}>
           <p className="font-mono text-sm" style={{ color: "var(--accent-green)", marginBottom: "8px" }}>
             // 03. achievements
@@ -22,7 +22,7 @@ export default function Achievements() {
         <div 
           style={{ 
             display: "grid", 
-            gridTemplateColumns: "repeat(auto-fit, minmax(320px, 1fr))", 
+            gridTemplateColumns: "repeat(auto-fit, minmax(min(100%, 300px), 1fr))", 
             gap: "20px" 
           }}
         >
