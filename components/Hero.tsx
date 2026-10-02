@@ -76,11 +76,7 @@ export default function Hero() {
         <div className="grid grid-cols-1 lg:grid-cols-[1.15fr_0.85fr] gap-12 lg:gap-16 items-center">
 
           {/* LEFT COLUMN */}
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, y: 24 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.65, ease: [0.22, 1, 0.36, 1] }}
-          >
+          <div className="w-full">
             {/* Terminal Prompt Tag */}
             <div className="inline-flex items-center gap-2.5 px-3 py-1.5 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 backdrop-blur-md mb-6 shadow-sm">
               <span className="w-2 h-2 rounded-full bg-[var(--accent-green)] animate-pulse" />
@@ -157,15 +153,10 @@ export default function Hero() {
                 <span>LinkedIn →</span>
               </motion.a>
             </div>
-          </motion.div>
+          </div>
 
           {/* RIGHT COLUMN — Avatar & Status Card */}
-          <motion.div
-            initial={shouldReduceMotion ? false : { opacity: 0, scale: 0.95 }}
-            animate={{ opacity: 1, scale: 1 }}
-            transition={{ duration: 0.7, delay: 0.15, ease: [0.22, 1, 0.36, 1] }}
-            className="flex flex-col items-center justify-center relative"
-          >
+          <div className="flex flex-col items-center justify-center relative">
             {/* Ambient Aura Rings */}
             <div className="relative flex items-center justify-center">
               <div
@@ -199,10 +190,10 @@ export default function Hero() {
             <div className="mt-6 inline-flex items-center gap-2 px-4 py-2 rounded-full border border-[var(--border-color)] bg-[var(--bg-secondary)]/90 backdrop-blur-md shadow-lg">
               <span className="w-2 h-2 rounded-full bg-[var(--accent-green)]" />
               <span className="font-mono text-xs text-[var(--text-secondary)]">
-                CAIO @ Algoligence · Open to AI Systems &amp; Collabs
+                Open to AI Systems &amp; Collabs
               </span>
             </div>
-          </motion.div>
+          </div>
 
         </div>
       </div>

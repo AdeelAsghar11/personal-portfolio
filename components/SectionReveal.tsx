@@ -1,7 +1,6 @@
 "use client";
 
-import { motion, useReducedMotion } from "framer-motion";
-import { ReactNode } from "react";
+import { useEffect, useRef, useState, ReactNode } from "react";
 
 interface SectionRevealProps {
   children: ReactNode;
@@ -14,25 +13,68 @@ export default function SectionReveal({
   className = "",
   delay = 0,
 }: SectionRevealProps) {
-  const shouldReduceMotion = useReducedMotion();
+  const [revealed, setRevealed] = useState(false);
+  const [mounted, setMounted] = useState(false);
+  const ref = useRef<HTMLDivElement | null>(null);
 
-  if (shouldReduceMotion) {
-    return <div className={className}>{children}</div>;
-  }
+  useEffect(() => {
+    setMounted(true);
+
+    if (typeof window !== "undefined" && window.matchMedia("(prefers-reduced-motion: reduce)").matches) {
+      setRevealed(true);
+      return;
+    }
+
+    const el = ref.current;
+    if (!el) return;
+
+    // If already in viewport on mount, reveal immediately
+    const rect = el.getBoundingClientRect();
+    if (rect.top < window.innerHeight + 100) {
+      setRevealed(true);
+      return;
+    }
+
+    const observer = new IntersectionObserver(
+      (entries) => {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            setRevealed(true);
+            observer.unobserve(entry.target);
+          }
+        });
+      },
+      { threshold: 0.05, rootMargin: "80px" }
+    );
+
+    observer.observe(el);
+
+    // Guaranteed fallback: reveal after 800ms regardless
+    const timer = setTimeout(() => setRevealed(true), 800);
+
+    return () => {
+      observer.disconnect();
+      clearTimeout(timer);
+    };
+  }, []);
+
+  // During SSR or before client mount: 100% visible (no opacity:0 baked into HTML)
+  // After mount: if not revealed yet, animate into view
+  const isHidden = mounted && !revealed;
 
   return (
-    <motion.div
-      initial={{ opacity: 0, y: 28 }}
-      whileInView={{ opacity: 1, y: 0 }}
-      viewport={{ once: true, margin: "-60px" }}
-      transition={{
-        duration: 0.6,
-        delay,
-        ease: [0.22, 1, 0.36, 1], // Custom smooth ease-out
+    <div
+      ref={ref}
+      className={`transition-all duration-700 ease-out ${
+        isHidden
+          ? "opacity-0 translate-y-6"
+          : "opacity-100 translate-y-0"
+      } ${className}`}
+      style={{
+        transitionDelay: `${delay}s`,
       }}
-      className={className}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
