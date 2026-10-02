@@ -71,7 +71,7 @@ export default function Contact() {
               {contactLinks.map((link) => (
                 <div
                   key={link.label}
-                  className="flex items-center justify-between p-3.5 sm:p-4 rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 hover:border-[var(--accent-cyan)]/40 hover:bg-[var(--bg-elevated)]/50 transition-all duration-200 backdrop-blur-xl"
+                  className="flex items-center justify-between p-3.5 sm:p-4 rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] hover:border-[var(--accent-cyan)]/40 hover:bg-[var(--bg-elevated)]/50 transition-all duration-200 backdrop-blur-xl shadow-sm"
                 >
                   <a
                     href={link.href}
@@ -94,7 +94,7 @@ export default function Contact() {
                       aria-label="Copy email address"
                       className="font-mono text-xs ml-3 px-3 py-1 rounded-md transition-all duration-200 border cursor-pointer"
                       style={{
-                        background: copiedEmail ? "rgba(0,255,136,0.15)" : "rgba(255,255,255,0.05)",
+                        background: copiedEmail ? "rgba(0,255,136,0.15)" : "var(--bg-tertiary)",
                         borderColor: copiedEmail ? "var(--accent-green)" : "var(--border-color)",
                         color: copiedEmail ? "var(--accent-green)" : "var(--text-secondary)",
                       }}
@@ -108,13 +108,13 @@ export default function Contact() {
           </div>
 
           {/* RIGHT: Terminal Message Dispatcher */}
-          <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/90 backdrop-blur-xl p-6 sm:p-8 shadow-2xl">
+          <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl p-6 sm:p-8 shadow-sm">
             <div className="flex items-center justify-between pb-4 mb-6 border-b border-[var(--border-color)]">
               <div className="flex items-center gap-2">
                 <span className="w-2.5 h-2.5 rounded-full bg-[var(--accent-green)] animate-pulse" />
                 <span className="font-mono text-xs text-[var(--accent-cyan)]">$ send --message</span>
               </div>
-              <span className="font-mono text-[11px] text-[var(--text-muted)]">terminal v2</span>
+              <span className="font-mono text-[11px] text-[var(--text-muted)] font-medium">terminal v2</span>
             </div>
 
             {status === "sent" && (
@@ -139,7 +139,7 @@ export default function Contact() {
                     type={type}
                     required
                     placeholder={placeholder}
-                    className="w-full px-4 py-2.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg)]/70 font-mono text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)]/30 transition-all duration-200"
+                    className="w-full px-4 py-2.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-tertiary)]/50 font-mono text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)]/30 transition-all duration-200"
                   />
                 </div>
               ))}
@@ -154,13 +154,13 @@ export default function Contact() {
                   rows={4}
                   required
                   placeholder="Tell me about your product, hard problem, or timeline..."
-                  className="w-full px-4 py-2.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg)]/70 font-mono text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)]/30 transition-all duration-200 resize-y"
+                  className="w-full px-4 py-2.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-tertiary)]/50 font-mono text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--accent-cyan)] focus:ring-1 focus:ring-[var(--accent-cyan)]/30 transition-all duration-200 resize-y"
                 />
               </div>
 
               <button
                 type="submit"
-                className="w-full font-mono text-sm font-semibold py-3 px-4 rounded-lg border border-[var(--accent-green)] text-[var(--accent-green)] hover:bg-[var(--accent-green)] hover:text-[#060913] transition-all duration-200 cursor-pointer shadow-sm hover:shadow-[0_0_20px_rgba(0,255,136,0.3)] mt-2"
+                className="w-full font-mono text-sm font-semibold py-3 px-4 rounded-lg border border-[var(--accent-green)] text-[var(--accent-green)] hover:bg-[var(--accent-green)] hover:text-white dark:hover:text-[#060913] transition-all duration-200 cursor-pointer shadow-sm hover:shadow-[0_0_20px_rgba(0,255,136,0.3)] mt-2"
               >
                 ./send-message →
               </button>

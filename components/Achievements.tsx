@@ -30,7 +30,7 @@ export default function Achievements() {
               key={idx}
               whileHover={shouldReduceMotion ? undefined : { y: -5 }}
               transition={{ duration: 0.2 }}
-              className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 hover:border-[var(--accent-cyan)]/50 hover:shadow-[0_8px_30px_-10px_rgba(0,240,255,0.15)] backdrop-blur-xl p-6 flex gap-4 items-start transition-all duration-300"
+              className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] hover:border-[var(--accent-cyan)]/50 hover:shadow-[0_8px_30px_-10px_rgba(0,240,255,0.15)] backdrop-blur-xl p-6 flex gap-4 items-start transition-all duration-300 shadow-sm"
             >
               <div className="w-10 h-10 rounded-lg bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/20 flex items-center justify-center flex-shrink-0 text-[var(--accent-cyan)]">
                 <svg

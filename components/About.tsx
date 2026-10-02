@@ -33,15 +33,15 @@ export default function About() {
           </div>
 
           {/* RIGHT: Interactive Terminal Box */}
-          <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/90 backdrop-blur-xl shadow-2xl overflow-hidden">
+          <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl shadow-sm overflow-hidden">
             {/* Terminal Header Bar */}
-            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-color)] bg-[var(--bg-tertiary)]/70">
+            <div className="flex items-center justify-between px-4 py-3 border-b border-[var(--border-color)] bg-[var(--bg-tertiary)]">
               <div className="flex items-center gap-2">
                 <span className="w-3 h-3 rounded-full bg-[#ef4444]/80 inline-block" />
                 <span className="w-3 h-3 rounded-full bg-[#eab308]/80 inline-block" />
                 <span className="w-3 h-3 rounded-full bg-[#22c55e]/80 inline-block" />
               </div>
-              <span className="font-mono text-xs text-[var(--text-muted)]">research.py</span>
+              <span className="font-mono text-xs text-[var(--text-muted)] font-medium">research.py</span>
               <span className="w-8" />
             </div>
 
@@ -56,7 +56,7 @@ export default function About() {
                 {profile.researchInterests.map((interest, idx) => (
                   <div
                     key={idx}
-                    className="p-3.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg)]/50 hover:border-[var(--accent-cyan)]/40 hover:bg-[var(--bg-elevated)]/40 transition-all duration-200 group"
+                    className="p-3.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-tertiary)]/50 hover:border-[var(--accent-cyan)]/40 hover:bg-[var(--bg-tertiary)] transition-all duration-200 group"
                   >
                     <div className="flex items-start gap-3">
                       <span className="font-mono text-sm text-[var(--accent-cyan)] mt-0.5 group-hover:translate-x-0.5 transition-transform duration-200">

@@ -1,39 +1,37 @@
 "use client";
 
 import { motion, useReducedMotion } from "framer-motion";
+import { Code2, Zap, Bot, Cpu, BarChart3, Wrench, LucideIcon } from "lucide-react";
 import skills from "@/data/skills.json";
 import SectionReveal from "./SectionReveal";
 
-const categoryTheme: Record<string, { color: string; border: string; bg: string }> = {
+const categoryIcons: Record<string, LucideIcon> = {
+  Languages: Code2,
+  "LLM & RAG Systems": Zap,
+  "AI / Machine Learning": Bot,
+  "Deep Learning & Computer Vision": Cpu,
+  "Data & Analytics": BarChart3,
+  "MLOps & Deployment": Wrench,
+};
+
+const categoryTheme: Record<string, { color: string }> = {
   Languages: {
     color: "var(--accent-green)",
-    border: "rgba(0, 255, 136, 0.25)",
-    bg: "rgba(0, 255, 136, 0.05)",
   },
   "LLM & RAG Systems": {
     color: "var(--accent-cyan)",
-    border: "rgba(0, 240, 255, 0.25)",
-    bg: "rgba(0, 240, 255, 0.06)",
   },
   "AI / Machine Learning": {
     color: "var(--accent-teal)",
-    border: "rgba(20, 184, 166, 0.25)",
-    bg: "rgba(20, 184, 166, 0.05)",
   },
   "Deep Learning & Computer Vision": {
     color: "var(--accent-violet)",
-    border: "rgba(139, 92, 246, 0.28)",
-    bg: "rgba(139, 92, 246, 0.06)",
   },
   "Data & Analytics": {
     color: "var(--accent-green)",
-    border: "rgba(0, 255, 136, 0.25)",
-    bg: "rgba(0, 255, 136, 0.05)",
   },
   "MLOps & Deployment": {
     color: "var(--accent-cyan)",
-    border: "rgba(0, 240, 255, 0.25)",
-    bg: "rgba(0, 240, 255, 0.06)",
   },
 };
 
@@ -61,21 +59,25 @@ export default function Skills() {
           {skills.map((category) => {
             const theme = categoryTheme[category.category] || {
               color: "var(--accent-cyan)",
-              border: "rgba(0, 240, 255, 0.25)",
-              bg: "rgba(0, 240, 255, 0.05)",
             };
+            const Icon = categoryIcons[category.category] || Code2;
 
             return (
               <motion.div
                 key={category.category}
                 whileHover={shouldReduceMotion ? undefined : { y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 hover:border-[var(--border-hover)] backdrop-blur-xl p-6 flex flex-col justify-between shadow-lg transition-all duration-300"
+                className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] hover:border-[var(--border-hover)] backdrop-blur-xl p-6 flex flex-col justify-between shadow-sm hover:shadow-md transition-all duration-300"
               >
                 <div>
                   {/* Category Header */}
                   <div className="flex items-center gap-2.5 mb-5 pb-3 border-b border-[var(--border-color)]">
-                    <span className="text-base select-none">{category.icon}</span>
+                    <span
+                      className="p-1.5 rounded-md flex items-center justify-center border border-[var(--border-color)] bg-[var(--bg-tertiary)]"
+                      style={{ color: theme.color }}
+                    >
+                      <Icon className="w-4 h-4" />
+                    </span>
                     <h3
                       className="font-mono font-bold text-xs uppercase tracking-wider"
                       style={{ color: theme.color }}
@@ -89,7 +91,7 @@ export default function Skills() {
                     {category.skills.map((skill) => (
                       <span
                         key={skill.name}
-                        className="font-mono text-xs px-3 py-1.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-tertiary)]/60 text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent-cyan)]/40 hover:bg-[var(--bg-elevated)] transition-all duration-200 select-none cursor-default"
+                        className="font-mono text-xs px-3 py-1.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] hover:border-[var(--accent-cyan)]/40 hover:bg-[var(--bg-elevated)] transition-all duration-200 select-none cursor-default font-medium"
                       >
                         {skill.name}
                       </span>

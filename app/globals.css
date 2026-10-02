@@ -16,6 +16,14 @@
   --border-color: rgba(56, 189, 248, 0.12);
   --border-hover: rgba(0, 240, 255, 0.4);
 
+  /* Card & Surface Tokens */
+  --card-bg: #0b1122;
+  --card-bg-gradient: linear-gradient(135deg, rgba(11, 17, 34, 0.92), rgba(16, 25, 50, 0.8));
+  --card-shadow: 0 4px 20px -5px rgba(0, 0, 0, 0.35);
+  --card-shadow-hover: 0 14px 40px -10px rgba(0, 240, 255, 0.2);
+  --nav-bg: rgba(6, 9, 19, 0.85);
+  --nav-bg-dropdown: rgba(6, 9, 19, 0.96);
+
   /* Tailwind compat */
   --background: var(--bg);
   --foreground: var(--text-primary);
@@ -32,18 +40,26 @@
 /* ─── Light mode ─── */
 html.light {
   --bg: #f8fafc;
-  --bg-secondary: #f1f5f9;
-  --bg-tertiary: #e2e8f0;
+  --bg-secondary: #ffffff;
+  --bg-tertiary: #f1f5f9;
   --bg-elevated: #ffffff;
   --text-primary: #0f172a;
-  --text-secondary: #475569;
-  --text-muted: #94a3b8;
+  --text-secondary: #334155;
+  --text-muted: #64748b;
   --accent-cyan: #0284c7;
   --accent-green: #059669;
   --accent-violet: #7c3aed;
   --accent-teal: #0d9488;
-  --border-color: rgba(148, 163, 184, 0.25);
-  --border-hover: rgba(2, 132, 199, 0.5);
+  --border-color: rgba(148, 163, 184, 0.3);
+  --border-hover: rgba(2, 132, 199, 0.45);
+
+  /* Card & Surface Tokens */
+  --card-bg: #ffffff;
+  --card-bg-gradient: linear-gradient(135deg, #ffffff, #f8fafc);
+  --card-shadow: 0 2px 12px -2px rgba(15, 23, 42, 0.06), 0 1px 3px rgba(15, 23, 42, 0.04);
+  --card-shadow-hover: 0 12px 30px -8px rgba(2, 132, 199, 0.15), 0 4px 12px -2px rgba(15, 23, 42, 0.05);
+  --nav-bg: rgba(248, 250, 252, 0.88);
+  --nav-bg-dropdown: rgba(255, 255, 255, 0.98);
 }
 
 html {

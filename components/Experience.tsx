@@ -39,7 +39,7 @@ export default function Experience() {
               {stats.map(({ value, label }) => (
                 <div
                   key={label}
-                  className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl p-4 sm:p-5"
+                  className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl p-4 sm:p-5 shadow-sm"
                 >
                   <p className="font-display font-bold text-3xl sm:text-4xl text-[var(--accent-cyan)] tracking-tight leading-none mb-2">
                     {value}
@@ -73,7 +73,7 @@ export default function Experience() {
                 />
 
                 {/* Experience Card */}
-                <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 hover:border-[var(--accent-cyan)]/40 hover:shadow-[0_8px_30px_-10px_rgba(0,240,255,0.12)] backdrop-blur-xl p-6 sm:p-8 transition-all duration-300">
+                <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] hover:border-[var(--accent-cyan)]/40 hover:shadow-[0_8px_30px_-10px_rgba(0,240,255,0.12)] backdrop-blur-xl p-6 sm:p-8 transition-all duration-300 shadow-sm">
                   <div className="flex flex-wrap items-center justify-between gap-2 mb-2">
                     <h3 className="font-display font-bold text-lg sm:text-xl text-[var(--text-primary)]">
                       {item.role}

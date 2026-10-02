@@ -54,10 +54,17 @@ export default function NetworkCanvas() {
     // Generate balanced network nodes
     const nodeCount = Math.floor(Math.min(width, 1400) / 32);
     const nodes: Node[] = [];
-    const colors = [
+    const isLightMode = () => document.documentElement.classList.contains("light");
+
+    const colorsDark = [
       "rgba(0, 240, 255, 0.55)", // Cyan
       "rgba(0, 255, 136, 0.45)", // Green
       "rgba(139, 92, 246, 0.5)",  // Violet
+    ];
+    const colorsLight = [
+      "rgba(2, 132, 199, 0.6)",  // Sky
+      "rgba(5, 150, 105, 0.5)",  // Emerald
+      "rgba(124, 58, 237, 0.55)", // Violet
     ];
 
     for (let i = 0; i < nodeCount; i++) {
@@ -67,12 +74,15 @@ export default function NetworkCanvas() {
         vx: (Math.random() - 0.5) * 0.45,
         vy: (Math.random() - 0.5) * 0.45,
         radius: Math.random() * 1.6 + 1.2,
-        color: colors[i % colors.length],
+        color: colorsDark[i % colorsDark.length],
       });
     }
 
     const render = () => {
       ctx.clearRect(0, 0, width, height);
+      const isLight = isLightMode();
+      const lineBase = isLight ? "2, 132, 199" : "0, 240, 255";
+      const activeColors = isLight ? colorsLight : colorsDark;
 
       // Render connecting edges
       for (let i = 0; i < nodes.length; i++) {
@@ -82,9 +92,9 @@ export default function NetworkCanvas() {
           const dist = Math.sqrt(dx * dx + dy * dy);
 
           if (dist < 115) {
-            const alpha = (1 - dist / 115) * 0.14;
+            const alpha = (1 - dist / 115) * (isLight ? 0.2 : 0.14);
             ctx.beginPath();
-            ctx.strokeStyle = `rgba(0, 240, 255, ${alpha})`;
+            ctx.strokeStyle = `rgba(${lineBase}, ${alpha})`;
             ctx.lineWidth = 0.75;
             ctx.moveTo(nodes[i].x, nodes[i].y);
             ctx.lineTo(nodes[j].x, nodes[j].y);
@@ -97,9 +107,9 @@ export default function NetworkCanvas() {
         const mdy = nodes[i].y - mouse.y;
         const mdist = Math.sqrt(mdx * mdx + mdy * mdy);
         if (mdist < mouse.targetRadius) {
-          const malpha = (1 - mdist / mouse.targetRadius) * 0.28;
+          const malpha = (1 - mdist / mouse.targetRadius) * (isLight ? 0.35 : 0.28);
           ctx.beginPath();
-          ctx.strokeStyle = `rgba(0, 240, 255, ${malpha})`;
+          ctx.strokeStyle = `rgba(${lineBase}, ${malpha})`;
           ctx.lineWidth = 1;
           ctx.moveTo(nodes[i].x, nodes[i].y);
           ctx.lineTo(mouse.x, mouse.y);
@@ -126,9 +136,10 @@ export default function NetworkCanvas() {
         // Draw node dot
         ctx.beginPath();
         ctx.arc(nodes[i].x, nodes[i].y, nodes[i].radius, 0, Math.PI * 2);
-        ctx.fillStyle = nodes[i].color;
-        ctx.shadowColor = nodes[i].color;
-        ctx.shadowBlur = 6;
+        const nodeColor = activeColors[i % activeColors.length];
+        ctx.fillStyle = nodeColor;
+        ctx.shadowColor = isLight ? "transparent" : nodeColor;
+        ctx.shadowBlur = isLight ? 0 : 6;
         ctx.fill();
         ctx.shadowBlur = 0;
       }

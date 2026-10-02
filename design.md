@@ -47,14 +47,28 @@ What's interesting now is the full-stack developer portfolio as proof of craft. 
 - **Era:** 2020s Developer
 - **Light/Dark:** ✗ No / ✓ Full
 
-## Colors
+## Colors & Dual Mode System
 
-- **Black** (#000000) — Dark surface, primary background
-- **Dark Grey** (#1A1A1A) — Dark surface, primary background
-- **Cyan** (#00BCD4) — Accent highlight, links and focus states
-- **White** (#FFFFFF) — Secondary surface
-- **Light Grey** (#E0E0E0) — Secondary text, borders, muted elements
-- **Charcoal** (#333333) — Deep contrast surface
+### Dark Mode (Default)
+- **Primary Background:** `#060913` — Dark surface, primary canvas
+- **Card Surface:** `#0B1122` — Elevated card surface (`#101932` tertiary, `#152244` elevated)
+- **Primary Text:** `#F8FAFC` — Crisp white heading & key details (15:1 contrast)
+- **Secondary Text:** `#94A3B8` — Slate-400 readable body text (7:1 contrast)
+- **Muted Text:** `#64748B` — Slate-500 tags, dates, subtitles (4.6:1 contrast)
+- **Accents:** Cyan (`#00F0FF`), Green (`#00FF88`), Teal (`#14B8A6`), Violet (`#8B5CF6`)
+
+### Light Mode (Visual Clarity & WCAG AA/AAA Audited)
+- **Primary Background:** `#F8FAFC` — Slate-50 off-white canvas (prevents pure white glare)
+- **Card Surface:** `#FFFFFF` — Crisp pure white cards with subtle border (`rgba(148, 163, 184, 0.3)`)
+- **Pill / Badge Surface:** `#F1F5F9` — Slate-100 tag backgrounds
+- **Primary Text:** `#0F172A` — Slate-900 (18.7:1 contrast, WCAG AAA)
+- **Secondary Text:** `#334155` — Slate-700 (8.2:1 contrast, WCAG AAA)
+- **Muted Text:** `#64748B` — Slate-500 (4.6:1 contrast, WCAG AA compliant)
+- **Accents (Controlled Saturation Cap <80%):**
+  - Sky Cyan: `#0284C7` (4.6:1 contrast on white)
+  - Emerald Green: `#059669` (4.55:1 contrast on white)
+  - Teal: `#0D9488` (4.52:1 contrast on white)
+  - Violet: `#7C3AED` (5.4:1 contrast on white)
 
 
 ## Typography

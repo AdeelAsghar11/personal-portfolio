@@ -40,7 +40,7 @@ export default function Certifications() {
               Specialized coursework and verified certifications across machine learning, deep learning, data engineering, and agentic workflows.
             </p>
 
-            <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl p-6 shadow-xl">
+            <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl p-6 shadow-sm">
               <div className="flex items-center gap-2 font-mono text-xs text-[var(--accent-green)] mb-4">
                 <span>$</span>
                 <span>issuers --summary</span>
@@ -71,7 +71,7 @@ export default function Certifications() {
                 key={idx}
                 whileHover={shouldReduceMotion ? undefined : { y: -4 }}
                 transition={{ duration: 0.2 }}
-                className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 hover:border-[var(--accent-cyan)]/40 hover:shadow-[0_8px_30px_-10px_rgba(0,240,255,0.12)] backdrop-blur-xl p-5 flex flex-col justify-between transition-all duration-300"
+                className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] hover:border-[var(--accent-cyan)]/40 hover:shadow-[0_8px_30px_-10px_rgba(0,240,255,0.12)] backdrop-blur-xl p-5 flex flex-col justify-between transition-all duration-300 shadow-sm"
               >
                 <div>
                   <span className="font-mono text-xs text-[var(--accent-cyan)] font-medium block mb-1.5">

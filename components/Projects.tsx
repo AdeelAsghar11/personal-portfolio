@@ -22,16 +22,16 @@ const projects = projectsData as Project[];
 function StatusBadge({ status }: { status?: string | null }) {
   if (status === "in-progress") {
     return (
-      <span className="font-mono text-xs px-2.5 py-0.5 rounded-full border border-amber-500/40 text-amber-400 bg-amber-500/10 flex items-center gap-1.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-amber-400 animate-pulse" />
+      <span className="font-mono text-xs px-2.5 py-0.5 rounded-full border border-amber-500/40 text-amber-600 dark:text-amber-400 bg-amber-500/10 flex items-center gap-1.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-amber-500 dark:bg-amber-400 animate-pulse" />
         In Progress
       </span>
     );
   }
   if (status === "prototype") {
     return (
-      <span className="font-mono text-xs px-2.5 py-0.5 rounded-full border border-purple-500/40 text-purple-400 bg-purple-500/10 flex items-center gap-1.5">
-        <span className="w-1.5 h-1.5 rounded-full bg-purple-400" />
+      <span className="font-mono text-xs px-2.5 py-0.5 rounded-full border border-purple-500/40 text-purple-600 dark:text-purple-400 bg-purple-500/10 flex items-center gap-1.5">
+        <span className="w-1.5 h-1.5 rounded-full bg-purple-600 dark:bg-purple-400" />
         Prototype
       </span>
     );
@@ -56,7 +56,7 @@ function ProjectLinks({ github, demo }: { github: string | null; demo: string | 
           target="_blank"
           rel="noopener noreferrer"
           onClick={(e) => e.stopPropagation()}
-          className="font-mono text-xs px-3.5 py-1.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-tertiary)]/70 text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] hover:border-[var(--accent-cyan)]/40 transition-all duration-200 flex items-center gap-1.5"
+          className="font-mono text-xs px-3.5 py-1.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-tertiary)] text-[var(--text-secondary)] hover:text-[var(--accent-cyan)] hover:border-[var(--accent-cyan)]/50 transition-all duration-200 flex items-center gap-1.5"
         >
           <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
             <path
@@ -94,7 +94,7 @@ function TagList({ tags, small }: { tags: string[]; small?: boolean }) {
           key={tag}
           className={`font-mono ${
             small ? "text-[11px] px-2 py-0.5" : "text-xs px-2.5 py-1"
-          } rounded-md border border-[var(--border-color)] text-[var(--text-secondary)] bg-[var(--bg-tertiary)]/60`}
+          } rounded-md border border-[var(--border-color)] text-[var(--text-secondary)] bg-[var(--bg-tertiary)]`}
         >
           {tag}
         </span>
@@ -134,12 +134,11 @@ function FeaturedCard({ project }: { project: Project }) {
         targetUrl ? "cursor-pointer" : "cursor-default"
       }`}
       style={{
-        background:
-          "linear-gradient(135deg, rgba(11, 17, 34, 0.88), rgba(16, 25, 50, 0.72))",
+        background: "var(--card-bg-gradient)",
         borderColor: isHovered ? "var(--accent-cyan)" : "var(--border-color)",
         boxShadow: isHovered
-          ? "0 14px 40px -10px rgba(0, 240, 255, 0.2)"
-          : "0 4px 20px -5px rgba(0, 0, 0, 0.3)",
+          ? "var(--card-shadow-hover)"
+          : "var(--card-shadow)",
       }}
     >
       <div className="grid grid-cols-1 lg:grid-cols-[1.3fr_0.7fr] gap-8">
@@ -163,7 +162,7 @@ function FeaturedCard({ project }: { project: Project }) {
           </p>
 
           {project.insight && (
-            <div className="rounded-lg p-3.5 border border-[var(--border-color)] bg-[var(--bg)]/40 mt-4">
+            <div className="rounded-lg p-3.5 border border-[var(--accent-cyan)]/25 bg-[var(--accent-cyan)]/5 mt-4">
               <div className="flex items-center gap-2 mb-1.5">
                 <span className="text-[var(--accent-cyan)] text-xs">✦</span>
                 <span className="font-mono text-xs font-semibold text-[var(--accent-cyan)]">Key Architecture Insight</span>
@@ -178,7 +177,7 @@ function FeaturedCard({ project }: { project: Project }) {
         {/* Right Column: Tags & CTAs */}
         <div className="flex flex-col justify-between gap-6 border-t lg:border-t-0 lg:border-l border-[var(--border-color)] pt-6 lg:pt-0 lg:pl-8">
           <div>
-            <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)] block mb-3">
+            <span className="font-mono text-[11px] uppercase tracking-wider text-[var(--text-muted)] block mb-3 font-medium">
               Stack &amp; Technologies
             </span>
             <TagList tags={project.tags} />
@@ -222,9 +221,9 @@ function SmallCard({ project }: { project: Project }) {
         targetUrl ? "cursor-pointer" : "cursor-default"
       }`}
       style={{
-        background: "var(--bg-secondary)",
+        background: "var(--card-bg)",
         borderColor: isHovered ? "var(--accent-cyan)" : "var(--border-color)",
-        boxShadow: isHovered ? "0 8px 30px -10px rgba(0, 240, 255, 0.15)" : "none",
+        boxShadow: isHovered ? "var(--card-shadow-hover)" : "var(--card-shadow)",
       }}
     >
       <div>

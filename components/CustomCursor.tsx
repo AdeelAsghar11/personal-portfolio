@@ -87,11 +87,11 @@ export default function CustomCursor() {
           transform: `translate3d(${trailPos.x - 18}px, ${trailPos.y - 18}px, 0) scale(${
             isClicked ? 0.7 : isHovered ? 1.5 : 1
           })`,
-          borderColor: isHovered ? "var(--accent-cyan)" : "rgba(0, 255, 255, 0.4)",
-          backgroundColor: isHovered ? "rgba(0, 255, 255, 0.08)" : "transparent",
+          borderColor: isHovered ? "var(--accent-cyan)" : "var(--border-hover)",
+          backgroundColor: isHovered ? "var(--border-color)" : "transparent",
           boxShadow: isHovered
-            ? "0 0 20px rgba(0, 255, 255, 0.4)"
-            : "0 0 10px rgba(0, 255, 255, 0.1)",
+            ? "0 0 16px var(--border-hover)"
+            : "none",
           transition: "transform 0.15s ease-out, border-color 0.2s, background-color 0.2s, box-shadow 0.2s",
         }}
       />

@@ -23,7 +23,7 @@ export default function Education() {
 
         <div className="grid grid-cols-1 lg:grid-cols-[1.2fr_0.8fr] gap-8 lg:gap-12 items-stretch">
           {/* LEFT: School & Program Details */}
-          <div className="rounded-xl border border-[var(--border-color)] bg-[var(--bg-secondary)]/80 backdrop-blur-xl p-8 sm:p-10 flex flex-col justify-between shadow-xl">
+          <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl p-8 sm:p-10 flex flex-col justify-between shadow-sm">
             <div>
               <div className="flex items-start gap-4 mb-6">
                 <div className="w-12 h-12 rounded-xl bg-[var(--accent-cyan)]/10 border border-[var(--accent-cyan)]/25 flex items-center justify-center flex-shrink-0 text-xl text-[var(--accent-cyan)] font-mono">
@@ -43,7 +43,7 @@ export default function Education() {
             <div className="border-t border-[var(--border-color)] pt-6 space-y-3 font-mono text-sm">
               <div className="flex justify-between items-center py-1">
                 <span className="text-[var(--text-secondary)]">Semester:</span>
-                <span className="text-[var(--text-primary)] font-semibold px-2.5 py-0.5 rounded bg-[var(--bg-elevated)] border border-[var(--border-color)]">
+                <span className="text-[var(--text-primary)] font-semibold px-2.5 py-0.5 rounded bg-[var(--bg-tertiary)] border border-[var(--border-color)]">
                   {profile.semester}
                 </span>
               </div>
@@ -64,20 +64,15 @@ export default function Education() {
           </div>
 
           {/* RIGHT: Standout CGPA Metric Card */}
-          <div className="rounded-xl border border-[var(--border-color)] bg-gradient-to-br from-[var(--bg-secondary)] via-[var(--bg-secondary)] to-[rgba(0,255,136,0.06)] backdrop-blur-xl p-8 sm:p-10 flex flex-col items-center justify-center text-center shadow-xl relative overflow-hidden">
+          <div className="rounded-xl border border-[var(--border-color)] bg-[var(--card-bg)] backdrop-blur-xl p-8 sm:p-10 flex flex-col items-center justify-center text-center shadow-sm relative overflow-hidden">
             {/* Subtle glow orb */}
-            <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[var(--accent-green)]/10 filter blur-3xl pointer-events-none" />
+            <div className="absolute -top-16 -right-16 w-48 h-48 rounded-full bg-[var(--accent-green)]/10 filter blur-3xl pointer-events-none opacity-20 dark:opacity-40" />
 
-            <span className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)] mb-3">
+            <span className="font-mono text-xs uppercase tracking-widest text-[var(--text-muted)] mb-3 font-medium">
               Cumulative GPA
             </span>
 
-            <div
-              className="font-display font-bold text-6xl sm:text-7xl leading-none text-[var(--accent-green)] my-2"
-              style={{
-                textShadow: "0 0 35px rgba(0, 255, 136, 0.25)",
-              }}
-            >
+            <div className="font-display font-bold text-6xl sm:text-7xl leading-none text-[var(--accent-green)] my-2">
               {profile.cgpa ? profile.cgpa.split("/")[0].trim() : "3.85"}
             </div>
 

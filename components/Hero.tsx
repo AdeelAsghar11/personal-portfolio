@@ -66,7 +66,7 @@ export default function Hero() {
 
       {/* Hero Ambient Glow Spotlight */}
       <div
-        className="pointer-events-none absolute -top-32 left-1/4 h-[550px] w-[550px] -translate-x-1/2 rounded-full opacity-30 filter blur-[120px]"
+        className="pointer-events-none absolute -top-32 left-1/4 h-[550px] w-[550px] -translate-x-1/2 rounded-full opacity-15 dark:opacity-30 filter blur-[120px]"
         style={{
           background: "radial-gradient(circle, var(--accent-cyan) 0%, var(--accent-violet) 50%, transparent 70%)",
         }}
@@ -87,7 +87,7 @@ export default function Hero() {
 
             {/* Display Headline */}
             <h1
-              className="font-display font-bold tracking-tight text-white mb-4"
+              className="font-display font-bold tracking-tight text-[var(--text-primary)] mb-4"
               style={{
                 fontSize: "clamp(42px, 6.5vw, 76px)",
                 lineHeight: 1.05,
@@ -122,7 +122,7 @@ export default function Hero() {
                 href={profile.resume}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="font-mono text-sm font-semibold px-6 py-3 rounded-lg flex items-center gap-2 text-[#060913] transition-shadow duration-300"
+                className="font-mono text-sm font-semibold px-6 py-3 rounded-lg flex items-center gap-2 text-white dark:text-[#060913] transition-shadow duration-300"
                 style={{
                   background: "linear-gradient(135deg, var(--accent-cyan), #38bdf8)",
                   boxShadow: "0 0 24px rgba(0, 240, 255, 0.35)",

@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import { useTheme } from "@/context/ThemeContext";
+import { Sun, Moon, Menu, X } from "lucide-react";
 
 const navLinks = [
   { label: "About", href: "#about" },
@@ -30,10 +31,11 @@ export default function Navbar() {
       style={
         scrolled
           ? {
-              background: "rgba(6, 9, 19, 0.82)",
+              background: "var(--nav-bg)",
               backdropFilter: "blur(16px)",
+              WebkitBackdropFilter: "blur(16px)",
               borderBottom: "1px solid var(--border-color)",
-              boxShadow: "0 10px 30px -10px rgba(0, 0, 0, 0.5)",
+              boxShadow: "var(--card-shadow)",
             }
           : { background: "transparent" }
       }
@@ -64,9 +66,13 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="w-9 h-9 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-sm hover:border-[var(--accent-cyan)]/40 transition-colors cursor-pointer"
+            className="w-9 h-9 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-sm hover:border-[var(--accent-cyan)]/40 hover:bg-[var(--bg-tertiary)] transition-colors cursor-pointer"
           >
-            {isDark ? "☀️" : "🌙"}
+            {isDark ? (
+              <Sun className="w-4 h-4 text-[var(--accent-cyan)]" />
+            ) : (
+              <Moon className="w-4 h-4 text-[var(--accent-cyan)]" />
+            )}
           </button>
         </div>
 
@@ -75,17 +81,25 @@ export default function Navbar() {
           <button
             onClick={toggleTheme}
             aria-label="Toggle theme"
-            className="w-9 h-9 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-sm cursor-pointer"
+            className="w-9 h-9 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center text-sm cursor-pointer hover:bg-[var(--bg-tertiary)] transition-colors"
           >
-            {isDark ? "☀️" : "🌙"}
+            {isDark ? (
+              <Sun className="w-4 h-4 text-[var(--accent-cyan)]" />
+            ) : (
+              <Moon className="w-4 h-4 text-[var(--accent-cyan)]" />
+            )}
           </button>
           <button
-            className="font-mono text-xl text-[var(--accent-cyan)] p-1.5 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] cursor-pointer"
+            className="w-9 h-9 rounded-lg border border-[var(--border-color)] bg-[var(--bg-secondary)] flex items-center justify-center cursor-pointer hover:bg-[var(--bg-tertiary)] transition-colors"
             onClick={() => setMenuOpen(!menuOpen)}
             aria-label="Toggle menu"
             aria-expanded={menuOpen}
           >
-            {menuOpen ? "✕" : "☰"}
+            {menuOpen ? (
+              <X className="w-4 h-4 text-[var(--accent-cyan)]" />
+            ) : (
+              <Menu className="w-4 h-4 text-[var(--accent-cyan)]" />
+            )}
           </button>
         </div>
       </div>
@@ -95,8 +109,9 @@ export default function Navbar() {
         <div
           className="lg:hidden px-6 sm:px-8 py-5 flex flex-col gap-3.5 border-t border-[var(--border-color)]"
           style={{
-            background: "rgba(6, 9, 19, 0.95)",
+            background: "var(--nav-bg-dropdown)",
             backdropFilter: "blur(20px)",
+            WebkitBackdropFilter: "blur(20px)",
           }}
         >
           {navLinks.map((link) => (
