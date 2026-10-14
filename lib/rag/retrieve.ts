@@ -68,6 +68,16 @@ type KnowledgeIndex = {
   chunks: KnowledgeChunk[];
 };
 
+// ── Deploy-hardening: bundle the index via a static import ───────────────────
+// On Vercel's Node serverless runtime, an fs read whose path is derived from
+// import.meta.url is NOT reliably traced into the function bundle, so the file
+// can be missing at runtime. Importing the JSON makes the compiler/bundler
+// trace it into the function deterministically. We keep the fs read below as a
+// FALLBACK so the plain-Node / vitest path (and any environment where the
+// bundled import isn't resolved) still works unchanged. Behavior is identical:
+// both paths yield the same validated KnowledgeIndex object.
+import bundledIndex from "../../data/knowledge.json";
+
 // ── Paths (resolved relative to this module, not a hardcoded absolute) ────────
 const __dirname = dirname(fileURLToPath(import.meta.url));
 // lib/rag/retrieve.ts -> project root is two levels up.
@@ -95,22 +105,36 @@ type FeatureExtractor = (
 export function loadIndex(): KnowledgeIndex {
   if (indexCache) return indexCache;
 
-  let raw: string;
-  try {
-    raw = readFileSync(INDEX_FILE, "utf8");
-  } catch (err) {
-    throw new Error(
-      `Failed to read knowledge index at ${INDEX_FILE}: ${(err as Error).message}`,
-    );
+  // Prefer the statically-imported, bundle-traced index. Fall back to the fs
+  // read if the import did not resolve to a usable object (e.g. some plain-Node
+  // loaders). Both routes feed the SAME validation below.
+  let parsed: KnowledgeIndex | null = null;
+  const bundled = bundledIndex as unknown as KnowledgeIndex | undefined;
+  if (
+    bundled &&
+    typeof bundled === "object" &&
+    Array.isArray(bundled.chunks)
+  ) {
+    parsed = bundled;
   }
 
-  let parsed: KnowledgeIndex;
-  try {
-    parsed = JSON.parse(raw) as KnowledgeIndex;
-  } catch (err) {
-    throw new Error(
-      `knowledge index at ${INDEX_FILE} is not valid JSON: ${(err as Error).message}`,
-    );
+  if (!parsed) {
+    let raw: string;
+    try {
+      raw = readFileSync(INDEX_FILE, "utf8");
+    } catch (err) {
+      throw new Error(
+        `Failed to read knowledge index at ${INDEX_FILE}: ${(err as Error).message}`,
+      );
+    }
+
+    try {
+      parsed = JSON.parse(raw) as KnowledgeIndex;
+    } catch (err) {
+      throw new Error(
+        `knowledge index at ${INDEX_FILE} is not valid JSON: ${(err as Error).message}`,
+      );
+    }
   }
 
   if (parsed.dim !== DIM) {

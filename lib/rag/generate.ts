@@ -268,7 +268,14 @@ const REFUSAL_PATTERNS: RegExp[] = [
   /\bfeel free to (ask|reach)\b.*\badeel\b/i,
 ];
 
-/** Does the answer look like a decline/redirect rather than a real answer? */
+/**
+ * Does the answer look like a decline/redirect rather than a real answer?
+ *
+ * Naming contract used by generateAnswer:
+ *   refused  = empty answer OR matches a REFUSAL_PATTERNS decline/redirect.
+ *   grounded = !refused AND the answer is non-empty (i.e. a substantive,
+ *              on-topic reply). The two are mutually exclusive in practice.
+ */
 function looksRefused(answer: string): boolean {
   const trimmed = answer.trim();
   if (trimmed.length === 0) return true;
