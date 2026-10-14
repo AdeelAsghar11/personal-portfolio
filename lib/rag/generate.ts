@@ -22,7 +22,9 @@ import { RetrievedChunk, retrieve } from "./retrieve";
 
 // ── Model IDs (single source of truth) ───────────────────────────────────────
 // llama-3.3-70b is NOT available on this account and must not be used.
-export const GENERATION_MODEL = "openai/gpt-oss-120b";
+// Using the 20b model (not 120b) to roughly halve per-answer token usage so the
+// live bot stays within Groq's free-tier daily token cap (TPD) under real traffic.
+export const GENERATION_MODEL = "openai/gpt-oss-20b";
 export const INJECTION_MODEL = "meta-llama/llama-prompt-guard-2-86m";
 
 // ── Tunable constants ────────────────────────────────────────────────────────
