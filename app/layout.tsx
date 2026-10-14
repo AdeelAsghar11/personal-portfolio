@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Space_Grotesk, Inter, JetBrains_Mono } from "next/font/google";
 import { ThemeProvider } from "@/context/ThemeContext";
 import CustomCursor from "@/components/CustomCursor";
+import ChatWidgetLoader from "@/components/ChatWidgetLoader";
 import "./globals.css";
 
 const spaceGrotesk = Space_Grotesk({
@@ -41,6 +42,7 @@ export default function RootLayout({
         <ThemeProvider>
           <CustomCursor />
           {children}
+          <ChatWidgetLoader />
         </ThemeProvider>
       </body>
     </html>

@@ -49,6 +49,10 @@ const ROOT = join(__dirname, "..");
 const DOCS_DIR = join(ROOT, "personal", "docs");
 const DATA_DIR = join(ROOT, "data");
 const OUT_FILE = join(DATA_DIR, "knowledge.json");
+// Tiny client-safe companion to knowledge.json. The chat UI imports THIS
+// (never the full embedding-laden knowledge.json) so the client bundle stays
+// small. Kept in sync here so future rebuilds update both files together.
+const META_FILE = join(DATA_DIR, "knowledge-meta.json");
 const CACHE_FILE = join(__dirname, ".embcache.json");
 
 // ── Types ────────────────────────────────────────────────────────────────-
@@ -492,6 +496,14 @@ async function main(): Promise<void> {
   };
   writeFileSync(OUT_FILE, `${JSON.stringify(knowledge, null, 2)}\n`);
 
+  // Emit the client-safe meta companion alongside knowledge.json.
+  const meta = {
+    builtAt: knowledge.builtAt,
+    model: MODEL,
+    chunkCount: chunks.length,
+  };
+  writeFileSync(META_FILE, `${JSON.stringify(meta, null, 2)}\n`);
+
   // 6. Report.
   const sources = [...new Set(chunks.map((c) => c.source))].sort();
   console.log("\n── Index report ──────────────────────────────");
@@ -501,6 +513,7 @@ async function main(): Promise<void> {
   console.log(`  Newly embedded: ${toEmbed.length}`);
   console.log(`  Sources (${sources.length}): ${sources.join(", ")}`);
   console.log(`  Written to   : ${OUT_FILE}`);
+  console.log(`  Meta written : ${META_FILE}`);
   console.log("──────────────────────────────────────────────");
 }
 
