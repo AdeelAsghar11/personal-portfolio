@@ -3,6 +3,8 @@ import { defineConfig } from "vitest/config";
 export default defineConfig({
   test: {
     environment: "node",
+    // Load .env.local / .env so live Groq tests see process.env.GROQ_API_KEY.
+    setupFiles: ["./vitest.setup.ts"],
     // Generous timeout: the first run loads/downloads the local transformer
     // model, which can take a while.
     testTimeout: 180000,
