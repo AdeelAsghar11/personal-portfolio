@@ -37,6 +37,9 @@ yarn-error.log*
 # keep the documented example env file tracked
 !.env.example
 
+# local-only personal docs (not committed; public repo)
+personal/
+
 # RAG chatbot local-only artifacts
 eval/
 # local-only index build cache (do not commit); created by the build-index script
