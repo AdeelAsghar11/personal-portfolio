@@ -55,4 +55,6 @@ next-env.d.ts
 .vercel
 .venv
 .agent
+# local-only task/plan artifacts (not committed)
+.agents/
 
