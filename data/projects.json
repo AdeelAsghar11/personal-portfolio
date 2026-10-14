@@ -22,6 +22,17 @@
     "insight": null
   },
   {
+    "title": "SynthLab",
+    "description": "Local-first synthetic data studio for creating fictional, schema-driven datasets. A Python generation engine owns identifiers, categories, distributions, dependencies, and validation while a local Ollama model assists with schema drafting and optional text enrichment without overwriting structured row facts. Combines a FastAPI backend, a React and TypeScript workspace, SQLite job metadata, and CSV/JSON export with quality and provenance reports.",
+    "tags": ["Python", "FastAPI", "React", "TypeScript", "Ollama", "NumPy", "Synthetic Data", "Privacy"],
+    "github": "https://github.com/AdeelAsghar11/SynthLab",
+    "demo": null,
+    "featured": true,
+    "category": "AI/ML",
+    "status": null,
+    "insight": "A narrow model boundary keeps the local LLM to bounded, allow-listed schema drafts and approved text fields only — structured facts stay fixed, with deterministic prompt, schema, and output screening at every stage."
+  },
+  {
     "title": "Sortd",
     "description": "AI-powered content capture platform that bridges the 'Capture Gap' — automatically extracts, summarizes, and categorizes content from Instagram Reels, YouTube videos, and screenshots into organized, searchable knowledge. Built for HACKDATA V1 Hackathon.",
     "tags": ["React", "Node.js", "Supabase", "Google Gemini", "Groq Whisper", "PostgreSQL", "PWA", "Vite"],
