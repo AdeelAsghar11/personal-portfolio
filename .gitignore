@@ -32,6 +32,15 @@ yarn-error.log*
 
 # env files (can opt-in for committing if needed)
 .env*
+.env.local
+.env*.local
+# keep the documented example env file tracked
+!.env.example
+
+# RAG chatbot local-only artifacts
+eval/
+# local-only index build cache (do not commit); created by the build-index script
+# *.embcache.json
 
 # vercel
 .vercel
