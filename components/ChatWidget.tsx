@@ -9,7 +9,6 @@ import {
   ThumbsUp,
   X,
 } from "lucide-react";
-import meta from "@/data/knowledge-meta.json";
 
 // ── Constants ───────────────────────────────────────────────────────────────
 const MAX_INPUT = 1000; // mirrors MAX_QUERY_LENGTH on the server.
@@ -34,13 +33,6 @@ type ChatMessage = {
   rating?: "up" | "down";
 };
 
-// Formatted "knowledge current as of …" date from the tiny meta file.
-const KNOWLEDGE_DATE = new Date(meta.builtAt).toLocaleDateString("en-US", {
-  month: "long",
-  day: "numeric",
-  year: "numeric",
-});
-
 let idCounter = 0;
 function nextId(): string {
   idCounter += 1;
@@ -56,6 +48,143 @@ function errorMessage(kind: ErrorKind): string {
     default:
       return "Something went wrong on my side. Please try again.";
   }
+}
+
+// ── Lightweight, safe markdown rendering ──────────────────────────────────────
+// Renders a minimal markdown subset (bold, italic, inline code, links) to React
+// elements WITHOUT dangerouslySetInnerHTML, so raw model output can never inject
+// HTML. Block-level handling covers paragraphs and bullet lists only.
+
+// Parse inline spans: **bold**, *italic* / _italic_, `code`, [text](url).
+function renderInline(text: string, keyPrefix: string): React.ReactNode[] {
+  const nodes: React.ReactNode[] = [];
+  // Order matters: code first (so * inside code isn't treated as emphasis),
+  // then links, then bold, then italic.
+  const pattern =
+    /(`[^`]+`)|(\[[^\]]+\]\((?:https?:\/\/|mailto:|#)[^\s)]+\))|(\*\*[^*]+\*\*)|(\*[^*]+\*)|(_[^_]+_)/g;
+  let last = 0;
+  let m: RegExpExecArray | null;
+  let i = 0;
+  while ((m = pattern.exec(text)) !== null) {
+    if (m.index > last) nodes.push(text.slice(last, m.index));
+    const token = m[0];
+    const key = `${keyPrefix}-${i++}`;
+    if (token.startsWith("`")) {
+      nodes.push(
+        <code
+          key={key}
+          className="font-mono text-[0.85em] rounded px-1 py-0.5 bg-[var(--bg-tertiary)] text-[var(--accent-cyan)]"
+        >
+          {token.slice(1, -1)}
+        </code>,
+      );
+    } else if (token.startsWith("[")) {
+      const linkMatch = /^\[([^\]]+)\]\(([^\s)]+)\)$/.exec(token);
+      if (linkMatch) {
+        const [, label, href] = linkMatch;
+        const external = /^https?:\/\//.test(href);
+        nodes.push(
+          <a
+            key={key}
+            href={href}
+            {...(external
+              ? { target: "_blank", rel: "noopener noreferrer" }
+              : {})}
+            className="text-[var(--accent-cyan)] underline underline-offset-2 hover:text-[var(--accent-green)] transition-colors"
+          >
+            {label}
+          </a>,
+        );
+      } else {
+        nodes.push(token);
+      }
+    } else if (token.startsWith("**")) {
+      nodes.push(
+        <strong key={key} className="font-semibold text-[var(--text-primary)]">
+          {token.slice(2, -2)}
+        </strong>,
+      );
+    } else {
+      // *italic* or _italic_
+      nodes.push(
+        <em key={key} className="italic">
+          {token.slice(1, -1)}
+        </em>,
+      );
+    }
+    last = m.index + token.length;
+  }
+  if (last < text.length) nodes.push(text.slice(last));
+  return nodes;
+}
+
+// Split text into blocks (paragraphs + bullet lists) and render each.
+function renderMarkdown(text: string): React.ReactNode {
+  const lines = text.replace(/\r\n/g, "\n").split("\n");
+  const blocks: React.ReactNode[] = [];
+  let paragraph: string[] = [];
+  let list: string[] = [];
+  let listOrdered = false;
+  let b = 0;
+
+  const flushParagraph = () => {
+    if (paragraph.length === 0) return;
+    const content = paragraph.join(" ");
+    blocks.push(
+      <p key={`p-${b++}`} className="whitespace-pre-wrap break-words">
+        {renderInline(content, `p${b}`)}
+      </p>,
+    );
+    paragraph = [];
+  };
+
+  const flushList = () => {
+    if (list.length === 0) return;
+    const items = list.map((item, idx) => (
+      <li key={idx} className="break-words">
+        {renderInline(item, `li${b}-${idx}`)}
+      </li>
+    ));
+    blocks.push(
+      listOrdered ? (
+        <ol key={`ol-${b++}`} className="list-decimal pl-5 flex flex-col gap-1">
+          {items}
+        </ol>
+      ) : (
+        <ul key={`ul-${b++}`} className="list-disc pl-5 flex flex-col gap-1">
+          {items}
+        </ul>
+      ),
+    );
+    list = [];
+  };
+
+  for (const raw of lines) {
+    const line = raw.trimEnd();
+    const bullet = /^\s*[-*]\s+(.*)$/.exec(line);
+    const ordered = /^\s*\d+[.)]\s+(.*)$/.exec(line);
+    if (bullet) {
+      flushParagraph();
+      if (listOrdered) flushList();
+      listOrdered = false;
+      list.push(bullet[1]);
+    } else if (ordered) {
+      flushParagraph();
+      if (!listOrdered) flushList();
+      listOrdered = true;
+      list.push(ordered[1]);
+    } else if (line.trim() === "") {
+      flushParagraph();
+      flushList();
+    } else {
+      flushList();
+      paragraph.push(line);
+    }
+  }
+  flushParagraph();
+  flushList();
+
+  return <div className="flex flex-col gap-2">{blocks}</div>;
 }
 
 export default function ChatWidget() {
@@ -285,11 +414,6 @@ export default function ChatWidget() {
               </button>
             </div>
 
-            {/* Knowledge-current note */}
-            <div className="px-4 pt-2 font-mono text-xs text-[var(--text-muted)]">
-              knowledge current as of {KNOWLEDGE_DATE}
-            </div>
-
             {/* Message list */}
             <div className="flex-1 overflow-y-auto px-4 py-3 flex flex-col gap-3">
               {messages.length === 0 ? (
@@ -348,10 +472,14 @@ export default function ChatWidget() {
                               <span className="w-1.5 h-1.5 rounded-full bg-[var(--text-muted)] animate-pulse [animation-delay:300ms]" />
                             </span>
                           )
-                        ) : (
+                        ) : isUser ? (
                           <p className="whitespace-pre-wrap break-words font-sans text-sm text-[var(--text-primary)]">
                             {m.text}
                           </p>
+                        ) : (
+                          <div className="font-sans text-sm text-[var(--text-primary)] leading-relaxed">
+                            {renderMarkdown(m.text)}
+                          </div>
                         )}
                       </div>
 
