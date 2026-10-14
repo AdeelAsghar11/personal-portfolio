@@ -43,7 +43,7 @@ personal/
 # RAG chatbot local-only artifacts
 eval/
 # local-only index build cache (do not commit); created by the build-index script
-# *.embcache.json
+scripts/.embcache.json
 
 # vercel
 .vercel
