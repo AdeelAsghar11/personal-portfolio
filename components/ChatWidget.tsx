@@ -324,7 +324,20 @@ export default function ChatWidget() {
         else if (res.status === 429) kind = "429";
         else kind = "500";
 
-        setMessages((prev) => prev.filter((m) => m.id !== assistantId));
+        setMessages((prev) =>
+          prev.map((m) =>
+            m.id === assistantId
+              ? {
+                  ...m,
+                  done: true,
+                  text:
+                    res.status === 429
+                      ? "I'm receiving a high volume of inquiries right now. Please try again in a few moments, or reach out to Adeel at [adeelyt157@gmail.com](mailto:adeelyt157@gmail.com)."
+                      : "I'm temporarily unable to reach the server. You can explore Adeel's work in the [#projects](#projects) section or email him at [adeelyt157@gmail.com](mailto:adeelyt157@gmail.com).",
+                }
+              : m,
+          ),
+        );
         setError({
           kind,
           detail: errorDetail ? `${res.status}: ${errorDetail}` : `HTTP ${res.status}`,
@@ -363,7 +376,17 @@ export default function ChatWidget() {
       setStreaming(false);
     } catch (err) {
       console.error("[ChatWidget] Network error:", err);
-      setMessages((prev) => prev.filter((m) => m.id !== assistantId));
+      setMessages((prev) =>
+        prev.map((m) =>
+          m.id === assistantId
+            ? {
+                ...m,
+                done: true,
+                text: "I'm temporarily unable to reach the server. You can explore Adeel's work in the [#projects](#projects) section or email him at [adeelyt157@gmail.com](mailto:adeelyt157@gmail.com).",
+              }
+            : m,
+        ),
+      );
       setError({
         kind: "network",
         detail: err instanceof Error ? err.message : String(err),

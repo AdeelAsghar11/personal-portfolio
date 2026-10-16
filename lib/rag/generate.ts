@@ -121,13 +121,24 @@ export function validateInput(query: unknown): ValidationResult {
 export async function checkInjection(query: string): Promise<InjectionResult> {
   try {
     const client = getGroqClient();
-    const completion = await client.chat.completions.create({
-      model: INJECTION_MODEL,
-      messages: [{ role: "user", content: query }],
-      temperature: 0,
-      max_tokens: 20,
-      stream: false,
-    });
+    const abortController = new AbortController();
+    const timeoutId = setTimeout(() => abortController.abort(), 2500);
+
+    let completion;
+    try {
+      completion = await client.chat.completions.create(
+        {
+          model: INJECTION_MODEL,
+          messages: [{ role: "user", content: query }],
+          temperature: 0,
+          max_tokens: 20,
+          stream: false,
+        },
+        { signal: abortController.signal },
+      );
+    } finally {
+      clearTimeout(timeoutId);
+    }
 
     const raw = completion.choices?.[0]?.message?.content;
     if (typeof raw !== "string" || raw.trim().length === 0) {

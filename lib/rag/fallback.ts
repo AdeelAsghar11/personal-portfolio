@@ -82,6 +82,7 @@ export async function streamGemini(
     const res = await fetch(url, {
       method: "POST",
       headers: { "Content-Type": "application/json" },
+      signal: AbortSignal.timeout(5000),
       body: JSON.stringify({
         contents: [{ role: "user", parts: [{ text: userPrompt }] }],
         systemInstruction: { parts: [{ text: systemInstruction }] },

@@ -200,13 +200,20 @@ export async function POST(req: Request): Promise<Response> {
     if (groqKey) {
       try {
         const client = new Groq({ apiKey: groqKey });
-        const groqStream = await client.chat.completions.create({
-          model: GENERATION_MODEL,
-          messages: buildMessages(query, contexts),
-          temperature: 0.2,
-          max_tokens: 600,
-          stream: true,
-        });
+        const abortController = new AbortController();
+        const timeoutId = setTimeout(() => abortController.abort(), 6000);
+
+        const groqStream = await client.chat.completions.create(
+          {
+            model: GENERATION_MODEL,
+            messages: buildMessages(query, contexts),
+            temperature: 0.2,
+            max_tokens: 600,
+            stream: true,
+          },
+          { signal: abortController.signal },
+        );
+        clearTimeout(timeoutId);
 
         const encoder = new TextEncoder();
         const stream = new ReadableStream<Uint8Array>({
