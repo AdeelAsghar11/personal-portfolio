@@ -23,7 +23,7 @@ export const STARTER_ANSWERS: Record<string, string> = {
 
 Other notable projects include **SynthLab** (multi-agent synthetic data generator) and **HealthAI** (multimodal clinical diagnostics).`,
 
-  hackathons: `Adeel has achieved top honors in multiple high-profile competitive tournaments:
+  competitions: `Adeel has achieved top honors across multiple competitive tournaments and hackathons:
 
 1. **1st Place — HACKDATA V1 Hackathon (2026)**: Led core engineering for **Sortd** (Team MadGroot), building an automated multimodal capture and summarization pipeline.
 2. **1st Place — Pitch Perfect & AI Model Training (HITEC Mega Code War 2026)**: Claimed first place in predictive ML modeling under strict speed constraints and delivered the winning architecture pitch.
@@ -46,6 +46,9 @@ Other notable projects include **SynthLab** (multi-agent synthetic data generato
 - **AI Intern @ Pakistan Ordnance Factories (Jul 2026 – Aug 2026)**: Supported applied machine learning workflows and production model evaluation.
 - **Community Leadership**: Co-Founder & Community Manager at **GDG on Campus COMSATS Wah**, mentoring 100+ students in practical AI/ML.`,
 };
+
+// Backwards-compatibility alias
+STARTER_ANSWERS.hackathons = STARTER_ANSWERS.competitions;
 
 /**
  * Normalize an input string for loose matching against starter queries.
@@ -78,15 +81,16 @@ export function getStarterAnswer(query: string): string | null {
     return STARTER_ANSWERS.project;
   }
 
-  // Starter 2: Hackathon wins / achievements / competitions
+  // Starter 2: Competition / hackathon wins / achievements
   if (
-    norm.includes("hackathon") ||
-    norm.includes("hackathons") ||
     norm.includes("competition") ||
     norm.includes("competitions") ||
-    norm.includes("achievements")
+    norm.includes("hackathon") ||
+    norm.includes("hackathons") ||
+    norm.includes("achievements") ||
+    norm.includes("tournaments")
   ) {
-    return STARTER_ANSWERS.hackathons;
+    return STARTER_ANSWERS.competitions;
   }
 
   // Starter 3: Tech stack / AI ML stack / tools / technologies

@@ -20,12 +20,15 @@ describe("lib/rag/starters", () => {
     );
   });
 
-  it("matches starter 2 (hackathons)", () => {
+  it("matches starter 2 (competitions & hackathons)", () => {
+    expect(getStarterAnswer("Tell me about the competition wins")).toBe(
+      STARTER_ANSWERS.competitions,
+    );
     expect(getStarterAnswer("Tell me about the hackathon wins")).toBe(
-      STARTER_ANSWERS.hackathons,
+      STARTER_ANSWERS.competitions,
     );
     expect(getStarterAnswer("What competitions has Adeel won?")).toBe(
-      STARTER_ANSWERS.hackathons,
+      STARTER_ANSWERS.competitions,
     );
   });
 

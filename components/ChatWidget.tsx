@@ -19,7 +19,7 @@ const WARN_AT = 900; // live counter turns to a warning color near the limit.
 // empty; clicking a chip fills + sends immediately.
 const STARTERS = [
   "What's Adeel's strongest project?",
-  "Tell me about the hackathon wins",
+  "Tell me about the competition wins",
   "What's his AI/ML tech stack?",
   "What's his experience and education?",
 ] as const;
