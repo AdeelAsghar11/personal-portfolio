@@ -113,159 +113,170 @@ function getClientIp(req: Request): string {
 }
 
 export async function POST(req: Request): Promise<Response> {
-  const groqKey = process.env.GROQ_API_KEY?.trim();
-  const geminiKey = process.env.GEMINI_API_KEY?.trim();
-
-  // (b) Parse body safely.
-  let body: unknown;
   try {
-    body = await req.json();
-  } catch {
-    return jsonError(400, { error: "Invalid JSON body." });
-  }
+    const groqKey = process.env.GROQ_API_KEY?.trim();
+    const geminiKey = process.env.GEMINI_API_KEY?.trim();
 
-  const parsed = (body ?? {}) as { message?: unknown; query?: unknown };
-  const message = parsed.message ?? parsed.query;
+    // (b) Parse body safely.
+    let body: unknown;
+    try {
+      body = await req.json();
+    } catch {
+      return jsonError(400, { error: "Invalid JSON body." });
+    }
 
-  // (c) Input validation (enforces type, non-empty, max length).
-  const validation = validateInput(message);
-  if (!validation.ok) {
-    return jsonError(400, {
-      error: "Invalid input.",
-      reason: validation.reason,
-    });
-  }
-  const query = message as string;
+    const parsed = (body ?? {}) as { message?: unknown; query?: unknown };
+    const message = parsed.message ?? parsed.query;
 
-  // (d) Rate limiting (per client IP).
-  const ip = getClientIp(req);
-  const limit = rateLimiter.check(ip);
-  if (!limit.allowed) {
-    return jsonError(
-      429,
-      { error: "Too many requests. Please slow down and try again shortly." },
-      { "Retry-After": String(limit.retryAfterSeconds) },
-    );
-  }
-
-  // (e) Debug gating. NODE_ENV check FIRST so production can never expose
-  // contexts, even with the header/param set.
-  const url = new URL(req.url);
-  const debug =
-    process.env.NODE_ENV !== "production" &&
-    (url.searchParams.get("debug") === "1" ||
-      req.headers.get("x-rag-debug") === "1");
-
-  // (f) Injection pre-filter: short-circuit WITHOUT calling the big model.
-  const guard = await checkInjection(query);
-  if (guard.injection) {
-    if (debug) {
-      return Response.json({
-        answer: INJECTION_REFUSAL,
-        contexts: [],
-        grounded: false,
-        refused: true,
+    // (c) Input validation (enforces type, non-empty, max length).
+    const validation = validateInput(message);
+    if (!validation.ok) {
+      return jsonError(400, {
+        error: "Invalid input.",
+        reason: validation.reason,
       });
     }
-    return streamText(INJECTION_REFUSAL);
-  }
+    const query = message as string;
 
-  // ── Tier 1: Instant Pre-baked Starters (0ms latency, 0 tokens consumed) ──────
-  // Common starter chips like "What's Adeel's strongest project?" are served
-  // instantly with 100% uptime and verified accuracy.
-  const starterAnswer = getStarterAnswer(query);
-  if (starterAnswer && !debug) {
-    return new Response(streamTextInChunks(starterAnswer), {
+    // (d) Rate limiting (per client IP).
+    const ip = getClientIp(req);
+    const limit = rateLimiter.check(ip);
+    if (!limit.allowed) {
+      return jsonError(
+        429,
+        { error: "Too many requests. Please slow down and try again shortly." },
+        { "Retry-After": String(limit.retryAfterSeconds) },
+      );
+    }
+
+    // (e) Debug gating. NODE_ENV check FIRST so production can never expose
+    // contexts, even with the header/param set.
+    const url = new URL(req.url);
+    const debug =
+      process.env.NODE_ENV !== "production" &&
+      (url.searchParams.get("debug") === "1" ||
+        req.headers.get("x-rag-debug") === "1");
+
+    // ── Tier 1: Instant Pre-baked Starters (0ms latency, 0 tokens consumed) ──────
+    // Starters are hardcoded, verified questions — evaluated FIRST to bypass external
+    // network calls, injection guards, or third-party quota limits completely.
+    const starterAnswer = getStarterAnswer(query);
+    if (starterAnswer && !debug) {
+      return new Response(streamTextInChunks(starterAnswer), {
+        status: 200,
+        headers: STREAM_HEADERS,
+      });
+    }
+
+    // (f) Injection pre-filter: short-circuit WITHOUT calling the big model.
+    const guard = await checkInjection(query);
+    if (guard.injection) {
+      if (debug) {
+        return Response.json({
+          answer: INJECTION_REFUSAL,
+          contexts: [],
+          grounded: false,
+          refused: true,
+        });
+      }
+      return streamText(INJECTION_REFUSAL);
+    }
+
+    // (g) Retrieve grounding context.
+    const contexts = await retrieve(query, RETRIEVE_TOP_K);
+
+    // (h) Debug mode: non-streaming JSON with contexts (dev only — see gate).
+    if (debug) {
+      const result = await generateAnswer(query, contexts);
+      return Response.json({
+        answer: result.answer,
+        contexts,
+        grounded: result.grounded,
+        refused: result.refused,
+      });
+    }
+
+    // ── Tier 2: Primary LLM (Groq fast streaming) ──────────────────────────────
+    if (groqKey) {
+      try {
+        const client = new Groq({ apiKey: groqKey });
+        const groqStream = await client.chat.completions.create({
+          model: GENERATION_MODEL,
+          messages: buildMessages(query, contexts),
+          temperature: 0.2,
+          max_tokens: 600,
+          stream: true,
+        });
+
+        const encoder = new TextEncoder();
+        const stream = new ReadableStream<Uint8Array>({
+          async start(controller) {
+            try {
+              // groq-sdk streaming returns an async iterable of chunks.
+              for await (const chunk of groqStream as AsyncIterable<{
+                choices?: { delta?: { content?: string | null } }[];
+              }>) {
+                const delta = chunk.choices?.[0]?.delta?.content;
+                if (delta) {
+                  controller.enqueue(encoder.encode(delta));
+                }
+              }
+              controller.close();
+            } catch {
+              try {
+                controller.close();
+              } catch {}
+            }
+          },
+        });
+
+        return new Response(stream, {
+          status: 200,
+          headers: STREAM_HEADERS,
+        });
+      } catch {
+        // Groq failed (429 rate limit / daily token cap exhausted, 502, or network).
+        // Seamlessly fall through to Tier 3.
+      }
+    }
+
+    // ── Tier 3: Secondary LLM (Google Gemini Flash fallback) ───────────────────
+    if (geminiKey) {
+      try {
+        const messages = buildMessages(query, contexts);
+        const systemText =
+          (messages.find((m) => m.role === "system")?.content as string) || "";
+        const userText =
+          (messages.find((m) => m.role === "user")?.content as string) || query;
+
+        const geminiStream = await streamGemini(systemText, userText, geminiKey);
+        if (geminiStream) {
+          return new Response(geminiStream, {
+            status: 200,
+            headers: STREAM_HEADERS,
+          });
+        }
+      } catch {
+        // Gemini failed. Seamlessly fall through to Tier 4.
+      }
+    }
+
+    // ── Tier 4: Local Extractive Fallback (Zero external API dependencies) ──────
+    // If all external LLMs are down or keys are unconfigured, format the retrieved
+    // in-memory passages into a clean grounded summary with direct contact links.
+    const fallbackText = formatExtractiveFallback(query, contexts);
+    return new Response(streamTextInChunks(fallbackText), {
+      status: 200,
+      headers: STREAM_HEADERS,
+    });
+  } catch (err) {
+    console.error("[/api/chat] Unhandled error:", err);
+    // In event of an unexpected server error, respond safely with local grounded contact
+    const safeFallback =
+      "I'm temporarily experiencing connectivity issues with the AI providers. You can reach Adeel directly at adeelyt157@gmail.com or explore the #projects and #experience sections on this page.";
+    return new Response(streamTextInChunks(safeFallback), {
       status: 200,
       headers: STREAM_HEADERS,
     });
   }
-
-  // (g) Retrieve grounding context.
-  const contexts = await retrieve(query, RETRIEVE_TOP_K);
-
-  // (h) Debug mode: non-streaming JSON with contexts (dev only — see gate).
-  if (debug) {
-    const result = await generateAnswer(query, contexts);
-    return Response.json({
-      answer: result.answer,
-      contexts,
-      grounded: result.grounded,
-      refused: result.refused,
-    });
-  }
-
-  // ── Tier 2: Primary LLM (Groq fast streaming) ──────────────────────────────
-  if (groqKey) {
-    try {
-      const client = new Groq({ apiKey: groqKey });
-      const groqStream = await client.chat.completions.create({
-        model: GENERATION_MODEL,
-        messages: buildMessages(query, contexts),
-        temperature: 0.2,
-        max_tokens: 600,
-        stream: true,
-      });
-
-      const encoder = new TextEncoder();
-      const stream = new ReadableStream<Uint8Array>({
-        async start(controller) {
-          try {
-            // groq-sdk streaming returns an async iterable of chunks.
-            for await (const chunk of groqStream as AsyncIterable<{
-              choices?: { delta?: { content?: string | null } }[];
-            }>) {
-              const delta = chunk.choices?.[0]?.delta?.content;
-              if (delta) {
-                controller.enqueue(encoder.encode(delta));
-              }
-            }
-            controller.close();
-          } catch {
-            try {
-              controller.close();
-            } catch {}
-          }
-        },
-      });
-
-      return new Response(stream, {
-        status: 200,
-        headers: STREAM_HEADERS,
-      });
-    } catch {
-      // Groq failed (429 rate limit / daily token cap exhausted, 502, or network).
-      // Seamlessly fall through to Tier 3.
-    }
-  }
-
-  // ── Tier 3: Secondary LLM (Google Gemini Flash fallback) ───────────────────
-  if (geminiKey) {
-    try {
-      const messages = buildMessages(query, contexts);
-      const systemText =
-        (messages.find((m) => m.role === "system")?.content as string) || "";
-      const userText =
-        (messages.find((m) => m.role === "user")?.content as string) || query;
-
-      const geminiStream = await streamGemini(systemText, userText, geminiKey);
-      if (geminiStream) {
-        return new Response(geminiStream, {
-          status: 200,
-          headers: STREAM_HEADERS,
-        });
-      }
-    } catch {
-      // Gemini failed. Seamlessly fall through to Tier 4.
-    }
-  }
-
-  // ── Tier 4: Local Extractive Fallback (Zero external API dependencies) ──────
-  // If all external LLMs are down or keys are unconfigured, format the retrieved
-  // in-memory passages into a clean grounded summary with direct contact links.
-  const fallbackText = formatExtractiveFallback(query, contexts);
-  return new Response(streamTextInChunks(fallbackText), {
-    status: 200,
-    headers: STREAM_HEADERS,
-  });
 }

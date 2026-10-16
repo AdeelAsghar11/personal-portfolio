@@ -9,7 +9,7 @@
  * NO extra npm dependencies required (uses built-in fetch and Web Streams).
  */
 
-import { RetrievedChunk } from "./retrieve";
+import type { RetrievedChunk } from "./retrieve";
 import { CONTACT_EMAIL, CONTACT_SECTION } from "./generate";
 
 export const GEMINI_MODEL = "gemini-2.5-flash";
