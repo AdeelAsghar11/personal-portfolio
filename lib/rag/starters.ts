@@ -14,7 +14,7 @@
  */
 
 export const STARTER_ANSWERS: Record<string, string> = {
-  project: `Adeel's most prominent project is **Sortd** — the AI-powered content capture platform that won **1st place at the HACKDATA V1 hackathon**.
+  project: `Adeel's most prominent project is **Sortd**, the AI-powered content capture platform that won **1st place at the HACKDATA V1 hackathon**.
 
 **Key Highlights:**
 - **Multimodal AI Pipeline**: Combines Gemini Vision for screenshot OCR and Groq Whisper for audio transcription, automatically capturing, summarizing, and categorizing content from Instagram Reels, YouTube videos, and screenshots.
@@ -25,10 +25,10 @@ Other notable projects include **SynthLab** (multi-agent synthetic data generato
 
   competitions: `Adeel has achieved top honors across multiple competitive tournaments and hackathons:
 
-1. **1st Place — HACKDATA V1 Hackathon (2026)**: Led core engineering for **Sortd** (Team MadGroot), building an automated multimodal capture and summarization pipeline.
-2. **1st Place — Pitch Perfect & AI Model Training (HITEC Mega Code War 2026)**: Claimed first place in predictive ML modeling under strict speed constraints and delivered the winning architecture pitch.
-3. **1st Place — CS Quiz Tournament (UET Taxila)**: Finished first in a high-intensity, multi-round tournament testing computer science theory, systems, and algorithms.
-4. **1st Place — Speed Programming Competition (HITEC University)**: Built optimized algorithms under tight time limits, outperforming regional university teams.
+1. **1st Place, HACKDATA V1 Hackathon (2026)**: Led core engineering for **Sortd** (Team MadGroot), building an automated multimodal capture and summarization pipeline.
+2. **1st Place, Pitch Perfect & AI Model Training (HITEC Mega Code War 2026)**: Claimed first place in predictive ML modeling under strict speed constraints and delivered the winning architecture pitch.
+3. **1st Place, CS Quiz Tournament (UET Taxila)**: Finished first in a high-intensity, multi-round tournament testing computer science theory, systems, and algorithms.
+4. **1st Place, Speed Programming Competition (HITEC University)**: Built optimized algorithms under tight time limits, outperforming regional university teams.
 5. **Academic Excellence Award (COMSATS University Wah)**: Maintained a **3.85 / 4.00 CGPA** within the BS Artificial Intelligence program.`,
 
   stack: `Adeel's primary AI/ML and engineering tech stack spans:

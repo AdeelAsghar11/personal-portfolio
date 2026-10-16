@@ -207,6 +207,7 @@ PII PROTECTION
 
 STYLE
 - Be concise and professional. No emojis.
+- Do not use em dashes (—). Use standard human written punctuation such as commas, colons, semicolons, hyphens, or parentheses instead.
 - Be honest about uncertainty; if you don't know, say so.`;
 
 /**

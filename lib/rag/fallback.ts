@@ -52,15 +52,17 @@ export function formatExtractiveFallback(
   const highlights = contexts
     .slice(0, 3)
     .map((c) => {
-      // Clean up text snippet: strip long markdown separators if any
+      // Clean up text snippet: strip long markdown separators and replace em dashes
       const snippet = c.text
         .replace(/---.*?---/g, "")
+        .replace(/\s*—\s*/g, ", ")
         .replace(/\s+/g, " ")
         .trim();
       // Keep snippet to a reasonable length
       const trimmed =
         snippet.length > 280 ? snippet.slice(0, 280).trimEnd() + "..." : snippet;
-      return `* **${c.title}** (${c.source}): ${trimmed}`;
+      const cleanTitle = c.title.replace(/\s*—\s*/g, ": ");
+      return `* **${cleanTitle}** (${c.source}): ${trimmed}`;
     })
     .join("\n\n");
 

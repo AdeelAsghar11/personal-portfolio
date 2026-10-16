@@ -30,18 +30,18 @@
     "featured": true,
     "category": "AI/ML",
     "status": null,
-    "insight": "A narrow model boundary keeps the local LLM to bounded, allow-listed schema drafts and approved text fields only — structured facts stay fixed, with deterministic prompt, schema, and output screening at every stage."
+    "insight": "A narrow model boundary keeps the local LLM to bounded, allow-listed schema drafts and approved text fields only; structured facts stay fixed, with deterministic prompt, schema, and output screening at every stage."
   },
   {
     "title": "Sortd",
-    "description": "AI-powered content capture platform that bridges the 'Capture Gap' — automatically extracts, summarizes, and categorizes content from Instagram Reels, YouTube videos, and screenshots into organized, searchable knowledge. Built for HACKDATA V1 Hackathon.",
+    "description": "AI-powered content capture platform that bridges the 'Capture Gap' by automatically extracting, summarizing, and categorizing content from Instagram Reels, YouTube videos, and screenshots into organized, searchable knowledge. Built for HACKDATA V1 Hackathon.",
     "tags": ["React", "Node.js", "Supabase", "Google Gemini", "Groq Whisper", "PostgreSQL", "PWA", "Vite"],
     "github": "https://github.com/AdeelAsghar11/sortd",
     "demo": "https://sortd-frontend.vercel.app",
     "featured": true,
     "category": "AI/ML",
     "status": "hackathon",
-    "insight": "Multimodal AI pipeline combining Gemini Vision for screenshot OCR and Groq Whisper for audio transcription — zero manual effort from capture to categorized knowledge."
+    "insight": "Multimodal AI pipeline combining Gemini Vision for screenshot OCR and Groq Whisper for audio transcription: zero manual effort from capture to categorized knowledge."
   },
   {
     "title": "Facial Expression Recognition Research Collaboration",
@@ -84,7 +84,7 @@
     "featured": true,
     "category": "Security",
     "status": null,
-    "insight": "Malware classification is fundamentally a computer vision problem — different malware families produce visually distinct byte patterns. ResNet50 achieves 76.4% val accuracy across 25 families on the Malimg dataset."
+    "insight": "Malware classification is fundamentally a computer vision problem: different malware families produce visually distinct byte patterns. ResNet50 achieves 76.4% val accuracy across 25 families on the Malimg dataset."
   },
   {
     "title": "DermVision",
@@ -104,17 +104,17 @@
     "github": "https://github.com/AdeelAsghar11/BSL-Hand_Gesture_Recognition",
     "demo": null,
     "featured": true,
-    "insight": "CLAHE normalisation on the LAB L-channel alone outperformed standard RGB preprocessing — preprocessing quality mattered more than model complexity at this scale.",
+    "insight": "CLAHE normalisation on the LAB L-channel alone outperformed standard RGB preprocessing: preprocessing quality mattered more than model complexity at this scale.",
     "category": "AI/ML"
   },
   {
     "title": "Smart Recycle System",
-    "description": "Industrial waste classifier using MobileNetV2 transfer learning achieving 86%+ accuracy across 12 material categories — outperforming a custom CNN baseline by 25%. Features real-time hazardous waste flagging with an efficient inference pipeline for industrial constraints.",
+    "description": "Industrial waste classifier using MobileNetV2 transfer learning achieving 86%+ accuracy across 12 material categories, outperforming a custom CNN baseline by 25%. Features real-time hazardous waste flagging with an efficient inference pipeline for industrial constraints.",
     "tags": ["Python", "TensorFlow", "MobileNetV2", "Transfer Learning", "Streamlit", "Computer Vision"],
     "github": "https://github.com/AdeelAsghar11/smart-recycle-system-cnn",
     "demo": null,
     "featured": true,
-    "insight": "MobileNetV2 with fine-tuning outperformed a custom CNN baseline by 25% on the same dataset — transfer learning wins when data is limited and classes are visually similar.",
+    "insight": "MobileNetV2 with fine-tuning outperformed a custom CNN baseline by 25% on the same dataset: transfer learning wins when data is limited and classes are visually similar.",
     "category": "AI/ML"
   },
   {
@@ -124,7 +124,7 @@
     "github": "https://github.com/AdeelAsghar11/Retail-Sales-Performance-Dashboard",
     "demo": null,
     "featured": true,
-    "insight": "500K+ transaction records revealed that 80% of revenue came from just 3 product categories — classic Pareto, but only visible after cleaning 40% missing/duplicate records in the ETL stage.",
+    "insight": "500K+ transaction records revealed that 80% of revenue came from just 3 product categories: a classic Pareto pattern, but only visible after cleaning 40% missing/duplicate records in the ETL stage.",
     "category": "Data Science"
   },
   {
@@ -174,7 +174,7 @@
   },
   {
     "title": "Bring It Buddy",
-    "description": "Prototype — a Laravel-based peer-to-peer delivery web app connecting senders with travellers going the same route for cost-effective package delivery.",
+    "description": "Prototype: a Laravel-based peer-to-peer delivery web app connecting senders with travellers going the same route for cost-effective package delivery.",
     "tags": ["PHP", "Laravel", "MySQL", "Web Development"],
     "github": "https://github.com/AdeelAsghar11/bring-it-buddy-laravel-project",
     "demo": null,

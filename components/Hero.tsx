@@ -155,7 +155,7 @@ export default function Hero() {
             </div>
           </div>
 
-          {/* RIGHT COLUMN — Avatar & Status Card */}
+          {/* RIGHT COLUMN: Avatar & Status Card */}
           <div className="flex flex-col items-center justify-center relative">
             {/* Ambient Aura Rings */}
             <div className="relative flex items-center justify-center">

@@ -192,7 +192,7 @@ function dataPassages(): Passage[] {
     resume: string;
   }>("profile.json");
   const profileText = [
-    `${p.name} — ${p.title}.`,
+    `${p.name}: ${p.title}.`,
     `Role: ${p.role}.`,
     `${p.degree} at ${p.university} (${p.expectedGrad}), CGPA ${p.cgpa}. Based in ${p.location}.`,
     "",
@@ -274,7 +274,7 @@ function dataPassages(): Passage[] {
     }>
   >("experience.json");
   for (const e of experience) {
-    const header = `${e.role} — ${e.company} (${e.type}, ${e.period})${
+    const header = `${e.role} at ${e.company} (${e.type}, ${e.period})${
       e.current ? " (current)" : ""
     }`;
     const text = [header, ...e.bullets.map((b) => `- ${b}`)].join("\n");
@@ -292,7 +292,7 @@ function dataPassages(): Passage[] {
   >("achievements.json");
   const achievementsText = [
     "Achievements:",
-    ...achievements.map((a) => `- ${a.title} — ${a.org}: ${a.desc}`),
+    ...achievements.map((a) => `- ${a.title} (${a.org}): ${a.desc}`),
   ].join("\n");
   out.push({
     source: "achievements",
@@ -314,7 +314,7 @@ function dataPassages(): Passage[] {
     "Certifications:",
     ...certifications.map(
       (c) =>
-        `- ${c.title} — ${c.issuer} (${c.date})${
+        `- ${c.title} by ${c.issuer} (${c.date})${
           c.credentialId ? `, credential ${c.credentialId}` : ""
         }`,
     ),
@@ -432,7 +432,7 @@ async function main(): Promise<void> {
   const chunks: Chunk[] = passages.flatMap(chunkPassage);
   console.log(`  Produced ${chunks.length} chunks.`);
   if (chunks.length === 0) {
-    throw new Error("No chunks produced — check source directories.");
+    throw new Error("No chunks produced; check source directories.");
   }
 
   // 3. Incremental embedding with sha256 cache.

@@ -44,7 +44,7 @@ function nextId(): string {
 function errorMessage(kind: ErrorKind): string {
   switch (kind) {
     case "400":
-      return "I couldn't read that — try rephrasing your question.";
+      return "I couldn't read that. Try rephrasing your question.";
     case "429":
       return "I'm getting a lot of questions right now, try again in a moment";
     default:
@@ -402,7 +402,7 @@ export default function ChatWidget() {
         ? messages[idx - 1].text
         : "";
     return (rating: "up" | "down") => {
-      if (message.rating) return; // one rating per message — lock after click.
+      if (message.rating) return; // one rating per message: lock after click.
       setMessages((prev) =>
         prev.map((m) => (m.id === message.id ? { ...m, rating } : m)),
       );

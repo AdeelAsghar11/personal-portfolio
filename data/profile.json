@@ -7,7 +7,7 @@
   "phone": "+92 322 9672161",
   "github": "https://github.com/AdeelAsghar11",
   "linkedin": "https://www.linkedin.com/in/adeelasghar11/",
-  "location": "Pakistan — Open to Remote",
+  "location": "Pakistan (Open to Remote)",
   "university": "COMSATS University Islamabad, Wah Campus",
   "degree": "BS Artificial Intelligence",
   "expectedGrad": "Expected Sep 2027",
@@ -15,9 +15,9 @@
   "role": "CAIO @ Algoligence | Community Manager, GDG On Campus",
   "bio": "I'm a final-year AI/ML engineer and Chief AI Officer (CAIO) at Algoligence, an AI engineering startup, with a track record built on hackathon wins (1st place at HACKDATA V1 and HITEC Mega Code War 2026), internships at CalderR and Pakistan Ordnance Factories, and a research collaboration with the University of Macau. My work spans agentic and multi-agent systems (LangGraph, RAG pipelines, GraphRAG), computer vision, and full-stack deployment, from a multi-agent code-intelligence platform that scores 100% on its own faithfulness evaluation to a sign-language classifier running at 95.74% accuracy. Alongside the engineering, I co-founded and now serve as Community Manager for GDG on Campus COMSATS Wah, where I mentor in practical AI/ML, and I'm looking for roles, collaborations, or client work where shipped, production-grade systems are the bar.",
   "researchInterests": [
-    "Applied Machine Learning & Deep Learning — computer vision, emotion recognition, and transfer learning",
-    "LLM & RAG Systems — hybrid retrieval, cross-encoder reranking, and agentic AI tool orchestration",
-    "Full-Stack AI Engineering — production ML tooling, containerized microservices, and end-to-end deployment"
+    "Applied Machine Learning & Deep Learning: computer vision, emotion recognition, and transfer learning",
+    "LLM & RAG Systems: hybrid retrieval, cross-encoder reranking, and agentic AI tool orchestration",
+    "Full-Stack AI Engineering: production ML tooling, containerized microservices, and end-to-end deployment"
   ],
   "resume": "/Adeel_Asghar-Resume.pdf"
 }

@@ -24,7 +24,7 @@ const jetbrainsMono = JetBrains_Mono({
 });
 
 export const metadata: Metadata = {
-  title: "Adeel Asghar — Full Stack AI Engineer & CAIO",
+  title: "Adeel Asghar | Full Stack AI Engineer & CAIO",
   description:
     "Personal portfolio of Adeel Asghar, Chief AI Officer at Algoligence and AI Engineer. Building intelligent agentic systems, GraphRAG platforms, and production-grade ML pipelines.",
 };
