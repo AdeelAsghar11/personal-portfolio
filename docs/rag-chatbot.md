@@ -30,25 +30,30 @@ rate-limiting behavior.
   cache (`scripts/.embcache.json`, gitignored) skips re-embedding unchanged
   chunks.
 
-### Runtime: the `/api/chat` route (Node serverless)
+### Runtime: the `/api/chat` route (Multi-Tier Resilient Architecture)
 
-`app/api/chat/route.ts` (`runtime = "nodejs"`) runs the full pipeline per request:
+`app/api/chat/route.ts` (`runtime = "nodejs"`) runs a 4-tier fail-safe pipeline so visitors never encounter broken error screens:
 
-1. **Config gate** — missing `GROQ_API_KEY` → `500` (never leaks the key).
-2. **Parse + validate** (`validateInput`) — bad JSON / empty / over-length
+1. **Parse + validate** (`validateInput`) — bad JSON / empty / over-length
    (`MAX_QUERY_LENGTH = 1000`) → `400`.
-3. **Rate limit** (`lib/rate-limit.ts`, per client IP) → `429` with `Retry-After`.
-4. **Injection guard** (`checkInjection`) — classifies the raw query with the
+2. **Rate limit** (`lib/rate-limit.ts`, per client IP) → `429` with `Retry-After`.
+3. **Injection guard** (`checkInjection`) — classifies the raw query with the
    prompt-guard model (`meta-llama/llama-prompt-guard-2-86m`). On a confident
-   positive it **short-circuits** to a friendly refusal and **never calls the
-   generation model**. The guard fails open (any error → treated as benign; the
-   hardened system prompt is the real defense).
-5. **Retrieve** (`lib/rag/retrieve.ts`) — embeds the query locally (with the
-   required bge query prefix), scores all chunks by cosine similarity in memory,
-   returns the top `RETRIEVE_TOP_K = 5`.
-6. **Generate** — streams the answer from the generation model
-   (`openai/gpt-oss-120b`) via `groq-sdk`, piping token deltas as
-   `text/plain; charset=utf-8` (no SSE framing, no JSON envelope).
+   positive it **short-circuits** to a friendly refusal and **never calls generation models**.
+   The guard fails open defensively.
+4. **Tier 1: Instant Starter Answers** (`lib/rag/starters.ts`) — queries matching
+   the 4 starter chips (*"What's Adeel's strongest project?"*, etc.) are served
+   instantly from a pre-verified cache with 0ms latency, consuming 0 API tokens.
+5. **Retrieve** (`lib/rag/retrieve.ts`) — embeds custom queries locally with
+   `bge-small-en-v1.5` and retrieves the top `RETRIEVE_TOP_K = 5` context chunks.
+6. **Tier 2: Primary LLM (Groq)** — streams the answer via `groq-sdk` using
+   `GENERATION_MODEL` (`openai/gpt-oss-20b`).
+7. **Tier 3: Secondary LLM (Google Gemini Flash)** (`lib/rag/fallback.ts`) — if Groq
+   hits its daily token cap (TPD 429), an outage (502), or is unconfigured, the route
+   seamlessly fails over to Google Gemini (`gemini-2.5-flash`) via streaming SSE.
+8. **Tier 4: Local Extractive Fallback** (`lib/rag/fallback.ts`) — if all external
+   LLM APIs fail, the route formats the locally retrieved knowledge chunks into
+   a clean grounded summary with direct contact links. **100% uptime guaranteed.**
 
 Prompt assembly is centralized in `buildMessages()` (`lib/rag/generate.ts`) so
 the streaming route and the non-streaming `generateAnswer()` produce

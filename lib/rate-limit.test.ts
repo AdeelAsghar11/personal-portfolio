@@ -10,7 +10,7 @@ import { createInMemoryRateLimiter } from "./rate-limit";
 
 describe("createInMemoryRateLimiter", () => {
   it("allows up to max, then blocks with a positive retryAfter", () => {
-    let clock = 0;
+    const clock = 0;
     const limiter = createInMemoryRateLimiter({
       max: 3,
       windowMs: 1000,
@@ -48,7 +48,7 @@ describe("createInMemoryRateLimiter", () => {
   });
 
   it("tracks independent budgets per key", () => {
-    let clock = 0;
+    const clock = 0;
     const limiter = createInMemoryRateLimiter({
       max: 1,
       windowMs: 1000,

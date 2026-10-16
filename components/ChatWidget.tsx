@@ -195,6 +195,7 @@ export default function ChatWidget() {
   const [messages, setMessages] = useState<ChatMessage[]>([]);
   const [streaming, setStreaming] = useState(false);
   const [error, setError] = useState<{ kind: ErrorKind } | null>(null);
+  const [lastQuery, setLastQuery] = useState("");
 
   const bubbleRef = useRef<HTMLButtonElement | null>(null);
   const panelRef = useRef<HTMLDivElement | null>(null);
@@ -268,6 +269,7 @@ export default function ChatWidget() {
     ]);
     setInput("");
     setError(null);
+    setLastQuery(trimmed);
     setStreaming(true);
 
     try {
@@ -531,9 +533,28 @@ export default function ChatWidget() {
               )}
 
               {error && (
-                <p className="font-sans text-sm text-[var(--text-secondary)] border-l-2 border-[var(--accent-violet)] pl-3">
-                  {errorMessage(error.kind)}
-                </p>
+                <div className="flex flex-col gap-2 font-sans text-xs border-l-2 border-[var(--accent-violet)] pl-3 py-1">
+                  <p className="text-[var(--text-secondary)]">
+                    {errorMessage(error.kind)}
+                  </p>
+                  <div className="flex items-center gap-3">
+                    {lastQuery && (
+                      <button
+                        type="button"
+                        onClick={() => send(lastQuery)}
+                        className="font-mono text-xs text-[var(--accent-cyan)] hover:underline flex items-center gap-1 cursor-pointer"
+                      >
+                        ↻ Retry
+                      </button>
+                    )}
+                    <a
+                      href="mailto:adeelyt157@gmail.com"
+                      className="font-mono text-xs text-[var(--text-muted)] hover:text-[var(--accent-green)] transition-colors"
+                    >
+                      Email Adeel ↗
+                    </a>
+                  </div>
+                </div>
               )}
 
               <div ref={messagesEndRef} />
